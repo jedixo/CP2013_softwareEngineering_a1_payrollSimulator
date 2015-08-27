@@ -1,10 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.awt.event.*;
+import java.io.*;
 import java.util.Scanner;
+import java.sql.*;
 
 /**
  * Created by jc300016 on 20/08/15.
@@ -33,6 +32,7 @@ public class Test extends JFrame{
                         Scanner scanner;
                         File file = new File("testFile.txt");
                         try {
+                            boolean a = connect();
                             scanner = new Scanner(file);
                             while (scanner.hasNext()){
 
@@ -41,8 +41,8 @@ public class Test extends JFrame{
                             }
 
 
-                        }catch (FileNotFoundException e1){
-                            System.out.println("not here");
+                        }catch (Exception e1){
+                            System.out.println("World Destroyed!!");
                         }
                     }
                 });
@@ -50,5 +50,26 @@ public class Test extends JFrame{
                 test.setVisible(true);
             }
         });
+    }
+    static String myUrl = "com.mysql.jdbc.Drver";
+    static String myDriver = "jdbc:mysql://db4free.net:3306/teamname";
+    public static boolean connect() {
+        boolean done = false;
+        //load driver
+        try {
+            Class.forName(myUrl).newInstance();
+            System.out.println("driver loaded"); // THIS IS BEING RETURNED
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            System.err.println("unable to load driver");
+        }
+        // Connection
+        try {
+            Connection conn = DriverManager.getConnection(myDriver, "teamname", "TeamName");
+            System.out.println("connected"); // THIS IS NOT BEING RETURNED
+            done = true;
+        } catch (SQLException ex) {
+            System.out.println("SQLException: " + ex.getMessage());
+        }
+        return done;
     }
 }
