@@ -12,6 +12,11 @@ public class Test extends JFrame{
     public Test() {
         initUI();
     }
+    private static String user = "teamname2";
+    private static String pass = "TeamName";
+    private static String dbClass = "com.mysql.jdbc.Driver";
+    private static String dbDriver = "jdbc:mysql://db4free.net:3306/teamname";
+    private static Connection conn = null;
     private void initUI(){
         setTitle("Test Window");
         setSize(300, 300);
@@ -25,6 +30,7 @@ public class Test extends JFrame{
             @Override
             public void run() {
                 Test test = new Test();
+
                 JButton button = new JButton("button1");
                 button.addActionListener(new ActionListener() {
                     @Override
@@ -51,20 +57,24 @@ public class Test extends JFrame{
             }
         });
     }
-    static String myUrl = "com.mysql.jdbc.Drver";
-    static String myDriver = "jdbc:mysql://db4free.net:3306/teamname";
+
+
+
     public static boolean connect() {
         boolean done = false;
         //load driver
         try {
-            Class.forName(myUrl).newInstance();
+            Class.forName(dbClass).newInstance();
             System.out.println("driver loaded"); // THIS IS BEING RETURNED
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-            System.err.println("unable to load driver");
+            System.err.println(ex);
         }
         // Connection
+
         try {
-            Connection conn = DriverManager.getConnection(myDriver, "teamname", "TeamName");
+            System.out.println("hi");
+            conn = DriverManager.getConnection(dbDriver, user, pass);
+
             System.out.println("connected"); // THIS IS NOT BEING RETURNED
             done = true;
         } catch (SQLException ex) {
