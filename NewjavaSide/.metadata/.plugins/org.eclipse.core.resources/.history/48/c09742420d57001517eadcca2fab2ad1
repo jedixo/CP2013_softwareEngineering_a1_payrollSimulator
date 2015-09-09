@@ -3,11 +3,12 @@ package controll;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.sql.ResultSet;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
-@SuppressWarnings("serial")
 public class ViewEmployees extends JFrame{
 	
 	public ViewEmployees(ResultSet rs) {

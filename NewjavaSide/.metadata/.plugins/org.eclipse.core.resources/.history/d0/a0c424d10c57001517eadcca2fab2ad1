@@ -2,13 +2,15 @@ package view;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-;
-@SuppressWarnings("serial")
+import sun.security.util.Length;
+
 public class MainDisplay extends JPanel{
 
 	public JButton[] buttons;
@@ -17,7 +19,7 @@ public class MainDisplay extends JPanel{
 	
 	public MainDisplay() {
 		
-		setLayout(new GridLayout(2, 4, 4, 4));
+		setLayout(new GridLayout(2, 4));
 		
 		int i = 0;
 		buttons = new JButton[events.size()];

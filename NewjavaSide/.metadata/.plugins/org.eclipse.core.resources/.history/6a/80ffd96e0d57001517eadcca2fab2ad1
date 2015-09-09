@@ -2,6 +2,13 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+
+
+
+
+import com.sun.prism.paint.Stop;
+
 import controll.Database;
 import controll.ViewEmployees;
 import view.MainDisplay;
@@ -44,7 +51,7 @@ public class app {
 				
 				switch (e.getActionCommand()) {
 				case "View Employees":
-					new ViewEmployees(database.getEmployees());
+					ViewEmployees viewEmployees = new ViewEmployees(database.getEmployees());
 				}
 			}
 		});
