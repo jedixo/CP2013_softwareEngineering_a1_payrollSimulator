@@ -1,0 +1,44 @@
+package controll;
+
+import java.awt.Dimension;
+import java.sql.ResultSet;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+
+public class ViewEmployees extends JFrame{
+	
+	public ViewEmployees(ResultSet rs) {
+		
+		try {
+			while (rs.next()){
+				
+				String id = rs.getString("id");
+				String firstName = rs.getString("first_name");
+				String lastName = rs.getString("last_name");
+				System.out.println("ID: " + id + ", First Name: " + firstName
+						+ ", Last Name: " + lastName);
+				
+				JLabel emp = new JLabel();
+				JPanel empp = new JPanel();
+				emp.setText(rs.getString("first_name"));
+				empp.add(emp);
+				this.add(empp);
+			}
+		}catch (Exception e) {
+			System.out.println("error");
+			
+		}
+		
+		setPreferredSize(new Dimension(260, 160));
+		setVisible(true);
+		pack();
+		setTitle("Payroll - Alpha");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setLocationRelativeTo(null);
+		
+	}
+
+}

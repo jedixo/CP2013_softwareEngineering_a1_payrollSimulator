@@ -1,0 +1,19 @@
+package controll;
+
+import java.awt.Dimension;
+import java.sql.ResultSet;
+
+import javax.swing.JFrame;
+
+public class ViewEmployees extends JFrame{
+	
+	public ViewEmployees(ResultSet rs) {
+		setPreferredSize(new Dimension(600, 600));
+		setVisible(true);
+		pack();
+		setTitle("Payroll - Alpha");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
+	}
+
+}
