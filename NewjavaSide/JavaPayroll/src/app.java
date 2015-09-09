@@ -1,5 +1,9 @@
+
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+
 
 
 import com.sun.prism.paint.Stop;
@@ -19,8 +23,8 @@ public class app {
 	public static void main(String[] args) {
 		mainDisplay = new MainDisplay();
 		mainFrame = new MainFrame(mainDisplay);
-		
-		
+		database = new Database("sql6.freemysqlhosting.net/sql689509", "sql689509",
+				"lA7*wL7!");
 		
 		mainFrame.addMenuHandler(new ActionListener() {
 			
@@ -36,6 +40,21 @@ public class app {
 		
 		
 		});
+		
+		mainDisplay.addButtonHandler(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(e.getActionCommand());
+				
+				switch (e.getActionCommand()) {
+				case "View Employees":
+					database.printEmployees();
+				}
+				//Object value = shell.evaluate("System.out.println('hello');");
+			}
+		});
+		
 	}
 
 }

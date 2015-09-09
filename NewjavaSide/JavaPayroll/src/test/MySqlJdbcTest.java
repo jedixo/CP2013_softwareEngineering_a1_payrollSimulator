@@ -17,9 +17,9 @@ public class MySqlJdbcTest {
 //			new com.mysql.jdbc.Driver();
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 // conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/testdatabase?user=testuser&password=testpassword");
-			String connectionUrl = "jdbc:mysql://localhost:3306/testdatabase";
-			String connectionUser = "testuser";
-			String connectionPassword = "testpassword";
+			String connectionUrl = "jdbc:mysql://sql6.freemysqlhosting.net/sql689509";
+			String connectionUser = "sql689509";
+			String connectionPassword = "lA7*wL7!";
 			conn = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM employees");
@@ -30,6 +30,7 @@ public class MySqlJdbcTest {
 				System.out.println("ID: " + id + ", First Name: " + firstName
 						+ ", Last Name: " + lastName);
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
