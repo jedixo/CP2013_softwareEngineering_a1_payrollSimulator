@@ -2,6 +2,8 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import controll.AddEmployee;
 import controll.Database;
 import controll.ViewEmployees;
 import view.MainDisplay;
@@ -43,8 +45,12 @@ public class app {
 				System.out.println(e.getActionCommand());
 				
 				switch (e.getActionCommand()) {
+				case "Add Employee":
+					new AddEmployee(database);
+					break;
 				case "View Employees":
 					new ViewEmployees(database.getEmployees());
+					break;
 				}
 			}
 		});

@@ -8,9 +8,11 @@ import java.sql.Statement;
 
 public class Database {
 	
-	Connection connection = null;
+	private Connection connection = null;
+	private String host = null;
 	
 	public Database(String host, String user, String password) {
+		this.host = host;
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			connection = DriverManager.getConnection("jdbc:mysql://" + host, user, password);
@@ -33,6 +35,10 @@ public class Database {
 		}
 		
 	
+	}
+	
+	public String getHost() {
+		return host;
 	}
 
 }
