@@ -59,7 +59,7 @@ public class app {
 				case "Add Employee":
 					//TODO: change so addEmployee creates an employee, the employee is added to employelist which is then added 
 					//to the databse
-					new AddEmployee(empDatabase);
+					new AddEmployee(empList, empDatabase);
 					break;
 				case "View Employees":
 					new ViewEmployees(empList);
@@ -70,13 +70,17 @@ public class app {
 		
 	}
 
-	// TODO: add more values
 	private static void addEmployeesToList() {
 		try {
 			ResultSet rs = empDatabase.getTable("employees");
 			while (rs.next()){
 				Employee employee = new Employee(rs.getString("first_name"), rs.getString("last_name"));
 				employee.setId(rs.getInt("id"));
+				employee.setAddress(rs.getString("Address"));
+				employee.setPayType(rs.getInt("pay_type"));
+				employee.setPayDelivery(rs.getInt("pay_delivery"));
+				employee.setUnion(rs.getString("Union"));
+				employee.setSalary(rs.getInt("Salary"));
 				empList.add(employee);
 			}
 		}catch (SQLException e) {
