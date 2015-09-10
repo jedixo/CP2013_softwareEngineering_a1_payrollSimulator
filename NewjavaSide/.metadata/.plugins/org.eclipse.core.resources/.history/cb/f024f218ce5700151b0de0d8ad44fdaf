@@ -5,8 +5,14 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.swing.JLabel;
+
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import controll.AddEmployee;
 import controll.Database;
+import controll.Emplist;
 import controll.Employee;
 import controll.ViewEmployees;
 import view.MainDisplay;

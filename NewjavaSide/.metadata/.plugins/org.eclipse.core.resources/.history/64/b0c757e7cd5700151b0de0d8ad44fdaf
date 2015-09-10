@@ -19,7 +19,7 @@ public class AddEmployee extends JFrame {
 	
 	public AddEmployee(final ArrayList<Employee> empList, final Database empDatabase) {
 		JPanel addPanel = new JPanel();
-		addPanel.setLayout(new GridLayout(0,2,2,2));
+		addPanel.setLayout(new GridLayout(0,2));
 		addPanel.add(new JLabel("First Name:"));
 		firstName = new JTextField();
 		addPanel.add(firstName);
