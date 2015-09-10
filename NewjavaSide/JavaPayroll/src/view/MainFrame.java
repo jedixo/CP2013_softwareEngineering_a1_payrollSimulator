@@ -22,7 +22,7 @@ public class MainFrame extends JFrame{
 		add(panel, BorderLayout.CENTER);
 		setJMenuBar(menubar);
 		
-		setPreferredSize(new Dimension(500, 160));
+		setPreferredSize(new Dimension(800, 160));
 		setVisible(true);
 		pack();
 		setTitle("Payroll - Alpha");

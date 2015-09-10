@@ -1,0 +1,13 @@
+package controll;
+
+public class Employee {
+	
+	public String id, firstName, lastName;
+	private String address, payType, payDelivery, union, salary;
+	
+	public Employee() {
+		
+	}
+	
+
+}

@@ -1,0 +1,25 @@
+package controll;
+
+import java.util.ArrayList;
+
+import javax.swing.JFrame;
+
+@SuppressWarnings("serial")
+public class AddEmployee extends JFrame{
+	
+	public AddEmployee(Database database) {
+		ArrayList<ArrayList<String>> data = new ArrayList<>();
+		ArrayList<String> element = new ArrayList<>();
+		element.add("james");
+		element.add("bigfoot");
+		element.add("1");
+		element.add("1");
+		element.add("1");
+		element.add("1");
+		element.add("1");
+		data.add(element);
+		System.out.println(data.get(0).get(1));
+		database.updatetable("employees", data);
+	}
+
+}

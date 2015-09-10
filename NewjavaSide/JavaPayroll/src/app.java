@@ -2,9 +2,18 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.swing.JLabel;
+
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import controll.AddEmployee;
 import controll.Database;
+import controll.Emplist;
+import controll.Employee;
 import controll.ViewEmployees;
 import view.MainDisplay;
 import view.MainFrame;
@@ -13,15 +22,17 @@ import view.MainFrame;
 public class app {
 	
 	public static MainFrame mainFrame;
-	private static Database database;
+	private static Database empDatabase;
 	private static MainDisplay mainDisplay;
+	private static ArrayList<Employee> empList = new ArrayList<>();
 	
 
 	public static void main(String[] args) {
 		mainDisplay = new MainDisplay();
 		mainFrame = new MainFrame(mainDisplay);
-		database = new Database("sql6.freemysqlhosting.net/sql689509", "sql689509",
+		empDatabase = new Database("sql6.freemysqlhosting.net/sql689509", "sql689509",
 				"lA7*wL7!");
+		addEmployeesToList();
 		
 		mainFrame.addMenuHandler(new ActionListener() {
 			
@@ -46,15 +57,30 @@ public class app {
 				
 				switch (e.getActionCommand()) {
 				case "Add Employee":
-					new AddEmployee(database);
+					new AddEmployee(empDatabase);
 					break;
 				case "View Employees":
-					new ViewEmployees(database.getEmployees());
+					new ViewEmployees(empList);
 					break;
 				}
 			}
 		});
 		
+	}
+
+
+	private static void addEmployeesToList() {
+		try {
+			ResultSet rs = empDatabase.getTable("employees");
+			while (rs.next()){
+				Employee employee = new Employee(rs.getString("first_name"), rs.getString("last_name"));
+				employee.setId(rs.getInt("id"));
+				empList.add(employee);
+
+			}
+		}catch (SQLException e) {
+			System.out.println(e);
+		}
 	}
 
 }

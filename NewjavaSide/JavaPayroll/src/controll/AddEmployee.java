@@ -1,5 +1,7 @@
 package controll;
 
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 
 @SuppressWarnings("serial")
