@@ -57,12 +57,10 @@ public class app {
 				
 				switch (e.getActionCommand()) {
 				case "Add Employee":
-					//TODO: change so addEmployee creates an employee, the employee is added to employelist which is then added 
-					//to the databse
 					new AddEmployee(empDatabase);
 					break;
 				case "View Employees":
-					new ViewEmployees(empList);
+					new ViewEmployees(empDatabase.getTable("employees"));
 					break;
 				}
 			}
@@ -70,7 +68,7 @@ public class app {
 		
 	}
 
-	// TODO: add more values
+
 	private static void addEmployeesToList() {
 		try {
 			ResultSet rs = empDatabase.getTable("employees");
@@ -78,6 +76,9 @@ public class app {
 				Employee employee = new Employee(rs.getString("first_name"), rs.getString("last_name"));
 				employee.setId(rs.getInt("id"));
 				empList.add(employee);
+//			empList.add(new JLabel(rs.getString("id")));
+//			empList.add(new JLabel(rs.getString("first_name")));
+//			empList.add(new JLabel(rs.getString("last_name")));
 			}
 		}catch (SQLException e) {
 			System.out.println(e);
