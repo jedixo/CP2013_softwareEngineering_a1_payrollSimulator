@@ -55,4 +55,17 @@ public class Database {
 		}
 		
 	}
+
+	public void deleteEmp(int id) {
+		try {
+			String sql = "DELETE FROM employees WHERE id=?";
+			java.sql.PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setInt(1,id);
+			System.out.println(statement.toString());
+			statement.executeUpdate();
+			
+		}catch (SQLException e){
+			System.out.println(e);
+		}
+	}
 }

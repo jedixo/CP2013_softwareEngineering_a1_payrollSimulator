@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 public class MainDisplay extends JPanel{
 
 	public JButton[] buttons;
-	private List<String> events = Arrays.asList("Add Employee","Delete employee","Update Employee",
+	private List<String> events = Arrays.asList("Update Employee",
 			"View Employees","Post timecard","post receipt","post union service charge","run payroll");
 	
 	public MainDisplay() {

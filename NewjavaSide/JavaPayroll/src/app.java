@@ -6,13 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import controll.AddEmployee;
 import controll.Database;
 import controll.Employee;
-import controll.ViewEmployees;
+import view.AddEmployee;
 import view.LoadingBar;
 import view.MainDisplay;
 import view.MainFrame;
+import view.ViewEmployees;
 
 
 public class app {
@@ -58,13 +58,8 @@ public class app {
 				System.out.println(e.getActionCommand());
 				
 				switch (e.getActionCommand()) {
-				case "Add Employee":
-					//TODO: change so addEmployee creates an employee, the employee is added to employelist which is then added 
-					//to the databse
-					new AddEmployee(empList, empDatabase);
-					break;
 				case "View Employees":
-					new ViewEmployees(empList);
+					new ViewEmployees(empList, empDatabase);
 					break;
 				}
 			}
