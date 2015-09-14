@@ -29,7 +29,7 @@ public class app {
 				"lA7*wL7!");
 		load.updateBar(50,"Querying Database");
 		addEmployeesToList();
-		load.updateBar(100,"Loading UI");
+		load.updateBar(100);
 		load.dispose();
 		mainDisplay = new MainDisplay();
 		mainFrame = new MainFrame(mainDisplay);

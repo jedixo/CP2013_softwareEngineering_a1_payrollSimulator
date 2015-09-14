@@ -24,12 +24,11 @@ public class app {
 	
 
 	public static void main(String[] args) {
-		LoadingBar load = new LoadingBar("Connecting");
+		LoadingBar load = new LoadingBar(1);
 		empDatabase = new Database("sql6.freemysqlhosting.net/sql689509", "sql689509",
 				"lA7*wL7!");
-		load.updateBar(50,"Querying Database");
 		addEmployeesToList();
-		load.updateBar(100,"Loading UI");
+		load.updateBar(100);
 		load.dispose();
 		mainDisplay = new MainDisplay();
 		mainFrame = new MainFrame(mainDisplay);

@@ -5,12 +5,10 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import controll.AddEmployee;
 import controll.Database;
 import controll.Employee;
 import controll.ViewEmployees;
-import view.LoadingBar;
 import view.MainDisplay;
 import view.MainFrame;
 
@@ -24,17 +22,11 @@ public class app {
 	
 
 	public static void main(String[] args) {
-		LoadingBar load = new LoadingBar("Connecting");
-		empDatabase = new Database("sql6.freemysqlhosting.net/sql689509", "sql689509",
-				"lA7*wL7!");
-		load.updateBar(50,"Querying Database");
-		addEmployeesToList();
-		load.updateBar(100,"Loading UI");
-		load.dispose();
 		mainDisplay = new MainDisplay();
 		mainFrame = new MainFrame(mainDisplay);
-		
-		
+		empDatabase = new Database("sql6.freemysqlhosting.net/sql689509", "sql689509",
+				"lA7*wL7!");
+		addEmployeesToList();
 		
 		mainFrame.addMenuHandler(new ActionListener() {
 			

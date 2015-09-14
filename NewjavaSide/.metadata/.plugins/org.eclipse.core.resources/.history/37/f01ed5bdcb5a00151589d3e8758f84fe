@@ -27,9 +27,9 @@ public class app {
 		LoadingBar load = new LoadingBar("Connecting");
 		empDatabase = new Database("sql6.freemysqlhosting.net/sql689509", "sql689509",
 				"lA7*wL7!");
-		load.updateBar(50,"Querying Database");
+		load.updateBar(50);
 		addEmployeesToList();
-		load.updateBar(100,"Loading UI");
+		load.updateBar(100);
 		load.dispose();
 		mainDisplay = new MainDisplay();
 		mainFrame = new MainFrame(mainDisplay);
