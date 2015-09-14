@@ -1,0 +1,72 @@
+package view;
+
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+import controll.Database;
+import controll.Employee;
+
+@SuppressWarnings("serial")
+public class ViewEmployees extends JFrame{
+	private EmpPanel empPanel;
+	private ArrayList<Employee> empList;
+	private Database empDatabase;
+	private JButton addButton;
+	private JButton deleteButton;
+	
+	public ViewEmployees(ArrayList<Employee> empList, Database empDatabase) {
+		this.empList = empList;
+		this.empDatabase = empDatabase;
+		
+		empPanel = new EmpPanel(empList);
+		addButton = new JButton("Add");
+		deleteButton = new JButton("Delete");
+		empPanel.add(addButton);
+		empPanel.add(deleteButton);
+		this.add(empPanel);
+		update();
+
+		//setVisible(true);
+		pack();
+		setTitle("employees");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setLocationRelativeTo(null);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		
+	}
+
+	private void update() {
+		this.remove(empPanel);
+		this.remove(addButton);
+		empPanel = new EmpPanel(empList);
+		addButton = new JButton("Add");
+		addButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new AddEmployee(empList, empDatabase);
+				update();	
+			}
+		});
+		deleteButton = new JButton("Delete");
+		deleteButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new AddEmployee(empList, empDatabase);
+				update();	
+			}
+		});
+		empPanel.add(addButton);
+		empPanel.add(deleteButton);
+		this.add(empPanel);
+		this.setVisible(true);
+		
+	}
+
+}

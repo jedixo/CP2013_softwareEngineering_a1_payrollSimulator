@@ -1,0 +1,44 @@
+package controll;
+
+import java.awt.GridLayout;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+@SuppressWarnings("serial")
+public class AddEmployee extends JFrame implements PropertyChangeListener{
+	private NumberFormat amountFormat;
+	
+	public AddEmployee(ArrayList<Employee> empList, Database empDatabase) {
+		JPanel addPanel = new JPanel();
+		addPanel.setLayout(new GridLayout(0,2));
+		addPanel.add(new JLabel("First Name:"));
+		JFormattedTextField firstNameInput  = new JFormattedTextField(amountFormat);
+		
+		firstNameInput.setValue(new Integer(100000));
+		firstNameInput.setColumns(10);
+		firstNameInput.addPropertyChangeListener("value", this);
+		addPanel.add(firstNameInput);
+		
+		
+		this.add(addPanel);
+		this.setVisible(true);
+		
+		
+		
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,60 @@
+package controll;
+
+import java.awt.GridLayout;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+@SuppressWarnings("serial")
+public class AddEmployee extends JFrame implements PropertyChangeListener{
+	private NumberFormat amountFormat;
+	private JTextField firstName;
+	private JTextField lastName;
+	private JTextField address;
+	private JFormattedTextField payType;
+	private int amount = 0;
+	
+	public AddEmployee(ArrayList<Employee> empList, Database empDatabase) {
+		JPanel addPanel = new JPanel();
+		addPanel.setLayout(new GridLayout(0,2));
+		addPanel.add(new JLabel("First Name:"));
+		firstName = new JTextField();
+		addPanel.add(firstName);
+		addPanel.add(new JLabel("Last Name:"));
+		lastName = new JTextField();
+		addPanel.add(lastName);
+		addPanel.add(new JLabel("Address:"));
+		address = new JTextField();
+		addPanel.add(address);
+		addPanel.add(new JLabel("Pay Type:"));
+		payType  = new JFormattedTextField(amountFormat);
+		payType.setValue(new Integer(amount));
+		payType.setColumns(10);
+		payType.addPropertyChangeListener("value", this);
+		addPanel.add(payType);
+		
+		
+		this.add(addPanel);
+		this.pack();
+		this.setVisible(true);
+		
+		
+		
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent e) {
+		Object source = e.getSource();
+		if (source == payType) {
+			amount = ((Number)payType.getValue()).intValue();
+		}
+	}
+
+}

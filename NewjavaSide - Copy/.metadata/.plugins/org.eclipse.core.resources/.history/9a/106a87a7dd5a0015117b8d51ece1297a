@@ -1,0 +1,35 @@
+package view;
+
+
+import java.util.ArrayList;
+
+import javax.swing.JFrame;
+
+import controll.Database;
+import controll.Employee;
+
+@SuppressWarnings("serial")
+public class ViewEmployees extends JFrame{
+	private EmpPanel empPanel;
+	
+	public ViewEmployees(ArrayList<Employee> empList, Database empDatabase) {
+		
+		empPanel = new EmpPanel(empList);
+		this.add(empPanel);
+		update();
+
+		setVisible(true);
+		pack();
+		setTitle("employees");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setLocationRelativeTo(null);
+		
+	}
+
+	private void update() {
+		this.remove(empPanel);
+		
+		
+	}
+
+}

@@ -1,0 +1,19 @@
+import controll.Database;
+import view.MainDisplay;
+import view.MainFrame;
+
+
+public class app {
+	
+	public static MainFrame mainFrame;
+	private static Database database;
+	private static MainDisplay mainDisplay;
+	
+
+	public static void main(String[] args) {
+		mainDisplay = new MainDisplay();
+		mainFrame = new MainFrame(mainDisplay);
+		
+	}
+
+}

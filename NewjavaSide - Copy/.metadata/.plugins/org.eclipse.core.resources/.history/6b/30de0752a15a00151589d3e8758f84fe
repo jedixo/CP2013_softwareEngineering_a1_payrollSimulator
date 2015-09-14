@@ -1,0 +1,19 @@
+package view;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+
+public class LoadingBar extends JFrame{
+	private JProgressBar pbar;
+	private static final int MINIMUM = 0;
+	private static final int MAXIMUM = 100;
+	private JPanel panel;
+	
+	public LoadingBar() {
+		panel = new JPanel();
+		pbar = new JProgressBar();
+		pbar.setMinimum(MINIMUM);
+	}
+
+}

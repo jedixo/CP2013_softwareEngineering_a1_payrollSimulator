@@ -1,0 +1,27 @@
+package controll;
+
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+@SuppressWarnings("serial")
+public class ViewEmployees extends JFrame{
+	
+	public ViewEmployees(ArrayList<Employee> empList) {
+		
+		
+		setPreferredSize(new Dimension(260, 160));
+		setVisible(true);
+		pack();
+		setTitle("employees");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setLocationRelativeTo(null);
+		
+	}
+
+}
