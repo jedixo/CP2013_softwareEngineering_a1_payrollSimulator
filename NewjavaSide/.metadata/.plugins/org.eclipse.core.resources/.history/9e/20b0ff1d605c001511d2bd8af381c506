@@ -26,10 +26,9 @@ public class MainDisplay extends JPanel{
 			btn.setActionCommand(element);
 			btn.setText(element);
 			buttons[i] = btn;
-			this.add(buttons[i]);
 			i++;
 		}
-		
+		this.add(buttons[i]);
 	}
 	
 	public void addButtonHandler(ActionListener listener) {

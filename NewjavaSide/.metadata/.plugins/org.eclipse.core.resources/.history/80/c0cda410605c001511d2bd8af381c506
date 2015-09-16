@@ -28,8 +28,9 @@ public class MainDisplay extends JPanel{
 			buttons[i] = btn;
 			this.add(buttons[i]);
 			i++;
+			
+			
 		}
-		
 	}
 	
 	public void addButtonHandler(ActionListener listener) {
