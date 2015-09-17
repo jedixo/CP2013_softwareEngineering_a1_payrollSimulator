@@ -8,13 +8,17 @@ import java.util.ArrayList;
 
 import controll.Database;
 import controll.Employee;
-import view.AddEmployee;
 import view.LoadingBar;
 import view.MainDisplay;
 import view.MainFrame;
 import view.ViewEmployees;
 
 
+//TODO:
+// Change integer paramaters to corret transaltion
+//     - view emp
+//     - add emp
+//     - mod emp
 public class app {
 	
 	public static MainFrame mainFrame;

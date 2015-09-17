@@ -71,7 +71,7 @@ public class ViewEmployees extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddEmployee(empList, empDatabase);
+				new ModEmployee(empList, empDatabase);
 				update();	
 			}
 		});

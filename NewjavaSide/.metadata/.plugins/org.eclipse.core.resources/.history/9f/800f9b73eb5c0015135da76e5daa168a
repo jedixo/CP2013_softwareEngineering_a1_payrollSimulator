@@ -1,0 +1,41 @@
+package view;
+
+import java.awt.GridLayout;
+import java.util.ArrayList;
+
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import com.mysql.jdbc.log.Jdk14Logger;
+
+import controll.Database;
+import controll.Employee;
+
+@SuppressWarnings("serial")
+public class ModEmployee extends JDialog {
+	
+	private JComboBox<String> employees;
+	private JTextField firstName, lastName, address, payType, payDelivery, union, salary;
+	
+
+	public ModEmployee(ArrayList<Employee> empList, Database empDatabase) {
+	JPanel modPanel = new JPanel();
+	modPanel.setLayout(new GridLayout(0,2,2,2));
+	modPanel.add(new JLabel("Employee:"));
+	employees = new JComboBox<>();
+	for (Employee employee : empList) {
+		String first = employee.getFirstName();
+		String last = employee.getLastName();
+		String name = first +" "+ last;
+		employees.addItem(name);
+	}
+	modPanel.add(employees);
+	this.add(modPanel);
+	this.setModal(true);
+	this.setVisible(true);
+	}
+
+}

@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -16,6 +15,7 @@ import javax.swing.JPanel;
 import controll.Database;
 import controll.Employee;
 
+@SuppressWarnings("serial")
 public class DelEmployee extends JDialog{
 
 	private JComboBox<String> employees;
@@ -28,7 +28,6 @@ public class DelEmployee extends JDialog{
 	for (Employee employee : empList) {
 		String first = employee.getFirstName();
 		String last = employee.getLastName();
-		int id = employee.getId();
 		String name = first +" "+ last;
 		employees.addItem(name);
 	}
