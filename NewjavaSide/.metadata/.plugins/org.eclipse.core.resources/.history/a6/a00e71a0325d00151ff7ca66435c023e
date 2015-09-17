@@ -26,7 +26,7 @@ public class ModEmployee extends JDialog {
 	private ArrayList<Employee> empList;
 	private Employee employee;
 
-	public ModEmployee(final ArrayList<Employee> empList, final Database empDatabase) {
+	public ModEmployee(ArrayList<Employee> empList, final Database empDatabase) {
 	this.empList = empList;
 	JPanel modPanel = new JPanel();
 	modPanel.setLayout(new GridLayout(0,2,2,2));
@@ -90,13 +90,7 @@ public class ModEmployee extends JDialog {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			for (int i = 0; i < empList.size(); i++) {
-				if (empList.get(i).getId() == employee.getId()) {
-					empList.remove(i);
-					empDatabase.deleteEmp(employee.getId());
-				}
-			}
-			
+			empDatabase.deleteEmp(employee.getId());
 			close();
 		}
 	});

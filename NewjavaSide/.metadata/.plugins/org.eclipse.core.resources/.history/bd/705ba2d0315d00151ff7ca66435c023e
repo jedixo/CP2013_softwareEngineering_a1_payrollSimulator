@@ -26,7 +26,7 @@ public class ModEmployee extends JDialog {
 	private ArrayList<Employee> empList;
 	private Employee employee;
 
-	public ModEmployee(final ArrayList<Employee> empList, final Database empDatabase) {
+	public ModEmployee(ArrayList<Employee> empList, final Database empDatabase) {
 	this.empList = empList;
 	JPanel modPanel = new JPanel();
 	modPanel.setLayout(new GridLayout(0,2,2,2));
@@ -68,8 +68,6 @@ public class ModEmployee extends JDialog {
 	modPanel.add(new JLabel("Salary:"));
 	salary = new JTextField();
 	modPanel.add(salary);
-	JPanel actionPanel = new JPanel();
-	actionPanel.setLayout(new GridLayout(0,2));
 	JButton addButton = new JButton("Update");
 	addButton.addActionListener(new ActionListener() {
 		
@@ -85,21 +83,7 @@ public class ModEmployee extends JDialog {
 			close();
 		}
 	});
-	JButton deleteButton = new JButton("Delete");
-	deleteButton.addActionListener(new ActionListener() {
-		
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			for (int i = 0; i < empList.size(); i++) {
-				if (empList.get(i).getId() == employee.getId()) {
-					empList.remove(i);
-					empDatabase.deleteEmp(employee.getId());
-				}
-			}
-			
-			close();
-		}
-	});
+	
 	JButton closeButton = new JButton("Cancel");
 	closeButton.addActionListener(new ActionListener() {
 		
@@ -109,9 +93,7 @@ public class ModEmployee extends JDialog {
 			
 		}
 	});
-	actionPanel.add(addButton);
-	actionPanel.add(deleteButton);
-	modPanel.add(actionPanel);
+	modPanel.add(addButton);
 	modPanel.add(closeButton);
 	getPreviousDetails(empList.get(0).getFirstName() + " " + empList.get(0).getLastName());
 	setDefaultCloseOperation(DISPOSE_ON_CLOSE);
