@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerListModel;
 import javax.swing.SpinnerNumberModel;
 
 import controll.Database;
@@ -49,6 +50,7 @@ public class AddEmployee extends JDialog {
 		}
 		addPanel.add(payType);
 		addPanel.add(new JLabel("Pay Delivery:"));
+		//payDelivery = new JTextField();
 		payDelivery = new JComboBox<String>();
 		for (String delivery : deliveryTypes) {
 			payDelivery.addItem(delivery);
@@ -69,17 +71,13 @@ public class AddEmployee extends JDialog {
 				Employee employee = new Employee(firstName.getText(), lastName.getText());
 				employee.setAddress(address.getText());
 				String type = (String) payType.getSelectedItem();
+				//employee.setPayType(Integer.parseInt(payType.getText()));
 				for (int i = 0; i < payTypes.size(); i++) {
 					if (payTypes.get(i).equals(type)) {
-						employee.setPayType(i);
+						employee.setPayType(i + 1);
 					}
 				}
-				type = (String) payDelivery.getSelectedItem();
-				for (int i = 0; i < deliveryTypes.size(); i++) {
-					if (deliveryTypes.get(i).equals(type)) {
-						employee.setPayDelivery(i);
-					}
-				}
+				//employee.setPayDelivery(Integer.parseInt(payDelivery.getText()));
 				employee.setUnion(union.getText());
 				employee.setSalary((int) salary.getValue());
 				employee.setId(empList.get(empList.size() - 1).getId() + 1);

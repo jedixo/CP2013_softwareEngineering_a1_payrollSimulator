@@ -9,12 +9,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerListModel;
 import javax.swing.SpinnerNumberModel;
 
 import controll.Database;
@@ -23,8 +23,7 @@ import controll.Employee;
 @SuppressWarnings("serial")
 public class AddEmployee extends JDialog {
 	private JTextField firstName, lastName, address, union;
-	private JSpinner salary;
-	private JComboBox<String> payType, payDelivery;
+	private JSpinner salary, payType, payDelivery;
 	private List<String> payTypes = Arrays.asList("Hourly rate", "Monthly salary", "Comission");
 	private List<String> deliveryTypes = Arrays.asList("mail", "held", "direct deposite");
 
@@ -43,16 +42,14 @@ public class AddEmployee extends JDialog {
 		address = new JTextField();
 		addPanel.add(address);
 		addPanel.add(new JLabel("Pay Type:"));
-		payType = new JComboBox<String>();
-		for (String type : payTypes) {
-			payType.addItem(type);
-		}
+		//payType = new JTextField();
+		payType = new JSpinner();
+		payType.setModel(new SpinnerListModel(payTypes));
 		addPanel.add(payType);
 		addPanel.add(new JLabel("Pay Delivery:"));
-		payDelivery = new JComboBox<String>();
-		for (String delivery : deliveryTypes) {
-			payDelivery.addItem(delivery);
-		}
+		//payDelivery = new JTextField();
+		payDelivery = new JSpinner();
+		payDelivery.setModel(new SpinnerListModel(deliveryTypes));
 		addPanel.add(payDelivery);
 		addPanel.add(new JLabel("Union:"));
 		union = new JTextField();
@@ -68,18 +65,8 @@ public class AddEmployee extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				Employee employee = new Employee(firstName.getText(), lastName.getText());
 				employee.setAddress(address.getText());
-				String type = (String) payType.getSelectedItem();
-				for (int i = 0; i < payTypes.size(); i++) {
-					if (payTypes.get(i).equals(type)) {
-						employee.setPayType(i);
-					}
-				}
-				type = (String) payDelivery.getSelectedItem();
-				for (int i = 0; i < deliveryTypes.size(); i++) {
-					if (deliveryTypes.get(i).equals(type)) {
-						employee.setPayDelivery(i);
-					}
-				}
+				employee.setPayType(Integer.parseInt(payType.getText()));
+				employee.setPayDelivery(Integer.parseInt(payDelivery.getText()));
 				employee.setUnion(union.getText());
 				employee.setSalary((int) salary.getValue());
 				employee.setId(empList.get(empList.size() - 1).getId() + 1);

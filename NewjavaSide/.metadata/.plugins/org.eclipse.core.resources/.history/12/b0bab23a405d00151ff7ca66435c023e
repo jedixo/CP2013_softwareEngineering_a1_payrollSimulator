@@ -71,7 +71,7 @@ public class AddEmployee extends JDialog {
 				String type = (String) payType.getSelectedItem();
 				for (int i = 0; i < payTypes.size(); i++) {
 					if (payTypes.get(i).equals(type)) {
-						employee.setPayType(i);
+						employee.setPayType(i + 1);
 					}
 				}
 				type = (String) payDelivery.getSelectedItem();

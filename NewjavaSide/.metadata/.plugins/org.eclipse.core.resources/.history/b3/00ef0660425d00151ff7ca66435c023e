@@ -3,12 +3,13 @@ package view;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 
 import controll.Employee;
 
-@SuppressWarnings("serial")
 public class EmpPanel extends JPanel{
 
 	public EmpPanel(ArrayList<Employee> empList) {

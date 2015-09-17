@@ -93,18 +93,8 @@ public class ModEmployee extends JDialog {
 		public void actionPerformed(ActionEvent e) {
 			
 			employee.setAddress(address.getText());
-			String type = (String) payType.getSelectedItem();
-			for (int i = 0; i < payTypes.size(); i++) {
-				if (payTypes.get(i).equals(type)) {
-					employee.setPayType(i);
-				}
-			}
-			type = (String) payDelivery.getSelectedItem();
-			for (int i = 0; i < deliveryTypes.size(); i++) {
-				if (deliveryTypes.get(i).equals(type)) {
-					employee.setPayDelivery(i);
-				}
-			}
+			employee.setPayType(Integer.parseInt(payType.getText()));
+			employee.setPayDelivery(Integer.parseInt(payDelivery.getText()));
 			employee.setUnion(union.getText());
 			employee.setSalary((int) salary.getValue());
 			empDatabase.updateEmp(employee);
@@ -160,7 +150,7 @@ public class ModEmployee extends JDialog {
 				this.employee = employee;
 				address.setText(employee.getAddress());
 				payType.setSelectedIndex(employee.getPayType());
-				payDelivery.setSelectedIndex(employee.getPayDelivery());
+				payDelivery.setSelectedIndex(employee.getPayDelivery() + "");
 				union.setText(employee.getUnion());
 				salary.setValue((Integer)employee.getSalary());				
 			}
