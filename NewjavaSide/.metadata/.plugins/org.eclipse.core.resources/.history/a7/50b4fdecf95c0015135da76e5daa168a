@@ -72,7 +72,7 @@ public class Database {
 
 	public void updateEmp(Employee employee) {
 		try {
-			String sql = "UPDATE employees SET first_name = ?, last_name = ?, Address = ?, pay_type = ?, pay_delivery = ?, `Union` = ?, Salary = ?" 
+			String sql = "UPDATE employees SET first_name = ?, last_name = ?, Address = ?, pay_type = ?, pay_delivery = ?, 'Union' = ?, Salary = ?" 
 						+ " WHERE id = ?;";
 			java.sql.PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setString(1, employee.getFirstName());
