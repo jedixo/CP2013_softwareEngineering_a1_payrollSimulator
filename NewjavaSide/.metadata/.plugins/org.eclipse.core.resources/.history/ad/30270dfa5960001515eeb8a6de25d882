@@ -16,16 +16,16 @@ import javax.swing.JScrollPane;
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame{
 	public static JMenuBar menubar = new JMenuBar();
+	private JScrollPane scrollPane;
 	
 	public MainFrame(MainDisplay panel) {
 		
 		JMenuBar menubar = setupMenu();
-		
-		
+		scrollPane = new JScrollPane(panel);
+		add(scrollPane, BorderLayout.CENTER);
 		setJMenuBar(menubar);
-		add(panel, BorderLayout.CENTER);
+		
 		setPreferredSize(new Dimension(800, 160));
-		setResizable(false);
 		setVisible(true);
 		pack();
 		setTitle("Payroll - Alpha");

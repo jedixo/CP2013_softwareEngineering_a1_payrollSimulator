@@ -145,7 +145,6 @@ public class ModEmployee extends JDialog {
 	add(modPanel);
 	setLocationRelativeTo(null);
 	setPreferredSize(new Dimension(400, 300));
-	setResizable(false);
 	setTitle("Edit Employee");
 	pack();
 	setModal(true);

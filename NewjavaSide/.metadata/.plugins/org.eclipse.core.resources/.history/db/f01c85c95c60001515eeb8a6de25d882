@@ -108,7 +108,7 @@ public class AddEmployee extends JDialog {
 		setLocationRelativeTo(null);
 		setPreferredSize(new Dimension(400, 300));
 		setTitle("Add Employee");
-		setResizable(false);		
+		
 		pack();
 		setModal(true);
 		setVisible(true);

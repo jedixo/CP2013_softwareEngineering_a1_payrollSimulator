@@ -1,13 +1,9 @@
 package view;
 
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -24,7 +20,6 @@ public class ViewEmployees extends JFrame{
 	private Database empDatabase;
 	private JButton addButton;
 	private JButton modButton;
-	private JScrollPane ScrollPane;
 	
 	public ViewEmployees(ArrayList<Employee> empList, Database empDatabase) {
 		this.empList = empList;
@@ -35,10 +30,12 @@ public class ViewEmployees extends JFrame{
 		modButton = new JButton("Modify");
 		empPanel.add(addButton);
 		empPanel.add(modButton);
-		ScrollPane = new JScrollPane(empPanel);
-		this.add(ScrollPane, BorderLayout.CENTER);
+		JScrollPane ScrollPane = new JScrollPane(empPanel);
+	    ScrollPane.setPreferredSize(new Dimension(800,800));
+	    ScrollPane.setMinimumSize(new Dimension(800, 800));
+		this.add(ScrollPane);
 		update();
-		setPreferredSize(new Dimension(905, 561));
+
 		pack();
 		setTitle("employees");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -48,11 +45,10 @@ public class ViewEmployees extends JFrame{
 	}
 
 	private void update() {
-		this.remove(ScrollPane);
+		this.remove(empPanel);
 		this.remove(addButton);
 		this.remove(modButton);
 		empPanel = new EmpPanel(empList);
-		
 		addButton = new JButton("Add");
 		addButton.addActionListener(new ActionListener() {
 			
@@ -75,8 +71,7 @@ public class ViewEmployees extends JFrame{
 		
 		empPanel.add(addButton);
 		empPanel.add(modButton);
-		ScrollPane = new JScrollPane(empPanel);
-		this.add(ScrollPane, BorderLayout.CENTER);
+		this.add(empPanel);
 		this.setVisible(true);
 		
 	}

@@ -23,9 +23,9 @@ public class MainFrame extends JFrame{
 		
 		
 		setJMenuBar(menubar);
-		add(panel, BorderLayout.CENTER);
+		JScrollPane scroll = new JScrollPane(panel);
+		add(scroll, BorderLayout.CENTER);
 		setPreferredSize(new Dimension(800, 160));
-		setResizable(false);
 		setVisible(true);
 		pack();
 		setTitle("Payroll - Alpha");
