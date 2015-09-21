@@ -80,7 +80,7 @@ public class app {
 				employee.setAddress(rs.getString("Address"));
 				employee.setPayType(rs.getInt("pay_type"));
 				employee.setPayDelivery(rs.getInt("pay_delivery"));
-				employee.setUnion(rs.getString("Emp_Union"));
+				employee.setUnion(rs.getString("Union"));
 				employee.setSalary(rs.getInt("Salary"));
 				empList.add(employee);
 			}
