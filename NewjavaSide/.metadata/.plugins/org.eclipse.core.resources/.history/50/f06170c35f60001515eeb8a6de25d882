@@ -2,9 +2,13 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import controll.Database;
 import controll.EmpList;
+import controll.Employee;
 import view.LoadingBar;
 import view.MainDisplay;
 import view.MainFrame;
@@ -13,10 +17,11 @@ import view.ViewEmployees;
 
 public class app {
 	
-	private static MainFrame mainFrame;
+	public static MainFrame mainFrame;
 	private static Database empDatabase;
 	private static MainDisplay mainDisplay;
 	private static EmpList empList;
+	//private static ArrayList<Employee> empList = new ArrayList<>();
 	
 
 	public static void main(String[] args) {
@@ -26,6 +31,7 @@ public class app {
 				"lA7*wL7!");
 		load.updateBar(50,"Querying Database");
 		empList = new EmpList(empDatabase.getTable("employees"));
+		//addEmployeesToList();
 		load.updateBar(100,"Loading UI");
 		load.dispose();
 		
@@ -54,6 +60,26 @@ public class app {
 					break;
 				}
 			}
-		});	
+		});
+		
 	}
+
+	private static void addEmployeesToList() {
+		try {
+			ResultSet rs = empDatabase.getTable("employees");
+			while (rs.next()){
+				Employee employee = new Employee(rs.getString("first_name"), rs.getString("last_name"));
+				employee.setId(rs.getInt("id"));
+				employee.setAddress(rs.getString("Address"));
+				employee.setPayType(rs.getInt("pay_type"));
+				employee.setPayDelivery(rs.getInt("pay_delivery"));
+				employee.setUnion(rs.getString("Emp_Union"));
+				employee.setSalary(rs.getInt("Salary"));
+				empList.add(employee);
+			}
+		}catch (SQLException e) {
+			System.out.println(e);
+		}
+	}
+
 }

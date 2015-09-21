@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JScrollPane;
 
 
 @SuppressWarnings("serial")
@@ -19,6 +20,7 @@ public class MainFrame extends JFrame{
 	public MainFrame(MainDisplay panel) {
 		
 		JMenuBar menubar = setupMenu();
+		
 		
 		setJMenuBar(menubar);
 		add(panel, BorderLayout.CENTER);

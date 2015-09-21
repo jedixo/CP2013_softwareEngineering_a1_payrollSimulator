@@ -50,8 +50,8 @@ public class ViewEmployees extends JFrame{
 		remove(addButton);
 		remove(modButton);
 		
-		empPanel = new EmpPanel(empList);
 		ScrollPane = new JScrollPane(empPanel);
+		empPanel = new EmpPanel(empList);
 		addButton = new JButton("Add");
 		addButton.addActionListener(new ActionListener() {
 			
@@ -61,7 +61,6 @@ public class ViewEmployees extends JFrame{
 				update();	
 			}
 		});
-		
 		modButton = new JButton("Modify");
 		modButton.addActionListener(new ActionListener() {
 			
