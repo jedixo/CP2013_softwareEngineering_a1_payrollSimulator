@@ -43,12 +43,12 @@ public class EmpPanel extends JPanel{
 
 
 	private String getPayDelevieryTypeString(int payDelivery) {
-		return deliveryTypes.get(payDelivery);
+		return deliveryTypes.get(payDelivery - 1);
 	}
 
 
 	private String getPayTypeString(int payType) {
-		return payTypes.get(payType);
+		return payTypes.get(payType - 1);
 	}
 	
 	

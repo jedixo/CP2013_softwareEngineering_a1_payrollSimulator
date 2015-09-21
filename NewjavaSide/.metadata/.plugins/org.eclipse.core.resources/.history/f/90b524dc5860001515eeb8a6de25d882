@@ -32,8 +32,8 @@ public class EmpPanel extends JPanel{
 			this.add(new JLabel(employee.getFirstName()));
 			this.add(new JLabel(employee.getLastName()));
 			this.add(new JLabel(employee.getAddress()));
-			this.add(new JLabel(getPayTypeString(employee.getPayType())));
-			this.add(new JLabel(getPayDelevieryTypeString(employee.getPayDelivery())));
+			//this.add(new JLabel(getPayTypeString(employee.getPayType())));
+			//this.add(new JLabel(getPayDelevieryTypeString(employee.getPayDelivery())));
 			this.add(new JLabel(employee.getUnion()));
 			this.add(new JLabel(String.valueOf(employee.getSalary())));
 			
@@ -43,12 +43,12 @@ public class EmpPanel extends JPanel{
 
 
 	private String getPayDelevieryTypeString(int payDelivery) {
-		return deliveryTypes.get(payDelivery);
+		return deliveryTypes.get(payDelivery - 1);
 	}
 
 
 	private String getPayTypeString(int payType) {
-		return payTypes.get(payType);
+		return payTypes.get(payType - 1);
 	}
 	
 	

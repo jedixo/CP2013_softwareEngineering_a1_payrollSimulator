@@ -2,8 +2,6 @@ package view;
 
 import java.awt.GridLayout;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -12,10 +10,6 @@ import controll.Employee;
 
 @SuppressWarnings("serial")
 public class EmpPanel extends JPanel{
-	
-	private List<String> payTypes = Arrays.asList("Hourly rate", "Monthly salary", "Comission");
-	private List<String> deliveryTypes = Arrays.asList("mail", "held", "direct deposite");
-
 
 	public EmpPanel(ArrayList<Employee> empList) {
 		this.setLayout(new GridLayout(0,8,12,2));
@@ -32,23 +26,13 @@ public class EmpPanel extends JPanel{
 			this.add(new JLabel(employee.getFirstName()));
 			this.add(new JLabel(employee.getLastName()));
 			this.add(new JLabel(employee.getAddress()));
-			this.add(new JLabel(getPayTypeString(employee.getPayType())));
-			this.add(new JLabel(getPayDelevieryTypeString(employee.getPayDelivery())));
+			this.add(new JLabel(String.valueOf(employee.getPayType())));
+			this.add(new JLabel(String.valueOf(employee.getPayDelivery())));
 			this.add(new JLabel(employee.getUnion()));
 			this.add(new JLabel(String.valueOf(employee.getSalary())));
 			
 		}	
 	
-	}
-
-
-	private String getPayDelevieryTypeString(int payDelivery) {
-		return deliveryTypes.get(payDelivery);
-	}
-
-
-	private String getPayTypeString(int payType) {
-		return payTypes.get(payType);
 	}
 	
 	
