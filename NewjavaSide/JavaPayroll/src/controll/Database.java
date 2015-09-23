@@ -7,11 +7,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 public class Database {
 	
 	private Connection connection = null;
 	public boolean isConnected = true;
-	public String error;
+	public boolean error = false;
 	
 	public Database(String host, String user, String password) {
 		try {
@@ -20,8 +22,7 @@ public class Database {
 			System.out.println("connected");
 		
 		} catch (Exception e) {
-			//System.out.println(e);
-			error = e.toString();
+			JOptionPane.showMessageDialog(null, "Failed to connect to databse:\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
 			connection = null;
 			isConnected = false;
 		}
@@ -33,8 +34,9 @@ public class Database {
 			ResultSet rs = stmt.executeQuery("SELECT * FROM " + table);
 			return rs;
 
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Failed to get table from database: " + table + "\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
+			error = true;
 			return null;
 		}
 	}
@@ -54,10 +56,10 @@ public class Database {
 			statement.setInt(6, employee.getPayDelivery());
 			statement.setString(7, employee.getUnion());
 			statement.setInt(8, employee.getSalary());
-			System.out.println(statement.toString());
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println(e);
+			JOptionPane.showMessageDialog(null, "Failed to get add employee to database: " + employee.firstName + " " + employee.lastName + "\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
+			error = true;
 		}
 		
 	}
@@ -71,7 +73,8 @@ public class Database {
 			statement.executeUpdate();
 			
 		}catch (SQLException e){
-			System.out.println(e);
+			JOptionPane.showMessageDialog(null, "Failed to delete employee from database: " + id + "\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
+			error = true;
 		}
 	}
 
@@ -92,7 +95,8 @@ public class Database {
 			System.out.println(statement.toString());
 			statement.executeUpdate();
 		}catch (SQLException e) {
-			System.out.println(e);
+			JOptionPane.showMessageDialog(null, "Failed to update employee in database: " + employee.getFirstName() + " " + employee.getLastName() + "\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
+			error = true;
 		}
 		
 	}

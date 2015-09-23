@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Dimension;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -38,7 +37,6 @@ public class LoadingBar extends JFrame{
 	public void updateBar(int value,String text) {
 		pbar.setValue(value);
 		pbar.setString(text);
-		this.setTitle(text);
 	}
 
 }

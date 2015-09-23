@@ -8,18 +8,22 @@ import javax.swing.UIManager;
 
 import controll.Database;
 import controll.EmpList;
+import controll.TimeCardList;
 import view.LoadingBar;
 import view.MainDisplay;
 import view.MainFrame;
 import view.ViewEmployees;
+import view.ViewTimeCards;
 
 
 public class app {
 	
-	public static MainFrame mainFrame;
-	public static Database empDatabase;
-	public static MainDisplay mainDisplay;
-	public static EmpList empList;
+	private static MainFrame mainFrame;
+	private static Database database;
+	private static MainDisplay mainDisplay;
+	private static EmpList empList;
+	private static TimeCardList timeCardList;
+	
 	
 
 	public static void main(String[] args) {
@@ -28,11 +32,13 @@ public class app {
 		}catch (Exception e){}
 		
 		LoadingBar load = new LoadingBar("Connecting");
-		empDatabase = new Database("sql6.freemysqlhosting.net/sql689509", "sql689509",
+		database = new Database("sql6.freemysqlhosting.net/sql689509", "sql689509",
 				"lA7*wL7!");
-		if (empDatabase.isConnected) {
-			load.updateBar(50,"Querying Database");
-			empList = new EmpList(empDatabase.getTable("employees"));
+		if (database.isConnected) {
+			load.updateBar(33,"Querying Employees");
+			empList = new EmpList(database.getTable("employees"));
+			load.updateBar(66,"Querying Timecards");
+			timeCardList = new TimeCardList(database.getTable("time_card"));
 			load.updateBar(100,"Loading UI");
 			load.dispose();
 		
@@ -45,8 +51,11 @@ public class app {
 					System.out.println(e.getActionCommand());
 				
 					switch (e.getActionCommand()) {
-					case "View Employees":
-						new ViewEmployees(empList, empDatabase);
+					case "Employees":
+						new ViewEmployees(empList, database);
+						break;
+					case "Timecards":
+						new ViewTimeCards(timeCardList, database);
 						break;
 					}
 				}
@@ -65,7 +74,6 @@ public class app {
 			});	
 		} else {
 			load.dispose();
-			JOptionPane.showMessageDialog(null, "Failed to connect to databse:\n" + empDatabase.error, "Error", JOptionPane.ERROR_MESSAGE);
 			}
 	}
 

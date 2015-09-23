@@ -1,0 +1,15 @@
+package controll;
+
+public class Timecard {
+	
+	private int id, empId;
+	private String date;
+	private float hours;
+
+	public Timecard(int id, int empId, String date, float hours) {
+		this.id = id;
+		this.empId = empId;
+		this.date = date;
+		this.hours = hours;
+	}
+}

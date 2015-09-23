@@ -1,0 +1,15 @@
+package view;
+
+import javax.swing.JFrame;
+
+import controll.Database;
+import controll.TimeCardList;
+
+@SuppressWarnings("serial")
+public class ViewTimeCards extends JFrame{
+
+	public ViewTimeCards(TimeCardList timeCardList, Database database) {
+		
+	}
+
+}

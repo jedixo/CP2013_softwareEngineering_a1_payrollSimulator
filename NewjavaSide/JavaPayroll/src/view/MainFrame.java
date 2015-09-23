@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.KeyStroke;
+
 
 
 @SuppressWarnings("serial")
@@ -36,6 +38,7 @@ public class MainFrame extends JFrame{
 
 		JMenu fileMenu = new JMenu("File");
 		JMenuItem exit = new JMenuItem("Exit");
+		exit.setAccelerator(KeyStroke.getKeyStroke("ctrl X"));
 		
 		fileMenu.add(exit);
 		menubar.add(fileMenu);
