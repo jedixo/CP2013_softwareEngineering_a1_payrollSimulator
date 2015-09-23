@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -13,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -113,14 +115,21 @@ public class ModEmployee extends JDialog {
 		}
 	});
 	JButton deleteButton = new JButton("Delete");
+	deleteButton.setForeground(new Color(255,0,0));
 	deleteButton.addActionListener(new ActionListener() {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			
+			
 			for (int i = 0; i < empList.size(); i++) {
 				if (empList.get(i).getId() == employee.getId()) {
-					empDatabase.deleteEmp(employee.getId());
-					empList.remove(i);
+					int reply = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete " + employee.getFirstName() + " " + employee.getLastName() + " permanently?", 
+							"Are you sure?", JOptionPane.YES_NO_OPTION);
+					if (reply == JOptionPane.YES_OPTION) {
+							empDatabase.deleteEmp(employee.getId());
+							empList.remove(i);
+					}
 					
 				}
 			}

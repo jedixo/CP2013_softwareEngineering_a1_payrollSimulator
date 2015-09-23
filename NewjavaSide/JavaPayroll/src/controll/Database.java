@@ -10,14 +10,20 @@ import java.sql.Statement;
 public class Database {
 	
 	private Connection connection = null;
+	public boolean isConnected = true;
+	public String error;
 	
 	public Database(String host, String user, String password) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			connection = DriverManager.getConnection("jdbc:mysql://" + host, user, password);
 			System.out.println("connected");
+		
 		} catch (Exception e) {
-			e.printStackTrace();
+			//System.out.println(e);
+			error = e.toString();
+			connection = null;
+			isConnected = false;
 		}
 	}
 

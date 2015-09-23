@@ -1,0 +1,20 @@
+package controll;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class MainMenuButtonListener implements ActionListener {
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		System.out.println(e.getActionCommand());
+				
+				
+		switch (e.getActionCommand()) {
+			case "View Employees":
+				new ViewEmployees(empList, empDatabase);
+				break;
+			}
+	}
+
+}

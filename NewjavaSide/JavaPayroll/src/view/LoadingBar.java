@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
@@ -12,6 +14,7 @@ public class LoadingBar extends JFrame{
 	private final JPanel panel;
 	
 	public LoadingBar(String text) {
+		
 		panel = new JPanel();
 		pbar = new JProgressBar();
 		pbar.setMinimum(MINIMUM);
@@ -20,10 +23,10 @@ public class LoadingBar extends JFrame{
 		pbar.setValue(1);
 		pbar.setStringPainted(true);
 		pbar.setString(text);
-		this.setTitle(text);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setContentPane(panel);
 		this.pack();
+		this.setResizable(false);
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 	}

@@ -6,7 +6,11 @@ import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class EmpList extends ArrayList<Employee>{
-
+	
+	public EmpList() {
+		
+	}
+	
 	public EmpList(ResultSet table) {
 		try {
 			while (table.next()){
@@ -18,10 +22,12 @@ public class EmpList extends ArrayList<Employee>{
 				employee.setUnion(table.getString("Emp_Union"));
 				employee.setSalary(table.getInt("Salary"));
 				add(employee);
+				
 			}
 		}catch(SQLException e) {
 			System.out.println(e);
 		}
 	}
+
 }
 

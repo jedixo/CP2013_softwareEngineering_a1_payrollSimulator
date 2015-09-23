@@ -33,7 +33,7 @@ public class MainFrame extends JFrame{
 	}
 
 	private JMenuBar setupMenu() {
-		
+
 		JMenu fileMenu = new JMenu("File");
 		JMenuItem exit = new JMenuItem("Exit");
 		

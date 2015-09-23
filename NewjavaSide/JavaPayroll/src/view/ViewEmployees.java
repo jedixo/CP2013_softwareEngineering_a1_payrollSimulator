@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import controll.Database;
@@ -16,16 +17,14 @@ import controll.EmpList;
 @SuppressWarnings("serial")
 public class ViewEmployees extends JFrame{
 	private EmpList empList;
-	private Database empDatabase;
 	
 	private EmpPanel empPanel;
 	private JButton addButton;
 	private JButton modButton;
 	private JScrollPane ScrollPane;
 	
-	public ViewEmployees(EmpList empList, Database empDatabase) {
+	public ViewEmployees(final EmpList empList, final Database empDatabase) {
 		this.empList = empList;
-		this.empDatabase = empDatabase;
 		
 		empPanel = new EmpPanel(empList);
 		ScrollPane = new JScrollPane(empPanel);
@@ -34,27 +33,14 @@ public class ViewEmployees extends JFrame{
 		empPanel.add(addButton);
 		empPanel.add(modButton);
 		add(ScrollPane, BorderLayout.CENTER);
-		update();
 		
-		setPreferredSize(new Dimension(905, 561));
-		pack();
-		setTitle("employees");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setLocationRelativeTo(null);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
-	}
-
-	private void update() {
-		remove(ScrollPane);
-		remove(addButton);
-		remove(modButton);
-		
-		empPanel = new EmpPanel(empList);
-		ScrollPane = new JScrollPane(empPanel);
+		JPanel buttonPanel = new JPanel();
+			
+			
 		addButton = new JButton("Add");
 		addButton.addActionListener(new ActionListener() {
-			
+				
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new AddEmployee(empList, empDatabase);
@@ -72,9 +58,29 @@ public class ViewEmployees extends JFrame{
 			}
 		});
 		
-		empPanel.add(addButton);
-		empPanel.add(modButton);
+		buttonPanel.add(addButton);
+		buttonPanel.add(modButton);
+		add(buttonPanel, BorderLayout.SOUTH);
+		
+		update();
+		
+		setPreferredSize(new Dimension(800, 600));
+		setResizable(false);
+		pack();
+		setTitle("employees");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setLocationRelativeTo(null);
+		
+	}
+
+	private void update() {
+		remove(ScrollPane);
+		
+		empPanel = new EmpPanel(empList);
+		ScrollPane = new JScrollPane(empPanel);
+	
 		add(ScrollPane, BorderLayout.CENTER);
+
 		setVisible(true);
 		
 	}

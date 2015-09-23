@@ -1,0 +1,33 @@
+package view;
+
+import java.awt.Font;
+
+import javax.swing.JLabel;
+
+public class MainLabel extends JLabel {
+	
+	private Font BOLD = new Font(this.getFont().getFontName(), Font.BOLD, this.getFont().getSize());
+	private Font NORMAL = new Font(this.getFont().getFontName(), Font.PLAIN, this.getFont().getSize());
+
+	public MainLabel(String string) {
+		setText(string);
+		setFont(NORMAL);
+	}
+	
+	public MainLabel(String string, String weight) {
+		setText(string);
+		if (weight.equals("BOLD")) {
+			setFont(BOLD);
+		}
+	}
+	
+	public void setWeight(String weight) {
+		if (weight.equals("BOLD")) {
+			setFont(BOLD);
+		} else {
+			setFont(NORMAL);
+		}
+		
+	}
+
+}

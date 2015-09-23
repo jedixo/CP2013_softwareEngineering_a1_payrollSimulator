@@ -1,0 +1,13 @@
+package view;
+
+import javax.swing.JDialog;
+
+public class YesPrompt extends JDialog {
+	private static boolean answer = true;
+	
+	YesPrompt(){
+		
+	}
+	
+
+}
