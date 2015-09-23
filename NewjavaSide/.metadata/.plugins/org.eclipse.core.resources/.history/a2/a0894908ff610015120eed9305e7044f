@@ -7,23 +7,19 @@ import javax.swing.UIManager;
 
 import controll.Database;
 import controll.EmpList;
-import controll.TimeCardList;
-
+import controll.Employee;
 import view.LoadingBar;
 import view.MainDisplay;
 import view.MainFrame;
 import view.ViewEmployees;
-import view.ViewTimeCards;
 
 
-public class app {
+public class offline {
 	
-	private static MainFrame mainFrame;
-	private static Database database;
-	private static MainDisplay mainDisplay;
-	private static EmpList empList;
-	private static TimeCardList timeCardList;
-	
+	public static MainFrame mainFrame;
+	public static Database empDatabase;
+	public static MainDisplay mainDisplay;
+	public static EmpList empList;
 	
 
 	public static void main(String[] args) {
@@ -32,14 +28,11 @@ public class app {
 		}catch (Exception e){}
 		
 		LoadingBar load = new LoadingBar("Connecting");
-		load.updateBar(25,"Connecting");
-		database = new Database("sql6.freemysqlhosting.net/sql689509", "sql689509",
-				"lA7*wL7!");
-		if (database.isConnected) {
-			load.updateBar(50,"Querying Employees");
-			empList = new EmpList(database.getTable("employees"));
-			load.updateBar(75,"Querying Timecards");
-			timeCardList = new TimeCardList(database.getTable("time_card"));
+		if (true) {
+			empDatabase = null;
+			load.updateBar(50,"Querying Database");
+			empList = new EmpList();
+			empList.add(new Employee("JAkE", "Dixon"));
 			load.updateBar(100,"Loading UI");
 			load.dispose();
 		
@@ -52,11 +45,8 @@ public class app {
 					System.out.println(e.getActionCommand());
 				
 					switch (e.getActionCommand()) {
-					case "Employees":
-						new ViewEmployees(empList, database);
-						break;
-					case "Timecards":
-						new ViewTimeCards(timeCardList, database);
+					case "View Employees":
+						new ViewEmployees(empList, empDatabase);
 						break;
 					}
 				}
@@ -73,9 +63,7 @@ public class app {
 					}
 				}
 			});	
-		} else {
-			load.dispose();
-			}
+		}
 	}
 
 }

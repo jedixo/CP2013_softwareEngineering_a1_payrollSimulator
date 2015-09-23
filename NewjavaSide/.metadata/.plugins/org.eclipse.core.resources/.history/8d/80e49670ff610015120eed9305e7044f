@@ -32,7 +32,7 @@ public class app {
 		}catch (Exception e){}
 		
 		LoadingBar load = new LoadingBar("Connecting");
-		load.updateBar(25,"Connecting");
+		load.updateBar(50,"Connecting");
 		database = new Database("sql6.freemysqlhosting.net/sql689509", "sql689509",
 				"lA7*wL7!");
 		if (database.isConnected) {

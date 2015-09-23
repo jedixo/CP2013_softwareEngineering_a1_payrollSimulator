@@ -1,9 +1,0 @@
-package view;
-
-public class DelEmployee {
-
-	public DelEmployee() {
-		// TODO Auto-generated constructor stub
-	}
-
-}
