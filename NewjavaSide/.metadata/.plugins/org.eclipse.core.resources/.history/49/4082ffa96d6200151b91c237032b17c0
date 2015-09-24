@@ -29,11 +29,10 @@ public class ViewFrame extends JFrame{
 	
 	public ViewFrame(final EmpList empList, final Database database) {
 		type = 0;
-		this.database = database;
+		this.database = database
 		this.empList = empList;
 		empPanel = new EmpPanel(empList);
 		ScrollPane = new JScrollPane(empPanel);
-		add(ScrollPane, BorderLayout.CENTER);
 		
 		update();
 		
@@ -54,7 +53,7 @@ public class ViewFrame extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (type == 0) {
-					new AddEmployee(empList, database);
+					new AddEmployee(empList, empDatabase);
 				}
 				update();	
 			}
@@ -66,7 +65,7 @@ public class ViewFrame extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (type == 0) {
-					new ModEmployee(empList, database);
+					new ModEmployee(empList, empDatabase);
 				}
 				update();	
 			}
@@ -77,12 +76,10 @@ public class ViewFrame extends JFrame{
 		add(buttonPanel, BorderLayout.SOUTH);
 		
 		
-		if (type == 0) {
-			empPanel = new EmpPanel(empList);
-			ScrollPane = new JScrollPane(empPanel);
-		}
 		
-		
+		empPanel = new EmpPanel(empList);
+		ScrollPane = new JScrollPane(empPanel);
+	
 		add(ScrollPane, BorderLayout.CENTER);
 		setPreferredSize(new Dimension(800, 600));
 		setResizable(false);
@@ -90,7 +87,6 @@ public class ViewFrame extends JFrame{
 		setTitle("employees");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setVisible(true);
 	}
 
 }

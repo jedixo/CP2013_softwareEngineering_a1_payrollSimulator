@@ -21,7 +21,7 @@ public class app {
 	private static Database database;
 	private static MainDisplay mainDisplay;
 	private static EmpList empList;
-	private static TimeCardList timeCardList;
+	private static TimeCardList timeCardList
 	
 	
 

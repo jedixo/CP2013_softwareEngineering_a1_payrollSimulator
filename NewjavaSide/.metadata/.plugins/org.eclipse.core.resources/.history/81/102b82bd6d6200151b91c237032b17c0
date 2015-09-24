@@ -13,6 +13,7 @@ import view.MainDisplay;
 import view.MainFrame;
 import view.ViewEmployees;
 import view.ViewFrame;
+import view.ViewTimeCards;
 
 
 public class app {
