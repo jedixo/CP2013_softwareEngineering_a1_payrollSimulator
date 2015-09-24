@@ -19,7 +19,6 @@ public class EmpList extends ArrayList<Employee>{
 				employee.setPayDelivery(table.getInt("pay_delivery"));
 				employee.setUnion(table.getString("Emp_Union"));
 				employee.setSalary(table.getInt("Salary"));
-				employee.setCommissionRate(table.getFloat("commision_rate"));
 				add(employee);
 				
 			}
