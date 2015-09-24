@@ -16,7 +16,7 @@ public class EmpPanel extends JPanel{
 	private List<String> deliveryTypes = Arrays.asList("mail", "held", "direct deposite");
 
 	public EmpPanel(EmpList empList) {
-		this.setLayout(new GridLayout(0,8));
+		this.setLayout(new GridLayout(0,8,2,2));
 		
 		this.add(new MainLabel("ID:","BOLD"));
 		this.add(new MainLabel("First Name:","BOLD"));

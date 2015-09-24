@@ -13,37 +13,46 @@ import javax.swing.JScrollPane;
 
 import controll.Database;
 import controll.EmpList;
+import controll.TimeCardList;
 
 @SuppressWarnings("serial")
-public class ViewEmployees extends JFrame{
+public class ViewFrame extends JFrame{
 	private EmpList empList;
-	
+	private TimeCardList tcList;
+	private TcPanel tcPanel;
+	private int type;
 	private EmpPanel empPanel;
 	private JButton addButton;
 	private JButton modButton;
 	private JScrollPane ScrollPane;
 	
-	public ViewEmployees(final EmpList empList, final Database empDatabase) {
+	public ViewFrame(final EmpList empList, final Database empDatabase) {
+		type = 0;
 		this.empList = empList;
-		
 		empPanel = new EmpPanel(empList);
 		ScrollPane = new JScrollPane(empPanel);
-		addButton = new JButton("Add");
-		modButton = new JButton("Modify");
-		//empPanel.add(addButton);
-		//empPanel.add(modButton);
+		
+		update();
+		
+	}
+
+	public ViewFrame(TimeCardList timeCardList, Database database) {
+		// TODO Auto-generated constructor stub
+	}
+
+	private void update() {
+		remove(ScrollPane);
 		add(ScrollPane, BorderLayout.CENTER);
-		
-		
 		JPanel buttonPanel = new JPanel();
-			
-			
+
 		addButton = new JButton("Add");
 		addButton.addActionListener(new ActionListener() {
 				
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new AddEmployee(empList, empDatabase);
+				if (type == 0) {
+					new AddEmployee(empList, empDatabase);
+				}
 				update();	
 			}
 		});
@@ -53,7 +62,9 @@ public class ViewEmployees extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new ModEmployee(empList, empDatabase);
+				if (type == 0) {
+					new ModEmployee(empList, empDatabase);
+				}
 				update();	
 			}
 		});
@@ -62,27 +73,18 @@ public class ViewEmployees extends JFrame{
 		buttonPanel.add(modButton);
 		add(buttonPanel, BorderLayout.SOUTH);
 		
-		update();
 		
+		
+		empPanel = new EmpPanel(empList);
+		ScrollPane = new JScrollPane(empPanel);
+	
+		add(ScrollPane, BorderLayout.CENTER);
 		setPreferredSize(new Dimension(800, 600));
 		setResizable(false);
 		pack();
 		setTitle("employees");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
-		
-	}
-
-	private void update() {
-		remove(ScrollPane);
-		
-		empPanel = new EmpPanel(empList);
-		ScrollPane = new JScrollPane(empPanel);
-	
-		add(ScrollPane, BorderLayout.CENTER);
-
-		setVisible(true);
-		
 	}
 
 }

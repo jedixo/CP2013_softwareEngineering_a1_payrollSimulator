@@ -30,8 +30,8 @@ public class ViewEmployees extends JFrame{
 		ScrollPane = new JScrollPane(empPanel);
 		addButton = new JButton("Add");
 		modButton = new JButton("Modify");
-		//empPanel.add(addButton);
-		//empPanel.add(modButton);
+		empPanel.add(addButton);
+		empPanel.add(modButton);
 		add(ScrollPane, BorderLayout.CENTER);
 		
 		

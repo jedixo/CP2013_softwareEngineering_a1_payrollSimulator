@@ -53,10 +53,10 @@ public class app {
 				
 					switch (e.getActionCommand()) {
 					case "Employees":
-						new ViewFrame(empList, database);
+						new ViewFrame(empList, database,e.getActionCommand());
 						break;
 					case "Timecards":
-						new ViewFrame(timeCardList, database);
+						new ViewTimeCards(timeCardList, database);
 						break;
 					}
 				}

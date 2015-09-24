@@ -8,11 +8,11 @@ import javax.swing.UIManager;
 import controll.Database;
 import controll.EmpList;
 import controll.TimeCardList;
+
 import view.LoadingBar;
 import view.MainDisplay;
 import view.MainFrame;
 import view.ViewEmployees;
-import view.ViewFrame;
 import view.ViewTimeCards;
 
 
@@ -53,10 +53,10 @@ public class app {
 				
 					switch (e.getActionCommand()) {
 					case "Employees":
-						new ViewFrame(empList, database);
+						new ViewEmployees(empList, database);
 						break;
 					case "Timecards":
-						new ViewFrame(timeCardList, database);
+						new ViewTimeCards(timeCardList, database);
 						break;
 					}
 				}

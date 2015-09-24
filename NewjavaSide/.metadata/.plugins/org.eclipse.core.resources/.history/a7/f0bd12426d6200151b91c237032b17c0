@@ -15,7 +15,7 @@ import controll.Database;
 import controll.EmpList;
 
 @SuppressWarnings("serial")
-public class ViewEmployees extends JFrame{
+public class ViewFrame extends JFrame{
 	private EmpList empList;
 	
 	private EmpPanel empPanel;
@@ -23,7 +23,7 @@ public class ViewEmployees extends JFrame{
 	private JButton modButton;
 	private JScrollPane ScrollPane;
 	
-	public ViewEmployees(final EmpList empList, final Database empDatabase) {
+	public ViewFrame(final EmpList empList, final Database empDatabase) {
 		this.empList = empList;
 		
 		empPanel = new EmpPanel(empList);

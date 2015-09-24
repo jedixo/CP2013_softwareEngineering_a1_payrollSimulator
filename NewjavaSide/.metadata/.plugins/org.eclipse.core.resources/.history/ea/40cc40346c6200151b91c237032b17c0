@@ -56,7 +56,7 @@ public class app {
 						new ViewFrame(empList, database);
 						break;
 					case "Timecards":
-						new ViewFrame(timeCardList, database);
+						new ViewTimeCards(timeCardList, database);
 						break;
 					}
 				}
