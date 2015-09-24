@@ -25,7 +25,6 @@ public class ViewFrame extends JFrame{
 	private JButton addButton, modButton;
 	private JScrollPane ScrollPane;
 	private Database database;
-	private JPanel buttonPanel;
 	
 	public ViewFrame(final EmpList empList, final Database database) {
 		type = 0;
@@ -33,8 +32,6 @@ public class ViewFrame extends JFrame{
 		this.empList = empList;
 		empPanel = new EmpPanel(empList);
 		ScrollPane = new JScrollPane(empPanel);
-		buttonPanel = new JPanel();
-		add(buttonPanel);
 		add(ScrollPane, BorderLayout.CENTER);
 		
 		initaliseCommonComponents();
@@ -47,8 +44,6 @@ public class ViewFrame extends JFrame{
 		this.tcList = timeCardList;
 		tcPanel = new TcPanel(tcList);
 		ScrollPane = new JScrollPane(tcPanel);
-		buttonPanel = new JPanel();
-		add(buttonPanel);
 		add(ScrollPane, BorderLayout.CENTER);
 		
 		initaliseCommonComponents();
@@ -56,7 +51,6 @@ public class ViewFrame extends JFrame{
 
 	private void initaliseCommonComponents() {
 		remove(ScrollPane);
-		remove(buttonPanel);
 		
 		JPanel buttonPanel = new JPanel();
 
@@ -100,7 +94,7 @@ public class ViewFrame extends JFrame{
 		
 		
 		add(ScrollPane, BorderLayout.CENTER);
-		setPreferredSize(new Dimension(840, 600));
+		setPreferredSize(new Dimension(800, 600));
 		setResizable(false);
 		pack();
 		setTitle("View Data");

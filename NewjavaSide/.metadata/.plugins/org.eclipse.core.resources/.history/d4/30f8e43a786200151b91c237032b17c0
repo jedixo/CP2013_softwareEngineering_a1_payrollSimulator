@@ -104,7 +104,7 @@ public class AddEmployee extends JDialog {
 				}
 				employee.setUnion(union.getText());
 				employee.setSalary((int) salary.getValue());
-				employee.setCommissionRate((int) commisionRate.getValue());
+				employee.setCommissionRate((int) commisionRate.getValue())
 				employee.setId(empList.get(empList.size() - 1).getId() + 1);
 				empDatabase.addEmpData(employee);
 				if (!empDatabase.error) {

@@ -36,7 +36,7 @@ public class EmpPanel extends JPanel{
 			this.add(new MainLabel(getPayDelevieryTypeString(employee.getPayDelivery())));
 			this.add(new MainLabel(employee.getUnion()));
 			this.add(new MainLabel(String.valueOf(employee.getSalary())));
-			this.add(new MainLabel(employee.getCommissionRateString()));
+			this.add(new MainLabel(employee.getCommissionRate()));
 			
 		}	
 	

@@ -33,8 +33,6 @@ public class ViewFrame extends JFrame{
 		this.empList = empList;
 		empPanel = new EmpPanel(empList);
 		ScrollPane = new JScrollPane(empPanel);
-		buttonPanel = new JPanel();
-		add(buttonPanel);
 		add(ScrollPane, BorderLayout.CENTER);
 		
 		initaliseCommonComponents();
@@ -47,8 +45,6 @@ public class ViewFrame extends JFrame{
 		this.tcList = timeCardList;
 		tcPanel = new TcPanel(tcList);
 		ScrollPane = new JScrollPane(tcPanel);
-		buttonPanel = new JPanel();
-		add(buttonPanel);
 		add(ScrollPane, BorderLayout.CENTER);
 		
 		initaliseCommonComponents();
@@ -100,7 +96,7 @@ public class ViewFrame extends JFrame{
 		
 		
 		add(ScrollPane, BorderLayout.CENTER);
-		setPreferredSize(new Dimension(840, 600));
+		setPreferredSize(new Dimension(800, 600));
 		setResizable(false);
 		pack();
 		setTitle("View Data");

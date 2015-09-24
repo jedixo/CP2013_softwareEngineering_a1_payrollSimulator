@@ -31,7 +31,7 @@ public class ModEmployee extends JDialog {
 	private JTextField address, union;
 	private EmpList empList;
 	private Employee employee;
-	private JSpinner salary, commisionRate;
+	private JSpinner salary;
 	private JComboBox<String> payType, payDelivery;
 	
 	private List<String> payTypes = Arrays.asList("Hourly rate", "Monthly salary", "Comission");
@@ -73,20 +73,6 @@ public class ModEmployee extends JDialog {
 	for (String type : payTypes) {
 		payType.addItem(type);
 	}
-	payType.addItemListener(new ItemListener() {
-		
-		@Override
-		public void itemStateChanged(ItemEvent e) {
-			if (e.getItem().toString().equals("Comission")) {
-				commisionRate(true);
-			}else {
-				commisionRate(false);
-			}
-			
-		}
-
-		
-	});
 	modPanel.add(payType);
 	modPanel.add(new JLabel("Pay Delivery:"));
 	payDelivery = new JComboBox<String>();
@@ -101,11 +87,6 @@ public class ModEmployee extends JDialog {
 	salary = new JSpinner();
 	salary.setModel(new SpinnerNumberModel(0,0,10000,1));
 	modPanel.add(salary);
-	modPanel.add(new JLabel("Commision Rate:"));
-	commisionRate = new JSpinner();
-	commisionRate.setEnabled(false);
-	commisionRate.setModel(new SpinnerNumberModel(0,0,100,1));
-	modPanel.add(commisionRate);
 	JPanel actionPanel = new JPanel();
 	actionPanel.setLayout(new GridLayout(0,2));
 	JButton addButton = new JButton("Update");
@@ -129,7 +110,6 @@ public class ModEmployee extends JDialog {
 			}
 			employee.setUnion(union.getText());
 			employee.setSalary((int) salary.getValue());
-			employee.setCommissionRate((int) commisionRate.getValue());
 			empDatabase.updateEmp(employee);
 			close();
 		}
@@ -193,17 +173,11 @@ public class ModEmployee extends JDialog {
 				payType.setSelectedIndex(employee.getPayType());
 				payDelivery.setSelectedIndex(employee.getPayDelivery());
 				union.setText(employee.getUnion());
-				salary.setValue((Integer)employee.getSalary());	
-				commisionRate.setValue((Float)employee.getCommisionRateFloat());
+				salary.setValue((Integer)employee.getSalary());				
 			}
 		}
 		
 	}
-	
-	private void commisionRate(boolean isActive) {
-		commisionRate.setEnabled(isActive);
-	}
-	
 	private void close() {
 		this.dispose();
 		

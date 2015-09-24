@@ -25,7 +25,7 @@ import controll.Employee;
 @SuppressWarnings("serial")
 public class AddEmployee extends JDialog {
 	private JTextField firstName, lastName, address, union;
-	private JSpinner salary, commisionRate;
+	private JSpinner salary;
 	private JComboBox<String> payType, payDelivery;
 	
 	private List<String> payTypes = Arrays.asList("Hourly rate", "Monthly salary", "Comission");
@@ -62,6 +62,7 @@ public class AddEmployee extends JDialog {
 				
 			}
 
+			
 		});
 		
 		addPanel.add(new JLabel("Pay Delivery:"));
@@ -77,12 +78,6 @@ public class AddEmployee extends JDialog {
 		salary = new JSpinner();
 		salary.setModel(new SpinnerNumberModel(0,0,10000,1));
 		addPanel.add(salary);
-		addPanel.add(new JLabel("Commision Rate:"));
-		commisionRate = new JSpinner();
-		commisionRate.setEnabled(false);
-		commisionRate.setModel(new SpinnerNumberModel(0,0,100,1));
-		addPanel.add(commisionRate);
-		
 		JButton addButton = new JButton("Add");
 		addButton.addActionListener(new ActionListener() {
 			
@@ -104,7 +99,6 @@ public class AddEmployee extends JDialog {
 				}
 				employee.setUnion(union.getText());
 				employee.setSalary((int) salary.getValue());
-				employee.setCommissionRate((int) commisionRate.getValue());
 				employee.setId(empList.get(empList.size() - 1).getId() + 1);
 				empDatabase.addEmpData(employee);
 				if (!empDatabase.error) {
@@ -137,11 +131,6 @@ public class AddEmployee extends JDialog {
 		pack();
 		setModal(true);
 		setVisible(true);
-	}
-	
-	private void commisionRate(boolean isActive) {
-		commisionRate.setEnabled(isActive);
-
 	}
 	
 	private void close() {

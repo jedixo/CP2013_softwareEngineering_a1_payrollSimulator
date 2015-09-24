@@ -129,7 +129,6 @@ public class ModEmployee extends JDialog {
 			}
 			employee.setUnion(union.getText());
 			employee.setSalary((int) salary.getValue());
-			employee.setCommissionRate((int) commisionRate.getValue());
 			empDatabase.updateEmp(employee);
 			close();
 		}
@@ -193,15 +192,15 @@ public class ModEmployee extends JDialog {
 				payType.setSelectedIndex(employee.getPayType());
 				payDelivery.setSelectedIndex(employee.getPayDelivery());
 				union.setText(employee.getUnion());
-				salary.setValue((Integer)employee.getSalary());	
-				commisionRate.setValue((Float)employee.getCommisionRateFloat());
+				salary.setValue((Integer)employee.getSalary());				
 			}
 		}
 		
 	}
 	
-	private void commisionRate(boolean isActive) {
-		commisionRate.setEnabled(isActive);
+	private void commisionRate(boolean b) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	private void close() {
