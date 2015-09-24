@@ -82,6 +82,8 @@ public class ViewFrame extends JFrame{
 			});
 			buttonPanel.add(modButton);
 		}
+
+		
 		add(buttonPanel, BorderLayout.SOUTH);
 		
 		
@@ -95,7 +97,7 @@ public class ViewFrame extends JFrame{
 		setPreferredSize(new Dimension(800, 600));
 		setResizable(false);
 		pack();
-		setTitle("View Data");
+		setTitle("employees");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);

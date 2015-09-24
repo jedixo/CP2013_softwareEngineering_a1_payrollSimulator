@@ -40,14 +40,7 @@ public class ViewFrame extends JFrame{
 	}
 
 	public ViewFrame(TimeCardList timeCardList, Database database) {
-		type = 1;
-		this.database = database;
-		this.tcList = timeCardList;
-		tcPanel = new TcPanel(tcList);
-		ScrollPane = new JScrollPane(tcPanel);
-		add(ScrollPane, BorderLayout.CENTER);
-		
-		update();
+		// TODO Auto-generated constructor stub
 	}
 
 	private void update() {
@@ -62,26 +55,25 @@ public class ViewFrame extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				if (type == 0) {
 					new AddEmployee(empList, database);
-				} else {
-					new AddTimeCard(tcList, database);
 				}
 				update();	
 			}
 		});
-		buttonPanel.add(addButton);
-		if (type == 0) {
-			modButton = new JButton("Modify");
-			modButton.addActionListener(new ActionListener() {
+		
+		modButton = new JButton("Modify");
+		modButton.addActionListener(new ActionListener() {
 			
-				@Override
-				public void actionPerformed(ActionEvent e) {
-
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (type == 0) {
 					new ModEmployee(empList, database);
-					update();	
 				}
-			});
-			buttonPanel.add(modButton);
-		}
+				update();	
+			}
+		});
+		
+		buttonPanel.add(addButton);
+		buttonPanel.add(modButton);
 		add(buttonPanel, BorderLayout.SOUTH);
 		
 		
@@ -95,7 +87,7 @@ public class ViewFrame extends JFrame{
 		setPreferredSize(new Dimension(800, 600));
 		setResizable(false);
 		pack();
-		setTitle("View Data");
+		setTitle("employees");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);
