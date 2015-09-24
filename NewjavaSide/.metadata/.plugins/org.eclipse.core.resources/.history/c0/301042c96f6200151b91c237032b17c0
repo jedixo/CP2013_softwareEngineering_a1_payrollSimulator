@@ -22,7 +22,8 @@ public class ViewFrame extends JFrame{
 	private TcPanel tcPanel;
 	private int type;
 	private EmpPanel empPanel;
-	private JButton addButton, modButton;
+	private JButton addButton;
+	private JButton modButton;
 	private JScrollPane ScrollPane;
 	private Database database;
 	
@@ -34,7 +35,7 @@ public class ViewFrame extends JFrame{
 		ScrollPane = new JScrollPane(empPanel);
 		add(ScrollPane, BorderLayout.CENTER);
 		
-		initaliseCommonComponents();
+		update();
 		
 	}
 
@@ -46,12 +47,12 @@ public class ViewFrame extends JFrame{
 		ScrollPane = new JScrollPane(tcPanel);
 		add(ScrollPane, BorderLayout.CENTER);
 		
-		initaliseCommonComponents();
+		update();
 	}
 
-	private void initaliseCommonComponents() {
+	private void update() {
 		remove(ScrollPane);
-		
+		add(ScrollPane, BorderLayout.CENTER);
 		JPanel buttonPanel = new JPanel();
 
 		addButton = new JButton("Add");
@@ -64,7 +65,7 @@ public class ViewFrame extends JFrame{
 				} else {
 					new AddTimeCard(tcList, database);
 				}
-				initaliseCommonComponents();	
+				update();	
 			}
 		});
 		buttonPanel.add(addButton);
@@ -76,7 +77,7 @@ public class ViewFrame extends JFrame{
 				public void actionPerformed(ActionEvent e) {
 
 					new ModEmployee(empList, database);
-					initaliseCommonComponents();	
+					update();	
 				}
 			});
 			buttonPanel.add(modButton);

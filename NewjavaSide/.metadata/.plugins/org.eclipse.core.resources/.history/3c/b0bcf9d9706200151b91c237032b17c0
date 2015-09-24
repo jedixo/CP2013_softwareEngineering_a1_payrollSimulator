@@ -51,7 +51,7 @@ public class ViewFrame extends JFrame{
 
 	private void initaliseCommonComponents() {
 		remove(ScrollPane);
-		
+		add(ScrollPane, BorderLayout.CENTER);
 		JPanel buttonPanel = new JPanel();
 
 		addButton = new JButton("Add");

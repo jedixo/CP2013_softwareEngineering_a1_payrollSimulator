@@ -22,7 +22,8 @@ public class ViewFrame extends JFrame{
 	private TcPanel tcPanel;
 	private int type;
 	private EmpPanel empPanel;
-	private JButton addButton, modButton;
+	private JButton addButton;
+	private JButton modButton;
 	private JScrollPane ScrollPane;
 	private Database database;
 	
@@ -51,7 +52,7 @@ public class ViewFrame extends JFrame{
 
 	private void initaliseCommonComponents() {
 		remove(ScrollPane);
-		
+		add(ScrollPane, BorderLayout.CENTER);
 		JPanel buttonPanel = new JPanel();
 
 		addButton = new JButton("Add");
