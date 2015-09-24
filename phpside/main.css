@@ -27,3 +27,6 @@ header {
 	text-align:center;
 	font: arial;
 }
+tr:nth-child(even) {
+    background-color: #66C285;
+}

@@ -6,15 +6,7 @@ include('empDbConnect.php');
 <head>
 <meta charset="UTF-8">
 <title>PHP SQLite Database Example (Phone Records)</title>
-<style type="text/css">
-.subtleSet {
-	border-radius:5px;
-	width: 45em;
-}
-.deleteButton {
-	color: red;
-}
-</style>
+<link href="main.css" rel="stylesheet" type="text/css">
 </head>
     <body>
 <h1>Employee Database:</h1>
