@@ -45,7 +45,7 @@ public class ViewFrame extends JFrame{
 		type = 1;
 		this.database = database;
 		this.tcList = timeCardList;
-		tcPanel = new TcPanel(tcList);
+		tcPanel = new TcPanel();
 		ScrollPane = new JScrollPane(tcPanel);
 		buttonPanel = new JPanel();
 		add(buttonPanel);
@@ -94,7 +94,7 @@ public class ViewFrame extends JFrame{
 			empPanel = new EmpPanel(empList);
 			ScrollPane = new JScrollPane(empPanel);
 		} else {
-			tcPanel = new TcPanel(tcList);
+			tcPanel = new TcPanel(tcList,empList);
 			ScrollPane = new JScrollPane(tcPanel);
 		}
 		

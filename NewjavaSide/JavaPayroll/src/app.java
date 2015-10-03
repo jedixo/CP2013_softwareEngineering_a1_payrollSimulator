@@ -11,7 +11,6 @@ import controll.TimeCardList;
 import view.LoadingBar;
 import view.MainDisplay;
 import view.MainFrame;
-import view.ViewEmployees;
 import view.ViewFrame;
 
 
@@ -20,7 +19,7 @@ public class app {
 	private static MainFrame mainFrame;
 	private static Database database;
 	private static MainDisplay mainDisplay;
-	private static EmpList empList;
+	public static EmpList empList;
 	private static TimeCardList timeCardList;
 	
 	
@@ -38,7 +37,7 @@ public class app {
 			load.updateBar(50,"Querying Employees");
 			empList = new EmpList(database.getTable("employees"));
 			load.updateBar(75,"Querying Timecards");
-			timeCardList = new TimeCardList(database.getTable("time_card"));
+			timeCardList = new TimeCardList(database.getTable("time_card"),empList);
 			load.updateBar(100,"Loading UI");
 			load.dispose();
 		

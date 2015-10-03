@@ -1,0 +1,27 @@
+package controll;
+
+import java.util.ArrayList;
+
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+public class viewTable extends JTable {
+	
+	private static final long serialVersionUID = 1L;
+
+
+	public viewTable(String[] columNames) {
+		super(new DefaultTableModel(columNames, 0));
+		}
+
+	public boolean isCellEditable(int row, int column) {                
+            return false;  
+    }
+	
+	public void addRow(Timecard timecard) {
+		DefaultTableModel model = (DefaultTableModel) getModel();
+		model.addRow(timecard.toArray());
+		
+	}
+
+}

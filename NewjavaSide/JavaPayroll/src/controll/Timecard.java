@@ -1,16 +1,22 @@
 package controll;
 
-public class Timecard {
+
+public class Timecard extends AbstractPayrollObject{
 	
 	private int id, empId;
-	private String date;
+	private String date, empName;
 	private float hours;
 
-	public Timecard(int id, int empId, String date, float hours) {
+	public Timecard(int id, int empId, String date, float hours, EmpList empList) {
 		this.id = id;
 		this.empId = empId;
 		this.date = date;
 		this.hours = hours;
+		for (Employee emp : empList) {
+			if (emp.getId() == empId) {
+				empName = emp.getFirstName() + " " + emp.getLastName();
+			}
+		}
 	}
 
 	public int getId() {
@@ -45,5 +51,11 @@ public class Timecard {
 		this.hours = hours;
 	}
 	
+	@Override
+	public Object[] toArray(){
+		Object[] ary = {id,empName,date,hours};
+		return ary;
+		
+	}
 	
 }

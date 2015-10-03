@@ -7,6 +7,8 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class EmpList extends ArrayList<Employee>{
 	
+	
+
 	public EmpList() {}
 	
 	public EmpList(ResultSet table) {

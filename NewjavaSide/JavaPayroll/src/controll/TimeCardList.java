@@ -9,11 +9,12 @@ public class TimeCardList extends ArrayList<Timecard> {
 	
 	public TimeCardList() {}
 
-	public TimeCardList(ResultSet table) {
+	public TimeCardList(ResultSet table, EmpList empList) {
 		try {
 			while (table.next()){
-				Timecard tc = new Timecard(table.getInt("id"), table.getInt("employee"), table.getString("date"), table.getFloat("hours"));
+				Timecard tc = new Timecard(table.getInt("id"), table.getInt("employee"), table.getString("date"), table.getFloat("hours"), empList);
 				add(tc);
+				//System.out.println(tc.getDate());
 			}
 			
 		}catch(SQLException e) {

@@ -1,0 +1,30 @@
+package view;
+
+import java.util.ArrayList;
+
+import javax.swing.JPanel;
+
+import controll.EmpList;
+import controll.TimeCardList;
+import controll.Timecard;
+
+public class TcPanel extends JPanel{
+// id(int), employeeId(int), date(string), hours(int)
+	
+	private String[] columNames = {"Id:","Employee:","Date:","Hours:"};
+	private Object[] temp;
+	private Object[][] data;
+	
+	public TcPanel(){}
+	
+	public TcPanel(TimeCardList tcList, EmpList empList) {
+		temp = new Object[tcList.size()];
+		
+		int i = 0;
+		for (Timecard next : tcList) {
+			temp[i++] = next.toArray();
+		}
+		System.out.println(temp[1]);
+	}
+
+}

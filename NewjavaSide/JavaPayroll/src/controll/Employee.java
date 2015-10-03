@@ -1,6 +1,6 @@
 package controll;
 
-public class Employee {
+public class Employee extends AbstractPayrollObject{
 	
 	public int id = 0;
 	public String firstName, lastName;
@@ -93,5 +93,12 @@ public class Employee {
 		this.id = id;
 	}
 	
+	@Override
+	public Object[] toArray(){
+		Object[] ary = {id,firstName,lastName,address, payType, payDelivery, salary};
+		return ary;
+		
+	}
+
 
 }
