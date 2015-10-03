@@ -37,7 +37,7 @@ public class app {
 			load.updateBar(50,"Querying Employees");
 			empList = new EmpList(database.getTable("employees"));
 			load.updateBar(75,"Querying Timecards");
-			timeCardList = new TimeCardList(database.getTable("time_card"),empList);
+			timeCardList = new TimeCardList(database.getTable("time_card"));
 			load.updateBar(100,"Loading UI");
 			load.dispose();
 		
@@ -54,7 +54,7 @@ public class app {
 						new ViewFrame(empList, database);
 						break;
 					case "Timecards":
-						new ViewFrame(timeCardList, database);
+						new ViewFrame(timeCardList, database, empList);
 						break;
 					}
 				}

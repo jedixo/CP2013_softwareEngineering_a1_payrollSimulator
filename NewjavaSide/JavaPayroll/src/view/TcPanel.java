@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 
 import controll.EmpList;
+import controll.Employee;
 import controll.TimeCardList;
 import controll.Timecard;
 import controll.viewTable;
@@ -19,16 +20,10 @@ public class TcPanel extends JPanel{
 	public TcPanel(TimeCardList tcList, EmpList empList) {
 		viewTable table = new viewTable(columNames);
 		
-		
-		
 		for (Timecard timecard : tcList) {
-			
-			table.addRow(timecard);
-			
-			
+			Object[] temp = {timecard.getId(),getEmpName(timecard.getEmpId(),empList),timecard.getDate(),timecard.getHours()};
+			table.addRow(temp);
 		}
-		table.setFillsViewportHeight(true);
-		
 		
 		setLayout(new BorderLayout());
 		add(table.getTableHeader(), BorderLayout.PAGE_START);
@@ -37,6 +32,19 @@ public class TcPanel extends JPanel{
 	
 	
 	
+	}
+
+	private String getEmpName(int empId, EmpList empList) {
+		String name = "";
+		for (Employee emp : empList) {
+			
+			if (emp.getId() == empId) {
+				name = emp.getFirstName() + " " + emp.getLastName();
+			}
+		}
+		return name;
+
+		
 	}
 
 }

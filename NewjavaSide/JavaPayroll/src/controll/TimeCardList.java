@@ -9,10 +9,10 @@ public class TimeCardList extends ArrayList<Timecard> {
 	
 	public TimeCardList() {}
 
-	public TimeCardList(ResultSet table, EmpList empList) {
+	public TimeCardList(ResultSet table) {
 		try {
 			while (table.next()){
-				Timecard tc = new Timecard(table.getInt("id"), table.getInt("employee"), table.getString("date"), table.getFloat("hours"), empList);
+				Timecard tc = new Timecard(table.getInt("id"), table.getInt("employee"), table.getString("date"), table.getFloat("hours"));
 				add(tc);
 				//System.out.println(tc.getDate());
 			}

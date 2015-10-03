@@ -10,15 +10,17 @@ public class viewTable extends JTable{
 
 	public viewTable(String[] columNames) {
 		super(new DefaultTableModel(columNames, 0));
+		setFillsViewportHeight(true);
+		
 		}
 
 	public boolean isCellEditable(int row, int column) {                
             return false;  
     }
 	
-	public void addRow(AbstractPayrollObject entity) {
+	public void addRow(Object[] ary) {
 		DefaultTableModel model = (DefaultTableModel) getModel();
-		model.addRow(entity.toArray());
+		model.addRow(ary);
 		
 	}
 

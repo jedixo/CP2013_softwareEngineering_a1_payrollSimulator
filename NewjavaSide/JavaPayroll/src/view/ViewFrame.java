@@ -41,8 +41,9 @@ public class ViewFrame extends JFrame{
 		
 	}
 
-	public ViewFrame(TimeCardList timeCardList, Database database) {
+	public ViewFrame(TimeCardList timeCardList, Database database, EmpList empList) {
 		type = 1;
+		this.empList = empList;
 		this.database = database;
 		this.tcList = timeCardList;
 		tcPanel = new TcPanel();
@@ -101,7 +102,7 @@ public class ViewFrame extends JFrame{
 		
 		add(ScrollPane, BorderLayout.CENTER);
 		setPreferredSize(new Dimension(840, 600));
-		setResizable(false);
+		//setResizable(false);
 		pack();
 		setTitle("View Data");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
