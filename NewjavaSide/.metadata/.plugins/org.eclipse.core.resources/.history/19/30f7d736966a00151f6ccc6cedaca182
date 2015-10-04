@@ -95,7 +95,7 @@ public class AddTimeCard extends JDialog{
 	
 	private int getEmpId(){
 	return 0;
-	
+	}
 	}
 
 

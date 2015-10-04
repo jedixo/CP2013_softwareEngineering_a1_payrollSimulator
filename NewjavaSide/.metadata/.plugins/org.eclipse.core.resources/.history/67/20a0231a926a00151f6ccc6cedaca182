@@ -1,0 +1,54 @@
+package view;
+
+import java.awt.GridLayout;
+import java.util.Calendar;
+import java.util.Date;
+
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
+
+import controll.Database;
+import controll.EmpList;
+import controll.Employee;
+import controll.TimeCardList;
+
+@SuppressWarnings("serial")
+public class AddTimeCard extends JDialog{
+	
+	private JSpinner date, hours;
+	private JComboBox<String> employees;
+	private EmpList empList;
+	private TimeCardList tcList;
+
+	
+
+	public AddTimeCard(TimeCardList tcList, Database database, EmpList empList) {
+		this.empList = empList;
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(0,2,2,2));
+		panel.add(new JLabel("Employee:"));
+		employees = new JComboBox<>();
+		for (Employee employee : empList) {
+			String first = employee.getFirstName();
+			String last = employee.getLastName();
+			String name = first +" "+ last;
+			employees.addItem(name);
+		}
+		panel.add(employees);
+		panel.add(new JLabel("Date:"));
+		Date datenow = Calendar.getInstance().getTime();
+		SpinnerDateModel smb = new SpinnerDateModel(datenow, null, null, Calendar.HOUR_OF_DAY);
+		JSpinner SPIN_DATE = new JSpinner();
+		SPIN_DATE .setModel(smb);
+		JSpinner.DateEditor date = new JSpinner.DateEditor(SPIN_DATE, "dd-MMM-YYYY");
+		SPIN_DATE.setEditor(date);
+		panel.add(date);
+		add(panel);
+
+	}
+
+}

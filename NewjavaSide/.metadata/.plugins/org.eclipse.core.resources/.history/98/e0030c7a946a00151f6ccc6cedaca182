@@ -20,7 +20,6 @@ import controll.Database;
 import controll.EmpList;
 import controll.Employee;
 import controll.TimeCardList;
-import controll.Timecard;
 
 @SuppressWarnings("serial")
 public class AddTimeCard extends JDialog{
@@ -32,7 +31,7 @@ public class AddTimeCard extends JDialog{
 
 	
 
-	public AddTimeCard(final TimeCardList tcList, Database database, EmpList empList) {
+	public AddTimeCard(TimeCardList tcList, Database database, EmpList empList) {
 		this.empList = empList;
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(0,2,2,2));
@@ -48,24 +47,16 @@ public class AddTimeCard extends JDialog{
 		panel.add(new JLabel("Date:"));
 			Date datenow = Calendar.getInstance().getTime();
 			SpinnerDateModel smb = new SpinnerDateModel(datenow, null, null, Calendar.HOUR_OF_DAY);
-			final JSpinner SPIN_DATE = new JSpinner();
+			JSpinner SPIN_DATE = new JSpinner();
 			SPIN_DATE .setModel(smb);
 			JSpinner.DateEditor date = new JSpinner.DateEditor(SPIN_DATE, "YYYY-MM-dd");
 			SPIN_DATE.setEditor(date);
-			SPIN_DATE.setEnabled(false);
-		panel.add(date);
+			date.setEnabled(false);
 		panel.add(new JLabel("Hours:"));
 		hours = new JSpinner();
 		hours.setModel(new SpinnerNumberModel(0,0,24,0.5));
 		panel.add(hours);
 		JButton addButton = new JButton("Add");
-		addButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Timecard tc = new Timecard(((tcList.get(tcList.size()-1).getId() + 1)),getEmpId(),SPIN_DATE.getValue().toString(),(Float)hours.getValue());
-			}
-		});
 		JButton closeButton = new JButton("Cancel");
 		closeButton.addActionListener(new ActionListener() {
 			
@@ -91,11 +82,6 @@ public class AddTimeCard extends JDialog{
 	private void close() {
 		this.dispose();
 		
-	}
-	
-	private int getEmpId(){
-	return 0;
-	
 	}
 
 

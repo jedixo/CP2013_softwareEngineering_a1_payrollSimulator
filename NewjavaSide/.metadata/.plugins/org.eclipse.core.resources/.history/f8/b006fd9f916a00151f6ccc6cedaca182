@@ -1,0 +1,27 @@
+package view;
+
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+
+import controll.Database;
+import controll.EmpList;
+import controll.TimeCardList;
+
+@SuppressWarnings("serial")
+public class AddTimeCard extends JDialog{
+	
+	private JSpinner date, hours;
+	private JComboBox<String> employees;
+	private EmpList empList;
+	private TimeCardList tcList;
+	
+
+	public AddTimeCard(TimeCardList tcList, Database database, EmpList empList) {
+		this.empList = empList;
+		JPanel panel = new JPanel();
+		
+	}
+
+}

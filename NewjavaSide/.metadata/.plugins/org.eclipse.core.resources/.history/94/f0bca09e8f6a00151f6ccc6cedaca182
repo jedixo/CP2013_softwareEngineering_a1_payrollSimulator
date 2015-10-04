@@ -69,7 +69,7 @@ public class ViewFrame extends JFrame{
 				if (type == 0) {
 					new AddEmployee(empList, database);
 				} else {
-					new AddTimeCard(tcList, database, empList);
+					new AddTimeCard(tcList, database);
 				}
 				initaliseCommonComponents();	
 			}
