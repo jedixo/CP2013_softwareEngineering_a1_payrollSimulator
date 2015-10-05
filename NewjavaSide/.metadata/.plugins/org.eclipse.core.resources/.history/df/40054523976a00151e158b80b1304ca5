@@ -32,7 +32,7 @@ public class AddTimeCard extends JDialog{
 
 	
 
-	public AddTimeCard(final TimeCardList tcList, final Database database, EmpList empList) {
+	public AddTimeCard(final TimeCardList tcList, Database database, EmpList empList) {
 		this.empList = empList;
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(0,2,2,2));
@@ -64,9 +64,6 @@ public class AddTimeCard extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Timecard tc = new Timecard(((tcList.get(tcList.size()-1).getId() + 1)),getEmpId(),SPIN_DATE.getValue().toString(),(Float)hours.getValue());
-				database.addTimeCard(tc);
-				tcList.add(tc);
-			
 			}
 		});
 		JButton closeButton = new JButton("Cancel");
@@ -97,14 +94,7 @@ public class AddTimeCard extends JDialog{
 	}
 	
 	private int getEmpId(){
-		int id = 0;
-		String[] nameStr = employees.getSelectedItem().toString().split("\\s+");
-		for (Employee emp : empList) {
-			if (emp.getFirstName().equals(nameStr[0]) && emp.getLastName().equals(nameStr[1])) {
-				id = emp.getId();
-			}
-		}
-		return id;
+	return 0;
 	
 	}
 

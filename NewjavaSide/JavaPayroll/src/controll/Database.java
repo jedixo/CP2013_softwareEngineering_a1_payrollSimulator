@@ -102,4 +102,9 @@ public class Database {
 		}
 		
 	}
+
+	public void addTimeCard(Timecard tc) {
+		// TODO Auto-generated method stub
+		
+	}
 }

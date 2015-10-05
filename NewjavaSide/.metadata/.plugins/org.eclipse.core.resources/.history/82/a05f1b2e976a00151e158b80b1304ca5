@@ -65,7 +65,7 @@ public class AddTimeCard extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 				Timecard tc = new Timecard(((tcList.get(tcList.size()-1).getId() + 1)),getEmpId(),SPIN_DATE.getValue().toString(),(Float)hours.getValue());
 				database.addTimeCard(tc);
-				tcList.add(tc);
+				
 			
 			}
 		});

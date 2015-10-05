@@ -44,7 +44,6 @@
 <fullyQualifiedTypeName name="controll.AbstractPayrollObject"/>
 <fullyQualifiedTypeName name="java.lang.Object"/>
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
-<fullyQualifiedTypeName name="controll.Employee"/>
 <fullyQualifiedTypeName name="controll.EmpList"/>
 <fullyQualifiedTypeName name="controll.TimeCardList"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
@@ -60,4 +59,5 @@
 <fullyQualifiedTypeName name="javax.swing.JButton"/>
 <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
 <fullyQualifiedTypeName name="controll.Timecard"/>
+<fullyQualifiedTypeName name="controll.Employee"/>
 </qualifiedTypeNameHistroy>
