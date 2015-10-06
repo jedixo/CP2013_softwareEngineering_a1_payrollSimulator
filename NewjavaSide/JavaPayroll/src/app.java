@@ -47,11 +47,10 @@ public class app {
 			
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					System.out.println(e.getActionCommand());
 				
 					switch (e.getActionCommand()) {
 					case "Employees":
-						new ViewFrame(empList, database);
+						new ViewFrame(empList, database, timeCardList);
 						break;
 					case "Timecards":
 						new ViewFrame(timeCardList, database, empList);
@@ -72,6 +71,7 @@ public class app {
 				}
 			});	
 		} else {
+			
 			load.dispose();
 			}
 	}

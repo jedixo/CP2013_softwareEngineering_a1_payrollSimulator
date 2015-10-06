@@ -19,7 +19,6 @@ public class Database {
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			connection = DriverManager.getConnection("jdbc:mysql://" + host, user, password);
-			System.out.println("connected");
 		
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Failed to connect to databse:\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
@@ -70,7 +69,6 @@ public class Database {
 			String sql = "DELETE FROM employees WHERE id=?";
 			java.sql.PreparedStatement statement = connection.prepareStatement(sql);
 			statement.setInt(1,id);
-			System.out.println(statement.toString());
 			statement.executeUpdate();
 			
 		}catch (SQLException e){
@@ -94,7 +92,6 @@ public class Database {
 			statement.setInt(7, employee.getSalary());
 			statement.setInt(8, employee.getId());
 			statement.setFloat(9, employee.getCommisionRateFloat());
-			System.out.println(statement.toString());
 			statement.executeUpdate();
 		}catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Failed to update employee in database: " + employee.getFirstName() + " " + employee.getLastName() + "\n" + e, "Error", JOptionPane.ERROR_MESSAGE);

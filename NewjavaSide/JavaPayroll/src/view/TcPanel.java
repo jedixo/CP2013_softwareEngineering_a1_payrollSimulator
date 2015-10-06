@@ -3,6 +3,7 @@ package view;
 import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
+import javax.swing.table.JTableHeader;
 
 import controll.EmpList;
 import controll.Employee;
@@ -14,8 +15,10 @@ import controll.viewTable;
 public class TcPanel extends JPanel{
 	
 	private String[] columNames = {"Id:","Employee:","Date:","Hours:"};
-	
-	public TcPanel(){}
+	public JTableHeader header;
+	public TcPanel(){
+		header = new JTableHeader();
+	}
 	
 	public TcPanel(TimeCardList tcList, EmpList empList) {
 		viewTable table = new viewTable(columNames);
@@ -26,8 +29,7 @@ public class TcPanel extends JPanel{
 		}
 		
 		setLayout(new BorderLayout());
-		add(table.getTableHeader(), BorderLayout.PAGE_START);
-		
+		header = table.getTableHeader();
 		add(table,BorderLayout.CENTER);
 	
 	

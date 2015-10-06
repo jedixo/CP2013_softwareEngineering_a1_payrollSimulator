@@ -12,10 +12,12 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+
 
 
 import controll.Database;
@@ -35,7 +37,7 @@ public class AddTimeCard extends JDialog{
 
 	
 
-	public AddTimeCard(final TimeCardList tcList, final Database database,EmpList empList) {
+	public AddTimeCard(final TimeCardList tcList, final Database database,EmpList empList,final int type,final TimeCardList ogTcList) {
 		this.empList = empList;
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(0,2,2,2));
@@ -58,7 +60,7 @@ public class AddTimeCard extends JDialog{
 			date = new JTextField(dateString);
 			date.setEditable(false);
 		}catch (Exception e) {
-			date = new JTextField(e.toString());
+			JOptionPane.showMessageDialog(null,e,"Error:", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		panel.add(date);
@@ -71,9 +73,21 @@ public class AddTimeCard extends JDialog{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Timecard tc = new Timecard(((tcList.get(tcList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)hours.getValue()));
-				database.addTimeCard(tc);
-				tcList.add(tc);
+				
+				if (type == 1) {
+					Timecard tc = new Timecard(((ogTcList.get(ogTcList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)hours.getValue()));
+					ogTcList.add(tc);
+					database.addTimeCard(tc);
+					if (tcList.size() != 0) {
+						tc = new Timecard(((tcList.get(tcList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)hours.getValue()));
+					} else
+						tc = new Timecard(1,getEmpId(),dateString,(float)((double)hours.getValue()));
+					tcList.add(tc);
+				} else {
+					Timecard tc = new Timecard(((tcList.get(tcList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)hours.getValue()));
+					database.addTimeCard(tc);
+					tcList.add(tc);
+				}
 				close();
 			
 			}
@@ -99,6 +113,7 @@ public class AddTimeCard extends JDialog{
 		setModal(true);
 		setVisible(true);
 	}
+
 	
 	private int getEmpId(){
 		int id = 0;

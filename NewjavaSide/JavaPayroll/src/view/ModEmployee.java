@@ -184,7 +184,6 @@ public class ModEmployee extends JDialog {
 	
 	private void getPreviousDetails(String string) {
 		String[] nameStr = string.split("\\s+");
-		System.out.println(nameStr[0] + nameStr[1]);
 		
 		for (Employee employee : empList) {
 			if (employee.getFirstName().equals(nameStr[0]) && employee.getLastName().equals(nameStr[1])) {

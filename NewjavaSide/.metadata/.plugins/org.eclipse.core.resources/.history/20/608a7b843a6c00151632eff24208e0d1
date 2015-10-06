@@ -1,0 +1,12 @@
+package test;
+
+import view.LoadingBar;
+
+public class LoadingBarTest {
+
+	public static void main(String[] args) {
+		LoadingBar load = new LoadingBar("test")
+		load.updateBar(2, "text");
+	}
+
+}

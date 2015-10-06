@@ -4,11 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 @SuppressWarnings("serial")
 public class EmpList extends ArrayList<Employee>{
 	
-	
-
 	public EmpList() {}
 	
 	public EmpList(ResultSet table) {
@@ -26,7 +26,7 @@ public class EmpList extends ArrayList<Employee>{
 				
 			}
 		}catch(SQLException e) {
-			System.out.println(e);
+			JOptionPane.showMessageDialog(null,e,"Error:", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

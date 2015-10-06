@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.table.JTableHeader;
 
 import controll.Database;
 import controll.EmpList;
@@ -18,7 +19,7 @@ import controll.TimeCardList;
 @SuppressWarnings("serial")
 public class ViewFrame extends JFrame{
 	private EmpList empList;
-	private TimeCardList tcList;
+	private TimeCardList tcList, ogTcList;
 	private TcPanel tcPanel;
 	private int type;
 	private EmpPanel empPanel;
@@ -26,17 +27,21 @@ public class ViewFrame extends JFrame{
 	private JScrollPane ScrollPane;
 	private Database database;
 	private JPanel buttonPanel;
+	private JTableHeader header;
 	
-	public ViewFrame(final EmpList empList, final Database database) {
+	public ViewFrame(final EmpList empList, final Database database, TimeCardList tcList) {
 		type = 0;
+		this.tcList = tcList;
 		this.database = database;
 		this.empList = empList;
-		empPanel = new EmpPanel(empList);
+		empPanel = new EmpPanel();
+		header = empPanel.header;
+		add(header, BorderLayout.PAGE_START);
 		ScrollPane = new JScrollPane(empPanel);
 		buttonPanel = new JPanel();
 		add(buttonPanel);
 		add(ScrollPane, BorderLayout.CENTER);
-		
+		setTitle("View Employees");
 		initaliseCommonComponents();
 		
 	}
@@ -47,17 +52,29 @@ public class ViewFrame extends JFrame{
 		this.database = database;
 		this.tcList = timeCardList;
 		tcPanel = new TcPanel();
+		header = tcPanel.header;
+		add(header, BorderLayout.PAGE_START);
 		ScrollPane = new JScrollPane(tcPanel);
 		buttonPanel = new JPanel();
 		add(buttonPanel);
 		add(ScrollPane, BorderLayout.CENTER);
-	
+		setTitle("View Timecards");
+		initaliseCommonComponents();
+	}
+
+	public ViewFrame(TimeCardList focusedEmp, Database database2,
+			EmpList focusedEmpList, TimeCardList tcList) {
+		
+		this(focusedEmp,database2,focusedEmpList);
+		this.ogTcList = tcList;
+		type = 3;
 		initaliseCommonComponents();
 	}
 
 	private void initaliseCommonComponents() {
 		remove(ScrollPane);
 		remove(buttonPanel);
+		remove(header);
 		
 		JPanel buttonPanel = new JPanel();
 
@@ -68,8 +85,10 @@ public class ViewFrame extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				if (type == 0) {
 					new AddEmployee(empList, database);
+				} else if (type == 3){
+					new AddTimeCard(tcList, database, empList, 1,ogTcList);
 				} else {
-					new AddTimeCard(tcList, database, empList);
+					new AddTimeCard(tcList, database, empList, 0, null);
 				}
 				initaliseCommonComponents();	
 			}
@@ -92,23 +111,25 @@ public class ViewFrame extends JFrame{
 		
 		
 		if (type == 0) {
-			empPanel = new EmpPanel(empList);
+			empPanel = new EmpPanel(empList,tcList,database);
+			header = empPanel.header;
 			ScrollPane = new JScrollPane(empPanel);
+			setPreferredSize(new Dimension(840,400));
 		} else {
 			tcPanel = new TcPanel(tcList,empList);
+			header = tcPanel.header;
 			ScrollPane = new JScrollPane(tcPanel);
+			setPreferredSize(new Dimension(440,300));
 		}
 		
-		
+		add(header, BorderLayout.PAGE_START);
 		add(ScrollPane, BorderLayout.CENTER);
-	//	setPreferredSize(new Dimension(840, 600));
-		setLocationRelativeTo(null);
 		setResizable(false);
-		setMinimumSize(new Dimension(840,0));
-		pack();
-		setTitle("View Data");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
+		pack();
+		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 

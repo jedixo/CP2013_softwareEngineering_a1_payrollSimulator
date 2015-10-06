@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 @SuppressWarnings("serial")
 public class TimeCardList extends ArrayList<Timecard> {
 	
@@ -14,11 +16,10 @@ public class TimeCardList extends ArrayList<Timecard> {
 			while (table.next()){
 				Timecard tc = new Timecard(table.getInt("id"), table.getInt("employee"), table.getString("date"), table.getFloat("hours"));
 				add(tc);
-				//System.out.println(tc.getDate());
 			}
 			
 		}catch(SQLException e) {
-			System.out.println(e);
+			JOptionPane.showMessageDialog(null,e,"Error:", JOptionPane.ERROR_MESSAGE);
 		}
 		
 	}
