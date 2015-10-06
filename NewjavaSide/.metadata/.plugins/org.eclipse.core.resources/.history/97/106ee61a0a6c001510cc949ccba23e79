@@ -129,7 +129,7 @@ public class ModEmployee extends JDialog {
 			}
 			employee.setUnion(union.getText());
 			employee.setSalary((int) salary.getValue());
-			employee.setCommissionRate((int) ((float)commisionRate.getValue()));
+			employee.setCommissionRate((int) ((float)commisionRate.getValue());
 			empDatabase.updateEmp(employee);
 			close();
 		}

@@ -51,7 +51,7 @@ public class ViewFrame extends JFrame{
 		buttonPanel = new JPanel();
 		add(buttonPanel);
 		add(ScrollPane, BorderLayout.CENTER);
-	
+		
 		initaliseCommonComponents();
 	}
 
@@ -102,13 +102,10 @@ public class ViewFrame extends JFrame{
 		
 		add(ScrollPane, BorderLayout.CENTER);
 	//	setPreferredSize(new Dimension(840, 600));
-		setLocationRelativeTo(null);
-		setResizable(false);
-		setMinimumSize(new Dimension(840,0));
 		pack();
 		setTitle("View Data");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 

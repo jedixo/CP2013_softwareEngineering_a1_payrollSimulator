@@ -20,9 +20,9 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
-import controll.Database;
-import controll.EmpList;
-import controll.Employee;
+import control.Database;
+import control.EmpList;
+import control.Employee;
 
 @SuppressWarnings("serial")
 public class ModEmployee extends JDialog {
@@ -129,7 +129,7 @@ public class ModEmployee extends JDialog {
 			}
 			employee.setUnion(union.getText());
 			employee.setSalary((int) salary.getValue());
-			employee.setCommissionRate((int) ((float)commisionRate.getValue()));
+			employee.setCommissionRate((int) commisionRate.getValue());
 			empDatabase.updateEmp(employee);
 			close();
 		}

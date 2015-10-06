@@ -11,9 +11,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import controll.Database;
-import controll.EmpList;
-import controll.TimeCardList;
+import control.Database;
+import control.EmpList;
+import control.TimeCardList;
 
 @SuppressWarnings("serial")
 public class ViewFrame extends JFrame{
@@ -51,7 +51,7 @@ public class ViewFrame extends JFrame{
 		buttonPanel = new JPanel();
 		add(buttonPanel);
 		add(ScrollPane, BorderLayout.CENTER);
-	
+		
 		initaliseCommonComponents();
 	}
 
@@ -101,14 +101,11 @@ public class ViewFrame extends JFrame{
 		
 		
 		add(ScrollPane, BorderLayout.CENTER);
-	//	setPreferredSize(new Dimension(840, 600));
-		setLocationRelativeTo(null);
-		setResizable(false);
-		setMinimumSize(new Dimension(840,0));
+		setPreferredSize(new Dimension(840, 600));
 		pack();
 		setTitle("View Data");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 
