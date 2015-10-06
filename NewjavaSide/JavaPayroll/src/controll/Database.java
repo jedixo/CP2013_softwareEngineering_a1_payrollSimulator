@@ -104,7 +104,19 @@ public class Database {
 	}
 
 	public void addTimeCard(Timecard tc) {
-		// TODO Auto-generated method stub
+		try {
+			String sql = "INSERT INTO `time_card`(`id`, `employee`, `date`, `hours`) VALUES " + 
+		"(?,?,?,?);";
+			java.sql.PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setInt(1, tc.getId());
+			statement.setInt(2, tc.getEmpId());
+			statement.setString(3, tc.getDate());
+			statement.setFloat(4, tc.getHours());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Failed to add Timecard to database:" + "\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
+			error = true;
+		}
 		
 	}
 }

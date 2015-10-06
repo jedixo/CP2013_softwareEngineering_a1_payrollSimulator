@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -13,8 +14,9 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
-import javax.swing.SpinnerDateModel;
+import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+
 
 import controll.Database;
 import controll.EmpList;
@@ -25,14 +27,15 @@ import controll.Timecard;
 @SuppressWarnings("serial")
 public class AddTimeCard extends JDialog{
 	
-	private JSpinner date, hours;
+	private JTextField date;
+	private JSpinner hours;
 	private JComboBox<String> employees;
 	private EmpList empList;
-	private TimeCardList tcList;
+	private String dateString;
 
 	
 
-	public AddTimeCard(final TimeCardList tcList, final Database database, EmpList empList) {
+	public AddTimeCard(final TimeCardList tcList, final Database database,EmpList empList) {
 		this.empList = empList;
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(0,2,2,2));
@@ -46,13 +49,18 @@ public class AddTimeCard extends JDialog{
 		}
 		panel.add(employees);
 		panel.add(new JLabel("Date:"));
-			Date datenow = Calendar.getInstance().getTime();
-			SpinnerDateModel smb = new SpinnerDateModel(datenow, null, null, Calendar.HOUR_OF_DAY);
-			final JSpinner SPIN_DATE = new JSpinner();
-			SPIN_DATE .setModel(smb);
-			JSpinner.DateEditor date = new JSpinner.DateEditor(SPIN_DATE, "YYYY-MM-dd");
-			SPIN_DATE.setEditor(date);
-			SPIN_DATE.setEnabled(false);
+		
+		Calendar cal = Calendar.getInstance();
+		Date dte = cal.getTime();
+		SimpleDateFormat format = new SimpleDateFormat("yyy-MM-dd");
+		try {
+			dateString = format.format(dte);
+			date = new JTextField(dateString);
+			date.setEditable(false);
+		}catch (Exception e) {
+			date = new JTextField(e.toString());
+		}
+		
 		panel.add(date);
 		panel.add(new JLabel("Hours:"));
 		hours = new JSpinner();
@@ -63,9 +71,10 @@ public class AddTimeCard extends JDialog{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Timecard tc = new Timecard(((tcList.get(tcList.size()-1).getId() + 1)),getEmpId(),SPIN_DATE.getValue().toString(),(Float)hours.getValue());
+				Timecard tc = new Timecard(((tcList.get(tcList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)hours.getValue()));
 				database.addTimeCard(tc);
 				tcList.add(tc);
+				close();
 			
 			}
 		});
@@ -83,17 +92,12 @@ public class AddTimeCard extends JDialog{
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		add(panel);
 		setLocationRelativeTo(null);
-		setPreferredSize(new Dimension(400, 300));
+		setPreferredSize(new Dimension(400, 200));
 		setResizable(false);
 		setTitle("Add Timecard");
 		pack();
 		setModal(true);
 		setVisible(true);
-	}
-	
-	private void close() {
-		this.dispose();
-		
 	}
 	
 	private int getEmpId(){
@@ -105,8 +109,11 @@ public class AddTimeCard extends JDialog{
 			}
 		}
 		return id;
-	
 	}
 
+	private void close() {
+		this.dispose();
+		
+	}
 
 }

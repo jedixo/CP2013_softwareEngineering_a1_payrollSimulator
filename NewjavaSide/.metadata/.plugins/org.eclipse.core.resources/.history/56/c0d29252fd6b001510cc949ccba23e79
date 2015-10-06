@@ -1,0 +1,50 @@
+package view;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JPanel;
+
+import control.EmpList;
+import control.Employee;
+import control.TimeCardList;
+import control.Timecard;
+import control.viewTable;
+
+@SuppressWarnings("serial")
+public class TcPanel extends JPanel{
+	
+	private String[] columNames = {"Id:","Employee:","Date:","Hours:"};
+	
+	public TcPanel(){}
+	
+	public TcPanel(TimeCardList tcList, EmpList empList) {
+		viewTable table = new viewTable(columNames);
+		
+		for (Timecard timecard : tcList) {
+			Object[] temp = {timecard.getId(),getEmpName(timecard.getEmpId(),empList),timecard.getDate(),timecard.getHours()};
+			table.addRow(temp);
+		}
+		
+		setLayout(new BorderLayout());
+		add(table.getTableHeader(), BorderLayout.PAGE_START);
+		
+		add(table,BorderLayout.CENTER);
+	
+	
+	
+	}
+
+	private String getEmpName(int empId, EmpList empList) {
+		String name = "";
+		for (Employee emp : empList) {
+			
+			if (emp.getId() == empId) {
+				name = emp.getFirstName() + " " + emp.getLastName();
+			}
+		}
+		return name;
+
+		
+	}
+
+}

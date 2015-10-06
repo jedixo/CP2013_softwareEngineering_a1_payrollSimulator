@@ -102,7 +102,6 @@ public class ViewFrame extends JFrame{
 		
 		add(ScrollPane, BorderLayout.CENTER);
 		setPreferredSize(new Dimension(840, 600));
-		//setResizable(false);
 		pack();
 		setTitle("View Data");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
