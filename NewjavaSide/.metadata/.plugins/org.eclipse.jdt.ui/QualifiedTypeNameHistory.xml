@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javax.swing.SpinnerListModel"/>
-<fullyQualifiedTypeName name="java.awt.event.ComponentAdapter"/>
-<fullyQualifiedTypeName name="java.awt.event.ComponentEvent"/>
 <fullyQualifiedTypeName name="java.awt.ScrollPane"/>
 <fullyQualifiedTypeName name="view.ViewEmployees"/>
 <fullyQualifiedTypeName name="javax.swing.UIManager"/>
@@ -40,8 +37,6 @@
 <fullyQualifiedTypeName name="javax.swing.JSpinner"/>
 <fullyQualifiedTypeName name="javax.swing.SpinnerNumberModel"/>
 <fullyQualifiedTypeName name="javax.swing.JButton"/>
-<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
-<fullyQualifiedTypeName name="controll.Employee"/>
 <fullyQualifiedTypeName name="com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
@@ -51,8 +46,6 @@
 <fullyQualifiedTypeName name="controll.ClickListener"/>
 <fullyQualifiedTypeName name="java.awt.event.MouseListener"/>
 <fullyQualifiedTypeName name="javax.swing.JTable"/>
-<fullyQualifiedTypeName name="controll.Timecard"/>
-<fullyQualifiedTypeName name="view.ViewFrame"/>
 <fullyQualifiedTypeName name="controll.Database"/>
 <fullyQualifiedTypeName name="controll.TimeCardList"/>
 <fullyQualifiedTypeName name="javax.swing.table.JTableHeader"/>
@@ -60,4 +53,11 @@
 <fullyQualifiedTypeName name="test.LoadingBarTest"/>
 <fullyQualifiedTypeName name="view.LoadingBar"/>
 <fullyQualifiedTypeName name="com.sun.glass.ui.Timer"/>
+<fullyQualifiedTypeName name="javax.swing.JMenuBar"/>
+<fullyQualifiedTypeName name="view.ViewFrame"/>
+<fullyQualifiedTypeName name="javax.swing.JMenu"/>
+<fullyQualifiedTypeName name="javax.swing.JMenuItem"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+<fullyQualifiedTypeName name="controll.Employee"/>
+<fullyQualifiedTypeName name="controll.Timecard"/>
 </qualifiedTypeNameHistroy>
