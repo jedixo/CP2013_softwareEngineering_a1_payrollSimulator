@@ -144,42 +144,15 @@ public class ViewFrame extends JFrame{
 	}
 
 	private JMenuBar setupMenu() {
-		JMenuBar menubar = new JMenuBar();
 		JMenu file = new JMenu("File");
 		JMenuItem exit = new JMenuItem("Exit");
 		exit.setAccelerator(KeyStroke.getKeyStroke("ctrl X"));
-		exit.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				close();
-			}
-		});
-		menubar.add(file);
+		
 		file.add(exit);
-		if (type == 0) {
-			JMenu view = new JMenu("View");
-			JMenuItem viewTc = new JMenuItem("View All Timecards");
-			viewTc.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					new ViewFrame(tcList, database, empList);
-				}
-			});
-			view.add(viewTc);
-			menubar.add(view);
-		}
-		
-		
-		
-		
+		JMenuBar menuBar = new JMenuBar();
+		menubar.add(file);
 		
 		return menubar;
-	}
-	
-	private void close() {
-		this.dispose();
 	}
 
 }

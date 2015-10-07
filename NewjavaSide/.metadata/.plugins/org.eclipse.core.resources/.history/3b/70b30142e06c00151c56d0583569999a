@@ -11,7 +11,6 @@ public class viewTable extends JTable{
 	public viewTable(String[] columNames) {
 		super(new DefaultTableModel(columNames, 0));
 		setFillsViewportHeight(true);
-		setAutoCreateRowSorter(true);
 		
 		}
 

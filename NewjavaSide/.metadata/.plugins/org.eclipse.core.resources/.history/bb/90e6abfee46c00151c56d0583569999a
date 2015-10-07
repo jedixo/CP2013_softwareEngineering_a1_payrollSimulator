@@ -52,6 +52,9 @@ public class app {
 					case "Employees":
 						new ViewFrame(empList, database, timeCardList);
 						break;
+					case "Timecards":
+						new ViewFrame(timeCardList, database, empList);
+						break;
 					}
 				}
 			});

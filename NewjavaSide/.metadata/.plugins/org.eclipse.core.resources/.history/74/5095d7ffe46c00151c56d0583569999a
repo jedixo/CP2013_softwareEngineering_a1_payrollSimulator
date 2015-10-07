@@ -15,7 +15,7 @@ public class MainDisplay extends JPanel{
 
 	public JButton[] buttons;
 	private List<String> events = Arrays.asList(
-			"Employees","Post Receipt","Post Union Service Charge","Run Payroll");
+			"Employees","Timecards","Post Receipt","Post Union Service Charge","Run Payroll");
 	
 	public MainDisplay() {
 		

@@ -8,12 +8,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.KeyStroke;
 import javax.swing.table.JTableHeader;
 
 import controll.Database;
@@ -22,7 +18,6 @@ import controll.TimeCardList;
 
 @SuppressWarnings("serial")
 public class ViewFrame extends JFrame{
-	private JMenuBar menubar;
 	private EmpList empList;
 	private TimeCardList tcList, ogTcList;
 	private TcPanel tcPanel;
@@ -35,7 +30,6 @@ public class ViewFrame extends JFrame{
 	private JTableHeader header;
 	
 	public ViewFrame(final EmpList empList, final Database database, TimeCardList tcList) {
-		
 		type = 0;
 		this.tcList = tcList;
 		this.database = database;
@@ -81,10 +75,6 @@ public class ViewFrame extends JFrame{
 		remove(ScrollPane);
 		remove(buttonPanel);
 		remove(header);
-		remove(getMenuBar());
-		menubar = setupMenu();
-		setJMenuBar(menubar);
-		
 		
 		JPanel buttonPanel = new JPanel();
 
@@ -141,45 +131,6 @@ public class ViewFrame extends JFrame{
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setVisible(true);
-	}
-
-	private JMenuBar setupMenu() {
-		JMenuBar menubar = new JMenuBar();
-		JMenu file = new JMenu("File");
-		JMenuItem exit = new JMenuItem("Exit");
-		exit.setAccelerator(KeyStroke.getKeyStroke("ctrl X"));
-		exit.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				close();
-			}
-		});
-		menubar.add(file);
-		file.add(exit);
-		if (type == 0) {
-			JMenu view = new JMenu("View");
-			JMenuItem viewTc = new JMenuItem("View All Timecards");
-			viewTc.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					new ViewFrame(tcList, database, empList);
-				}
-			});
-			view.add(viewTc);
-			menubar.add(view);
-		}
-		
-		
-		
-		
-		
-		return menubar;
-	}
-	
-	private void close() {
-		this.dispose();
 	}
 
 }
