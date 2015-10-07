@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.JTableHeader;
@@ -145,6 +146,16 @@ public class ViewFrame extends JFrame{
 	private JMenuBar setupMenu() {
 		JMenuBar menubar = new JMenuBar();
 		JMenu file = new JMenu(" File ");
+		JMenuItem offline = new JMenuItem("Work Offline");
+		offline.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Database Errors will occur while offline", "Warning", JOptionPane.WARNING_MESSAGE);
+				database = null;
+			}
+		});
+		file.add(offline);
 		JMenuItem exit = new JMenuItem("Exit");
 		exit.addActionListener(new ActionListener() {
 			

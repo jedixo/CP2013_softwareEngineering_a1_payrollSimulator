@@ -1,17 +1,14 @@
-
-
-
 import javax.swing.UIManager;
 
+import view.LoadingBar;
+import view.ViewFrame;
 import controll.Database;
 import controll.EmpList;
 import controll.TimeCardList;
-import view.LoadingBar;
-import view.ViewFrame;
 
 
-public class app {
-	
+public class offline {
+
 	private static String HOST = "sql6.freemysqlhosting.net/sql689509";
 	private static String USERNAME = "sql689509";
 	private static String PASSWORD = "lA7*wL7!";

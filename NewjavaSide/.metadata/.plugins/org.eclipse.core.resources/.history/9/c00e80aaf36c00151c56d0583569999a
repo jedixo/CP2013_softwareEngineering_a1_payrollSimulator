@@ -1,20 +1,17 @@
-
-
-
 import javax.swing.UIManager;
 
+import view.LoadingBar;
+import view.ViewFrame;
 import controll.Database;
 import controll.EmpList;
 import controll.TimeCardList;
-import view.LoadingBar;
-import view.ViewFrame;
 
 
-public class app {
-	
-	private static String HOST = "sql6.freemysqlhosting.net/sql689509";
-	private static String USERNAME = "sql689509";
-	private static String PASSWORD = "lA7*wL7!";
+public class offline {
+
+	//private static String HOST = "sql6.freemysqlhosting.net/sql689509";
+	//private static String USERNAME = "sql689509";
+	//private static String PASSWORD = "lA7*wL7!";
 	
 	private static Database database;
 	private static EmpList empList;
@@ -27,7 +24,7 @@ public class app {
 		
 		LoadingBar load = new LoadingBar("Connecting");
 		load.updateBar(25,"Connecting");
-		database = new Database(HOST, USERNAME, PASSWORD);
+		database = new Database();
 		if (database.isConnected) {
 			load.updateBar(50,"Querying Employees");
 			empList = new EmpList(database.getTable("employees"));

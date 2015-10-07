@@ -12,13 +12,13 @@ import view.ViewFrame;
 
 public class app {
 	
+	private static Database database;
+	private static EmpList empList;
+	private static TimeCardList timeCardList;
 	private static String HOST = "sql6.freemysqlhosting.net/sql689509";
 	private static String USERNAME = "sql689509";
 	private static String PASSWORD = "lA7*wL7!";
 	
-	private static Database database;
-	private static EmpList empList;
-	private static TimeCardList timeCardList;
 	
 	public static void main(String[] args) {
 		try {
@@ -27,7 +27,7 @@ public class app {
 		
 		LoadingBar load = new LoadingBar("Connecting");
 		load.updateBar(25,"Connecting");
-		database = new Database(HOST, USERNAME, PASSWORD);
+		database = new Database(HOST, USERNAME,PASSWORD);
 		if (database.isConnected) {
 			load.updateBar(50,"Querying Employees");
 			empList = new EmpList(database.getTable("employees"));
