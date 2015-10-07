@@ -1,7 +1,0 @@
-package controll;
-
-import javax.swing.JTable;
-
-public class viewTable extends JTable {
-
-}
