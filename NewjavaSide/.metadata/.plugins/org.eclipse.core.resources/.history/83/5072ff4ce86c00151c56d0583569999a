@@ -35,9 +35,11 @@ public class app {
 			load.updateBar(100,"Loading UI");
 			load.dispose();
 			new ViewFrame(empList, database, timeCardList);
+		
 		} else {
+			
 			load.dispose();
-		}
+			}
 	}
 
 }

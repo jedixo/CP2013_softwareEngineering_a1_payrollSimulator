@@ -41,22 +41,20 @@ public class EmpPanel extends JPanel{
 				if (e.getClickCount() == 2) {
 					JTable target = (JTable)e.getSource();
 					int row = target.getSelectedRow();
-					if (row != -1) {
-						int empId = (int)table.getModel().getValueAt(row, 0);
-						TimeCardList focusedEmp = new TimeCardList();
-						EmpList focusedEmpList = new EmpList();
-						for (Employee emp : empList) {
-							if (emp.getId() == empId) {
-								focusedEmpList.add(emp);
-							}
+					int empId = (int)table.getModel().getValueAt(row, 0);
+					TimeCardList focusedEmp = new TimeCardList();
+					EmpList focusedEmpList = new EmpList();
+					for (Employee emp : empList) {
+						if (emp.getId() == empId) {
+							focusedEmpList.add(emp);
 						}
-						for (Timecard tc : tcList){
-							if (tc.getEmpId() == empId) {
-								focusedEmp.add(tc);
-							}
-						}
-						new ViewFrame(focusedEmp, database, focusedEmpList, tcList);
 					}
+					for (Timecard tc : tcList){
+						if (tc.getEmpId() == empId) {
+							focusedEmp.add(tc);
+						}
+					}
+					new ViewFrame(focusedEmp, database, focusedEmpList, tcList);
 				}
 			}
 			

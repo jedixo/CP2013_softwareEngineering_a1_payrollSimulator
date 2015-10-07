@@ -49,6 +49,7 @@ public class AddTimeCard extends JDialog{
 			String name = first +" "+ last;
 			employees.addItem(name);
 		}
+		System.out.println(empList.size());
 		if (empList.size() == 1) {
 			employees.setEnabled(false);
 		}

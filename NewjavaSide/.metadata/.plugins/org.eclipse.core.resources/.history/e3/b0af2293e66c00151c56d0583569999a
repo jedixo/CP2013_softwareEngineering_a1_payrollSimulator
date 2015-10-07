@@ -50,7 +50,7 @@ public class AddTimeCard extends JDialog{
 			employees.addItem(name);
 		}
 		if (empList.size() == 1) {
-			employees.setEnabled(false);
+			employees.setEditable(false);
 		}
 		panel.add(employees);
 		panel.add(new JLabel("Date:"));

@@ -1,5 +1,7 @@
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.UIManager;
 
@@ -7,12 +9,16 @@ import controll.Database;
 import controll.EmpList;
 import controll.TimeCardList;
 import view.LoadingBar;
+import view.MainDisplay;
+import view.MainFrame;
 import view.ViewFrame;
 
 
 public class app {
 	
+	private static MainFrame mainFrame;
 	private static Database database;
+	private static MainDisplay mainDisplay;
 	public static EmpList empList;
 	private static TimeCardList timeCardList;
 	
@@ -35,9 +41,11 @@ public class app {
 			load.updateBar(100,"Loading UI");
 			load.dispose();
 			new ViewFrame(empList, database, timeCardList);
+		
 		} else {
+			
 			load.dispose();
-		}
+			}
 	}
 
 }
