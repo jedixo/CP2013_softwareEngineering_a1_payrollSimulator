@@ -13,7 +13,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.KeyStroke;
 import javax.swing.table.JTableHeader;
 
 import controll.Database;
@@ -145,9 +144,8 @@ public class ViewFrame extends JFrame{
 
 	private JMenuBar setupMenu() {
 		JMenuBar menubar = new JMenuBar();
-		JMenu file = new JMenu("File");
+		JMenu file = new JMenu(" File ");
 		JMenuItem exit = new JMenuItem("Exit");
-		exit.setAccelerator(KeyStroke.getKeyStroke("ctrl X"));
 		exit.addActionListener(new ActionListener() {
 			
 			@Override
@@ -158,7 +156,7 @@ public class ViewFrame extends JFrame{
 		menubar.add(file);
 		file.add(exit);
 		if (type == 0) {
-			JMenu view = new JMenu("View");
+			JMenu view = new JMenu(" View ");
 			JMenuItem viewTc = new JMenuItem("View All Timecards");
 			viewTc.addActionListener(new ActionListener() {
 				
@@ -169,6 +167,15 @@ public class ViewFrame extends JFrame{
 			});
 			view.add(viewTc);
 			menubar.add(view);
+			
+			JMenu action = new JMenu(" Actions ");
+			JMenuItem runPayroll = new JMenuItem("Run Payroll");
+			action.add(runPayroll);
+			JMenuItem postReceipt = new JMenuItem("Post Receipt");
+			action.add(postReceipt);
+			JMenuItem unionServiceCharge = new JMenuItem("Post Union Service Charge");
+			action.add(unionServiceCharge);
+			menubar.add(action);
 		}
 		
 		
