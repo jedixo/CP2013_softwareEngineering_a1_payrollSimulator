@@ -119,13 +119,8 @@ public class ViewFrame extends JFrame{
 					if (empPanel.getRowSelected() == -1){
 						JOptionPane.showMessageDialog(null, "No Employee selected, Please select an Employee to edit", "No Selection", JOptionPane.OK_OPTION);
 					}else {
-						for (Employee emp : empList) {
-							if (emp.getId() == empPanel.getEmpSelected()) {
-								EmpList selectedEmp = new EmpList();
-								selectedEmp.add(emp);
-								new ModEmployee(selectedEmp, database);
-							}
-						}
+						
+						new ModEmployee(empList, database);
 					}
 					initaliseCommonComponents();	
 				}

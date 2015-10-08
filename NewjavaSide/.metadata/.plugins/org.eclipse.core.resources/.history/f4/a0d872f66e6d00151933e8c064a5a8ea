@@ -30,7 +30,6 @@ public class EmpPanel extends JPanel{
 			"Pay Type:","Pay Delivery:","Union:","Salary:","Commision Rate:"};
 	public JTableHeader header;
 	private int rowSelected = -1;
-	private int empSelected;
 	
 	public EmpPanel(final EmpList empList, final TimeCardList tcList, final Database database) {
 		
@@ -42,10 +41,9 @@ public class EmpPanel extends JPanel{
 			public void mouseClicked(MouseEvent e) {
 				JTable target = (JTable)e.getSource();
 				int row = target.getSelectedRow();
-				rowSelected = row;
+				rowSelected = target.getSelectedRow();
+				int empId = (int)table.getModel().getValueAt(row, 0);
 				if (row != -1) {
-					int empId = (int)table.getModel().getValueAt(row, 0);
-					empSelected = empId;
 					if (e.getClickCount() == 2) {
 					
 						TimeCardList focusedEmp = new TimeCardList();
@@ -109,9 +107,7 @@ public class EmpPanel extends JPanel{
 	public int getRowSelected() {
 		return rowSelected;
 	}
-	public int getEmpSelected() {
-		return empSelected;
-	}
+	
 	
 	
 	

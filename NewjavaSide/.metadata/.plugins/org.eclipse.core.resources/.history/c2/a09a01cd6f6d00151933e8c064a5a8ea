@@ -49,7 +49,20 @@ public class ModEmployee extends JDialog {
 		String name = first +" "+ last;
 		employees.setText(name);;
 	}
-	employees.setEnabled(false);
+	//employees.addItemListener(new ItemListener() {
+	//	
+	//	@Override
+	//	public void itemStateChanged(ItemEvent e) {
+	//		if (e.getStateChange() == ItemEvent.SELECTED) {
+	//			
+	//			getPreviousDetails(e.getItem().toString());
+	//		}
+	//		
+		//}
+
+
+	//});
+	
 	modPanel.add(employees);
 	modPanel.add(new JLabel("Address:"));
 	address = new JTextField();

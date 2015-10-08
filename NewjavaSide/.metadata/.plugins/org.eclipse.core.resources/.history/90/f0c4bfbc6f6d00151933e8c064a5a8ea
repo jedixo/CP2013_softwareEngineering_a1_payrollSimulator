@@ -27,7 +27,8 @@ import controll.Employee;
 @SuppressWarnings("serial")
 public class ModEmployee extends JDialog {
 	
-	private JTextField address, union, employees;
+	private JComboBox<String> employees;
+	private JTextField address, union;
 	private EmpList empList;
 	private Employee employee;
 	private JSpinner salary, commisionRate;
@@ -42,14 +43,27 @@ public class ModEmployee extends JDialog {
 	JPanel modPanel = new JPanel();
 	modPanel.setLayout(new GridLayout(0,2,2,2));
 	modPanel.add(new JLabel("Employee:"));
-	employees = new JTextField();
+	employees = new JComboBox<>();
 	for (Employee employee : empList) {
 		String first = employee.getFirstName();
 		String last = employee.getLastName();
 		String name = first +" "+ last;
-		employees.setText(name);;
+		employees.addItem(name);
 	}
-	employees.setEnabled(false);
+	employees.addItemListener(new ItemListener() {
+		
+		@Override
+		public void itemStateChanged(ItemEvent e) {
+			if (e.getStateChange() == ItemEvent.SELECTED) {
+				
+				getPreviousDetails(e.getItem().toString());
+			}
+			
+		}
+
+
+	});
+	
 	modPanel.add(employees);
 	modPanel.add(new JLabel("Address:"));
 	address = new JTextField();
