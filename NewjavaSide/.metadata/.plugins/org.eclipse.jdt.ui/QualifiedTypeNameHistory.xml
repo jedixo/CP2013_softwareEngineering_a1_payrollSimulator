@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="view.ViewEmployees"/>
-<fullyQualifiedTypeName name="javax.swing.UIManager"/>
-<fullyQualifiedTypeName name="java.awt.Font"/>
-<fullyQualifiedTypeName name="view.headingLabel"/>
 <fullyQualifiedTypeName name="java.awt.Color"/>
 <fullyQualifiedTypeName name="java.awt.Dimension"/>
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
@@ -11,20 +7,14 @@
 <fullyQualifiedTypeName name="com.sun.org.apache.xerces.internal.xpointer.XPointerHandler"/>
 <fullyQualifiedTypeName name="java.awt.MenuShortcut"/>
 <fullyQualifiedTypeName name="javax.swing.KeyStroke"/>
-<fullyQualifiedTypeName name="java.sql.SQLException"/>
 <fullyQualifiedTypeName name="javax.swing.JDialog"/>
 <fullyQualifiedTypeName name="view.TcPanel"/>
-<fullyQualifiedTypeName name="javax.swing.JScrollPane"/>
 <fullyQualifiedTypeName name="java.awt.event.ItemListener"/>
-<fullyQualifiedTypeName name="java.awt.BorderLayout"/>
 <fullyQualifiedTypeName name="javax.swing.table.DefaultTableModel"/>
-<fullyQualifiedTypeName name="controll.viewTable"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.lang.Override"/>
 <fullyQualifiedTypeName name="controll.AbstractPayrollObject"/>
 <fullyQualifiedTypeName name="java.lang.Object"/>
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
-<fullyQualifiedTypeName name="javax.swing.JPanel"/>
 <fullyQualifiedTypeName name="java.awt.GridLayout"/>
 <fullyQualifiedTypeName name="javax.swing.JLabel"/>
 <fullyQualifiedTypeName name="javax.swing.JComboBox"/>
@@ -44,7 +34,6 @@
 <fullyQualifiedTypeName name="java.awt.event.MouseListener"/>
 <fullyQualifiedTypeName name="javax.swing.JTable"/>
 <fullyQualifiedTypeName name="controll.Database"/>
-<fullyQualifiedTypeName name="javax.swing.table.JTableHeader"/>
 <fullyQualifiedTypeName name="java.io.Console"/>
 <fullyQualifiedTypeName name="test.LoadingBarTest"/>
 <fullyQualifiedTypeName name="view.LoadingBar"/>
@@ -52,12 +41,23 @@
 <fullyQualifiedTypeName name="javax.swing.JMenuBar"/>
 <fullyQualifiedTypeName name="view.ViewFrame"/>
 <fullyQualifiedTypeName name="javax.swing.JMenu"/>
-<fullyQualifiedTypeName name="javax.swing.JMenuItem"/>
-<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
 <fullyQualifiedTypeName name="controll.Timecard"/>
 <fullyQualifiedTypeName name="controll.TimeCardList"/>
 <fullyQualifiedTypeName name="controll.Employee"/>
 <fullyQualifiedTypeName name="java.awt.event.ComponentListener"/>
-<fullyQualifiedTypeName name="controll.EmpList"/>
 <fullyQualifiedTypeName name="javax.swing.JTextField"/>
+<fullyQualifiedTypeName name="java.sql.ResultSet"/>
+<fullyQualifiedTypeName name="java.sql.SQLException"/>
+<fullyQualifiedTypeName name="javax.swing.JPanel"/>
+<fullyQualifiedTypeName name="javax.swing.JScrollPane"/>
+<fullyQualifiedTypeName name="java.awt.BorderLayout"/>
+<fullyQualifiedTypeName name="javax.swing.JMenuItem"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+<fullyQualifiedTypeName name="controll.EmpList"/>
+<fullyQualifiedTypeName name="view.SrPanel"/>
+<fullyQualifiedTypeName name="javax.swing.table.JTableHeader"/>
+<fullyQualifiedTypeName name="controll.viewTable"/>
+<fullyQualifiedTypeName name="controll.SalesRecipt"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="controll.SalesRecipts"/>
 </qualifiedTypeNameHistroy>

@@ -1,0 +1,19 @@
+package controll;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+public class SalesRecipts extends ArrayList<SalesRecipt>{
+	
+	public SalesRecipts() {}
+	
+	public SalesRecipts(ResultSet table) {
+		try {
+			while (table.next()) {
+				SalesRecipt sr = new SalesRecipt(table.getInt("id"), table.getInt("employee"), table.getString("date"), table.getFloat("amount"));
+			}
+		}
+	}
+	
+
+}

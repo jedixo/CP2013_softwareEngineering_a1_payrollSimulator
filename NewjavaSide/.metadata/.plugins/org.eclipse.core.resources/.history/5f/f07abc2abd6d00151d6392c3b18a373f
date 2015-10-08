@@ -1,0 +1,10 @@
+package view;
+
+import javax.swing.JPanel;
+import javax.swing.table.JTableHeader;
+
+public class SrPanel extends JPanel{
+
+	public JTableHeader header = new JTableHeader();
+
+}

@@ -34,7 +34,7 @@ public class offline {
 		timeCardList = new TimeCardList();
 		Timecard test2 = new Timecard(1, 1,"2015-01-01" , 20);
 		timeCardList.add(test2);
-		new ViewFrame(empList, database, timeCardList);
+		new ViewFrame(empList, database, timeCardList, null);
 	}
 
 }

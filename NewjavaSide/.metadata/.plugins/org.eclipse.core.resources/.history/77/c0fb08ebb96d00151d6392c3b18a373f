@@ -1,0 +1,9 @@
+package controll;
+
+public class SalesRecipt {
+
+	public SalesRecipt(int int1, int int2, String string, float float1) {
+		// TODO Auto-generated constructor stub
+	}
+
+}

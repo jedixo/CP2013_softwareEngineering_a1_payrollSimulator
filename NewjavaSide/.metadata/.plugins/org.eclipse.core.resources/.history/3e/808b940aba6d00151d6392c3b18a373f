@@ -1,0 +1,19 @@
+package controll;
+
+public class SalesRecipt {
+	
+	private int id, empId;
+	private String date;
+	private float amount;
+
+	public SalesRecipt(int int1, int int2, String string, float float1) {
+		this.id = int1;
+		this.empId = int2;
+		this.date = string;
+		this.amount = float1;
+	
+	
+	
+	}
+
+}

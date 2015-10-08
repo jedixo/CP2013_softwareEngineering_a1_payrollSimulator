@@ -2,7 +2,8 @@ package view;
 
 //todo:
 // move menubar outside of viewFrame
-// sales receipt on commisioned employee
+// add adding sales recipts
+// fix sorting mucking up double clicks
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -22,6 +23,7 @@ import javax.swing.table.JTableHeader;
 import controll.Database;
 import controll.EmpList;
 import controll.Employee;
+import controll.SalesRecipts;
 import controll.TimeCardList;
 
 @SuppressWarnings("serial")
@@ -29,7 +31,9 @@ public class ViewFrame extends JFrame{
 	private JMenuBar menubar;
 	private EmpList empList;
 	private TimeCardList tcList, ogTcList;
+	private SalesRecipts salesRecipts, ogSrList;
 	private TcPanel tcPanel;
+	private SrPanel srPanel;
 	private int type;
 	private EmpPanel empPanel;
 	private JButton addButton, modButton;
@@ -38,12 +42,14 @@ public class ViewFrame extends JFrame{
 	private JPanel buttonPanel;
 	private JTableHeader header;
 	
-	public ViewFrame(final EmpList empList, final Database database, TimeCardList tcList) {
+	//emp view master constructor
+	public ViewFrame(final EmpList empList, final Database database, TimeCardList tcList, SalesRecipts salesRecipts) {
 		
 		type = 0;
 		this.tcList = tcList;
 		this.database = database;
 		this.empList = empList;
+		this.salesRecipts = salesRecipts;
 		empPanel = new EmpPanel();
 		header = empPanel.header;
 		add(header, BorderLayout.PAGE_START);
@@ -55,7 +61,7 @@ public class ViewFrame extends JFrame{
 		initaliseCommonComponents();
 		
 	}
-
+	//tc view
 	public ViewFrame(TimeCardList timeCardList, Database database, EmpList empList) {
 		type = 1;
 		this.empList = empList;
@@ -71,7 +77,24 @@ public class ViewFrame extends JFrame{
 		setTitle("View Timecards");
 		initaliseCommonComponents();
 	}
-
+	
+	public ViewFrame(SalesRecipts srList, Database database, EmpList empList) {
+		type = 4;
+		this.empList = empList;
+		this.database = database;
+		this.salesRecipts = srList;
+		srPanel = new SrPanel();
+		header = srPanel.header;
+		add(header, BorderLayout.PAGE_START);
+		ScrollPane = new JScrollPane(srPanel);
+		buttonPanel = new JPanel();
+		add(buttonPanel);
+		add(ScrollPane,BorderLayout.CENTER);
+		setTitle("View Sales Recipts");
+		initaliseCommonComponents();
+	}
+	
+	//for  focused tc view
 	public ViewFrame(TimeCardList focusedEmp, Database database2,
 			EmpList focusedEmpList, TimeCardList tcList) {
 		
@@ -81,6 +104,17 @@ public class ViewFrame extends JFrame{
 		initaliseCommonComponents();
 	}
 
+	// for focused sr view
+	public ViewFrame(SalesRecipts focusedSrList, Database database2,
+			EmpList focusedEmpList, SalesRecipts salesRecipts2) {
+		
+		this(focusedSrList,database2,focusedEmpList);
+		this.ogSrList = salesRecipts2;
+		type = 5;
+		initaliseCommonComponents();
+		
+		
+	}
 	private void initaliseCommonComponents() {
 		remove(ScrollPane);
 		remove(buttonPanel);
@@ -101,6 +135,10 @@ public class ViewFrame extends JFrame{
 					new AddEmployee(empList, database);
 				} else if (type == 3){
 					new AddTimeCard(tcList, database, empList, 1,ogTcList);
+				} else if (type == 4){
+					new AddSalesRecipt(salesRecipts, database, empList, 0, null);
+				} else if (type == 5){
+					new AddSalesRecipt(salesRecipts, database, empList, 1, ogSrList);
 				} else {
 					new AddTimeCard(tcList, database, empList, 0, null);
 				}
@@ -137,10 +175,15 @@ public class ViewFrame extends JFrame{
 		
 		
 		if (type == 0) {
-			empPanel = new EmpPanel(empList,tcList,database);
+			empPanel = new EmpPanel(empList,tcList,database,salesRecipts);
 			header = empPanel.header;
 			ScrollPane = new JScrollPane(empPanel);
 			setPreferredSize(new Dimension(840,400));
+		} else if (type == 4 || type == 5){
+			srPanel = new SrPanel(salesRecipts,empList);
+			header = srPanel.header;
+			ScrollPane = new JScrollPane(srPanel);
+			setPreferredSize(new Dimension(440,300));
 		} else {
 			tcPanel = new TcPanel(tcList,empList);
 			header = tcPanel.header;
@@ -190,13 +233,26 @@ public class ViewFrame extends JFrame{
 				}
 			});
 			view.add(viewTc);
+			JMenuItem viewSr = new JMenuItem("View Sales Recipts");
+			viewSr.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					EmpList commisionedEmpList = new EmpList();
+					for (Employee emp : empList) {
+						if (emp.getPayType() == 2) {
+							commisionedEmpList.add(emp);
+						}
+					}
+					new ViewFrame(salesRecipts, database, commisionedEmpList);
+				}
+			});
+			view.add(viewSr);
 			menubar.add(view);
 			
 			JMenu action = new JMenu(" Actions ");
 			JMenuItem runPayroll = new JMenuItem("Run Payroll");
 			action.add(runPayroll);
-			JMenuItem postReceipt = new JMenuItem("Post Receipt");
-			action.add(postReceipt);
 			JMenuItem unionServiceCharge = new JMenuItem("Post Union Service Charge");
 			action.add(unionServiceCharge);
 			menubar.add(action);

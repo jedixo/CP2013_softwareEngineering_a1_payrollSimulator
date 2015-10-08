@@ -1,0 +1,19 @@
+package view;
+
+import javax.swing.JPanel;
+import javax.swing.table.JTableHeader;
+
+import controll.EmpList;
+import controll.SalesRecipts;
+
+public class SrPanel extends JPanel{
+	
+	public SrPanel() {}
+
+	public SrPanel(SalesRecipts salesRecipts, EmpList empList) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public JTableHeader header = new JTableHeader();
+
+}

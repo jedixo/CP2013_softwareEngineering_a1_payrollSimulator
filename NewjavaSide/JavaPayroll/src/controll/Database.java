@@ -93,6 +93,7 @@ public class Database {
 				String sql = "UPDATE employees SET first_name = ?, last_name = ?, Address = ?, pay_type = ?, pay_delivery = ?, `Emp_Union` = ?, Salary = ?, commision_rate = ?" 
 						+ " WHERE id = ?;";
 				java.sql.PreparedStatement statement = connection.prepareStatement(sql);
+				
 				statement.setString(1, employee.getFirstName());
 				statement.setString(2, employee.getLastName());
 				statement.setString(3, employee.getAddress());
@@ -100,10 +101,10 @@ public class Database {
 				statement.setInt(5, employee.getPayDelivery());
 				statement.setString(6, employee.getUnion());
 				statement.setInt(7, employee.getSalary());
-				statement.setInt(8, employee.getId());
-				statement.setFloat(9, employee.getCommisionRateFloat());
+				statement.setFloat(8, employee.getCommisionRateFloat());
+				statement.setInt(9, employee.getId());
 				statement.executeUpdate();
-			}catch (SQLException e) {
+			}catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "Failed to update employee in database: " + employee.getFirstName() + " " + employee.getLastName() + "\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
 				error = true;
 			}

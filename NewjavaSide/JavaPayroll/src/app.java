@@ -5,6 +5,7 @@ import javax.swing.UIManager;
 
 import controll.Database;
 import controll.EmpList;
+import controll.SalesRecipts;
 import controll.TimeCardList;
 import view.LoadingBar;
 import view.ViewFrame;
@@ -19,6 +20,7 @@ public class app {
 	private static Database database;
 	private static EmpList empList;
 	private static TimeCardList timeCardList;
+	private static SalesRecipts salesRecipts;
 	
 	public static void main(String[] args) {
 		try {
@@ -34,8 +36,9 @@ public class app {
 			load.updateBar(75,"Querying Timecards");
 			timeCardList = new TimeCardList(database.getTable("time_card"));
 			load.updateBar(100,"Loading UI");
+			salesRecipts = new SalesRecipts(database.getTable("sales_recipts"));
 			load.dispose();
-			new ViewFrame(empList, database, timeCardList);
+			new ViewFrame(empList, database, timeCardList, salesRecipts);
 		} else {
 			load.dispose();
 		}

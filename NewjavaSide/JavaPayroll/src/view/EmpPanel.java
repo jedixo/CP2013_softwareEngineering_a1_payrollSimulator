@@ -17,6 +17,8 @@ import javax.swing.table.JTableHeader;
 import controll.Database;
 import controll.EmpList;
 import controll.Employee;
+import controll.SalesRecipt;
+import controll.SalesRecipts;
 import controll.TimeCardList;
 import controll.Timecard;
 import controll.viewTable;
@@ -32,7 +34,7 @@ public class EmpPanel extends JPanel{
 	private int rowSelected = -1;
 	private int empSelected;
 	
-	public EmpPanel(final EmpList empList, final TimeCardList tcList, final Database database) {
+	public EmpPanel(final EmpList empList, final TimeCardList tcList, final Database database, final SalesRecipts salesRecipts) {
 		
 		final viewTable table = new viewTable(columNames);
 		
@@ -50,6 +52,7 @@ public class EmpPanel extends JPanel{
 					
 						TimeCardList focusedEmp = new TimeCardList();
 						EmpList focusedEmpList = new EmpList();
+						SalesRecipts focusedSrList = new SalesRecipts();
 						for (Employee emp : empList) {
 							if (emp.getId() == empId) {
 								focusedEmpList.add(emp);
@@ -60,8 +63,17 @@ public class EmpPanel extends JPanel{
 								focusedEmp.add(tc);
 							}
 						}
+						for (SalesRecipt sr : salesRecipts) {
+							if (sr.getEmpId() == empId) {
+								focusedSrList.add(sr);
+							}
+							
+						}
+						
 						if (focusedEmpList.get(0).getPayType() == 0) {
 							new ViewFrame(focusedEmp, database, focusedEmpList, tcList);
+						}else if (focusedEmpList.get(0).getPayType() == 2) {
+							new ViewFrame(focusedSrList, database, focusedEmpList, salesRecipts);
 						}
 					}
 				}

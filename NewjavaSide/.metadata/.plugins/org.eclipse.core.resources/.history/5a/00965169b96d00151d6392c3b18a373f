@@ -1,0 +1,10 @@
+package controll;
+
+import java.util.ArrayList;
+
+public class SalesRecipts extends ArrayList<SalesRecipt>{
+	
+	public SalesRecipts() {}
+	
+
+}
