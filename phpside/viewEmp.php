@@ -12,7 +12,6 @@ include('empDbConnect.php');
 <h1>Employee Database:</h1>
         <br>
         <form id='addForm' name='addForm' method='post' action='empProcess.php'><input type="button" name='Add' value='Add Employee'/></form>
-<fieldset class="subtleSet">
 <table border="1">
     <tr>
         <th>id:</th>
@@ -38,8 +37,14 @@ if ($result->num_rows > 0) {
         echo "<td>" . $row["first_name"] . "</td>";
         echo "<td>" . $row["last_name"] . "</td>";
         echo "<td>" . $row["Address"] . "</td>";
-        echo "<td>" . $row["pay_type"] . "</td>";
-        echo "<td>" . $row["pay_delivery"] . "</td>";
+        switch($row["pay_type"]){
+            case 0: echo "<td>" . Hourly . "</td>"; break;
+            case 1: echo "<td>" . Salary . "</td>"; break;
+            case 2: echo "<td>" . Comission . "</td>"; break;}
+        switch($row["pay_delivery"]){
+            case 0: echo "<td>" . Mail . "</td>" ;break;
+            case 1: echo "<td>" . Pickup . "</td>";break;
+            case 2: echo "<td>" . "Direct deposit" . "</td>";break;}
         echo "<td>" . $row["Union"] . "</td>";
         echo "<td>" . $row["Salary"] . "</td>";
         ?>
@@ -55,3 +60,4 @@ $conn->close();
 ?>
     
 </table>
+</html>
