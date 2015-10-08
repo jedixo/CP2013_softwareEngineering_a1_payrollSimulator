@@ -11,12 +11,14 @@
 <a href="index.php">
 <header>PleasurePay</header>
 </a>
+<a href="newEmployee.php">
 <div class="outer">
         <div class="image">
         
         </div>
         <p> add new employee</p>
 </div>
+</a>
 <a href="viewEmp.php">
     <div class="outer">
       <div class="image">
