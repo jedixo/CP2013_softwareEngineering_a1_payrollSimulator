@@ -37,7 +37,7 @@ public class ModEmployee extends JDialog {
 	private List<String> deliveryTypes = Arrays.asList("mail", "held", "direct deposite");
 
 
-	public ModEmployee(final EmpList empList, final Database empDatabase, final EmpList empList2) {
+	public ModEmployee(final EmpList empList, final Database empDatabase) {
 	this.empList = empList;
 	JPanel modPanel = new JPanel();
 	modPanel.setLayout(new GridLayout(0,2,2,2));
@@ -128,14 +128,13 @@ public class ModEmployee extends JDialog {
 		public void actionPerformed(ActionEvent e) {
 			
 			
-			for (int i = 0; i < empList2.size(); i++) {
-				if (empList2.get(i).getId() == employee.getId()) {
+			for (int i = 0; i < empList.size(); i++) {
+				if (empList.get(i).getId() == employee.getId()) {
 					int reply = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete " + employee.getFirstName() + " " + employee.getLastName() + " permanently?", 
 							"Are you sure?", JOptionPane.YES_NO_OPTION);
 					if (reply == JOptionPane.YES_OPTION) {
 							empDatabase.deleteEmp(employee.getId());
-							empList2.remove(i);
-							
+							empList.remove(i);
 					}
 					
 				}

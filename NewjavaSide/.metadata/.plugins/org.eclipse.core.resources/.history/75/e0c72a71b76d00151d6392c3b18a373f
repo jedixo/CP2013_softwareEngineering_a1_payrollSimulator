@@ -124,9 +124,7 @@ public class ViewFrame extends JFrame{
 								selectedEmp.add(emp);
 							}
 						}
-						if (selectedEmp.size() != 0) {	
-							new ModEmployee(selectedEmp, database, empList);
-						}
+						new ModEmployee(selectedEmp, database, empList);
 					}
 					initaliseCommonComponents();	
 				}

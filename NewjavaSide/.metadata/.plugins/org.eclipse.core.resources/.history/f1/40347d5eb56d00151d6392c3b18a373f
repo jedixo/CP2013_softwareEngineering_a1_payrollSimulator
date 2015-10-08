@@ -1,6 +1,7 @@
 package view;
 
 //todo:
+// make it so you can modify a selected emp i guess???
 // move menubar outside of viewFrame
 // sales receipt on commisioned employee
 
@@ -118,14 +119,12 @@ public class ViewFrame extends JFrame{
 					if (empPanel.getRowSelected() == -1){
 						JOptionPane.showMessageDialog(null, "No Employee selected, Please select an Employee to edit", "No Selection", JOptionPane.OK_OPTION);
 					}else {
-						EmpList selectedEmp = new EmpList();
 						for (Employee emp : empList) {
 							if (emp.getId() == empPanel.getEmpSelected()) {
+								EmpList selectedEmp = new EmpList();
 								selectedEmp.add(emp);
+								new ModEmployee(selectedEmp, database);
 							}
-						}
-						if (selectedEmp.size() != 0) {	
-							new ModEmployee(selectedEmp, database, empList);
 						}
 					}
 					initaliseCommonComponents();	
