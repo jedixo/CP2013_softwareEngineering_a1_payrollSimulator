@@ -8,11 +8,9 @@
 </head>
 
 <body>
-<header>
-PleasurePay
-
-</header>
-
+<a href="index.php">
+<header>PleasurePay</header>
+</a>
 <div class="outer">
         <div class="image">
         

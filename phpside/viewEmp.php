@@ -9,6 +9,9 @@ include('empDbConnect.php');
 <link href="main.css" rel="stylesheet" type="text/css">
 </head>
     <body>
+<a href="index.php">
+<header>PleasurePay</header>
+</a>
 <h1>Employee Database:</h1>
         <br>
         <form id='addForm' name='addForm' method='post' action='empProcess.php'><input type="button" name='Add' value='Add Employee'/></form>
