@@ -23,6 +23,7 @@ import controll.EmpList;
 import controll.Employee;
 import controll.SalesRecipt;
 import controll.SalesRecipts;
+import controll.Timecard;
 
 public class AddSalesRecipt extends JDialog{
 	
@@ -34,7 +35,7 @@ public class AddSalesRecipt extends JDialog{
 	private String dateString;
 
 	
-	public AddSalesRecipt(final SalesRecipts salesRecipts, final Database database,
+	public AddSalesRecipt(SalesRecipts salesRecipts, Database database,
 			EmpList empList, final int type,final SalesRecipts ogSrList) {
 		this.empList = empList;
 		JPanel panel = new JPanel();
@@ -76,18 +77,18 @@ addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				if (type == 1) {
-					SalesRecipt sr = new SalesRecipt(((ogSrList.get(ogSrList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)amount.getValue()));
-					ogSrList.add(sr);
-					database.addSalesRecipt(sr);
-					if (salesRecipts.size() != 0) {
-						sr = new SalesRecipt(((salesRecipts.get(salesRecipts.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)amount.getValue()));
+					SalesRecipt tc = new SalesRecipt(((ogSrList.get(ogTcList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)hours.getValue()));
+					ogTcList.add(tc);
+					database.addTimeCard(tc);
+					if (tcList.size() != 0) {
+						tc = new Timecard(((tcList.get(tcList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)hours.getValue()));
 					} else
-						sr = new SalesRecipt(1,getEmpId(),dateString,(float)((double)amount.getValue()));
-					salesRecipts.add(sr);
+						tc = new Timecard(1,getEmpId(),dateString,(float)((double)hours.getValue()));
+					tcList.add(tc);
 				} else {
-					SalesRecipt sr = new SalesRecipt(((salesRecipts.get(salesRecipts.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)amount.getValue()));
-					database.addSalesRecipt(sr);
-					salesRecipts.add(sr);
+					Timecard tc = new Timecard(((tcList.get(tcList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)hours.getValue()));
+					database.addTimeCard(tc);
+					tcList.add(tc);
 				}
 				close();
 			

@@ -132,20 +132,7 @@ public class Database {
 	}
 
 	public void addSalesRecipt(SalesRecipt sr) {
-		if (isConnected) {
-			try {
-				String sql = "INSERT INTO `sales_recipts`(`id`, `employee`, `date`, `amount`) VALUES " + 
-						"(?,?,?,?);";
-				java.sql.PreparedStatement statement = connection.prepareStatement(sql);
-				statement.setInt(1, sr.getId());
-				statement.setInt(2, sr.getEmpId());
-				statement.setString(3, sr.getDate());
-				statement.setFloat(4, sr.getAmount());
-				statement.executeUpdate();
-			} catch (SQLException e) {
-				JOptionPane.showMessageDialog(null, "Failed to add SalesRecipt to database:" + "\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
-				error = true;
-			}
-		}		
+		// TODO Auto-generated method stub
+		
 	}
 }

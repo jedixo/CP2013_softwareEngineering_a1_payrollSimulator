@@ -1,0 +1,16 @@
+package view;
+
+import javax.swing.JDialog;
+
+import controll.Database;
+import controll.EmpList;
+import controll.SalesRecipts;
+
+public class AddSalesRecipt extends JDialog{
+
+	public AddSalesRecipt(SalesRecipts salesRecipts, Database database,
+			EmpList empList, int i, SalesRecipts ogSrList) {
+		// TODO Auto-generated constructor stub
+	}
+
+}
