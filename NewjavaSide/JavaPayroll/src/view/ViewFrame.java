@@ -1,16 +1,16 @@
 package view;
 
-//todo:
+//TODO:
 // move menubar outside of viewFrame
 // add adding sales recipts
 // fix sorting mucking up double clicks
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -36,7 +36,7 @@ public class ViewFrame extends JFrame{
 	private SrPanel srPanel;
 	private int type;
 	private EmpPanel empPanel;
-	private JButton addButton, modButton;
+	private Button addButton, modButton;
 	private JScrollPane ScrollPane;
 	private Database database;
 	private JPanel buttonPanel;
@@ -126,7 +126,7 @@ public class ViewFrame extends JFrame{
 		
 		JPanel buttonPanel = new JPanel();
 
-		addButton = new JButton("Add");
+		addButton = new Button("add");
 		addButton.addActionListener(new ActionListener() {
 				
 			@Override
@@ -147,7 +147,11 @@ public class ViewFrame extends JFrame{
 		});
 		buttonPanel.add(addButton);
 		if (type == 0) {
-			modButton = new JButton("Modify");
+			
+			modButton = new Button("Modify");
+			addButton.setText("Add");
+			addButton.setFont(modButton.getFont());
+			addButton.setForeground(Color.BLACK);
 			modButton.addActionListener(new ActionListener() {
 			
 				@Override

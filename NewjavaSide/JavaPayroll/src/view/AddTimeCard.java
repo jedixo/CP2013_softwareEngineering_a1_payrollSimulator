@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -8,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+
 
 
 
@@ -39,9 +40,9 @@ public class AddTimeCard extends JDialog{
 
 	public AddTimeCard(final TimeCardList tcList, final Database database,EmpList empList,final int type,final TimeCardList ogTcList) {
 		this.empList = empList;
-		JPanel panel = new JPanel();
+		final JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(0,2,2,2));
-		panel.add(new JLabel("Employee:"));
+		panel.add(new JLabel("    Employee:"));
 		employees = new JComboBox<>();
 		for (Employee employee : empList) {
 			String first = employee.getFirstName();
@@ -53,7 +54,7 @@ public class AddTimeCard extends JDialog{
 			employees.setEnabled(false);
 		}
 		panel.add(employees);
-		panel.add(new JLabel("Date:"));
+		panel.add(new JLabel("    Date:"));
 		
 		Calendar cal = Calendar.getInstance();
 		Date dte = cal.getTime();
@@ -67,35 +68,46 @@ public class AddTimeCard extends JDialog{
 		}
 		
 		panel.add(date);
-		panel.add(new JLabel("Hours:"));
+		panel.add(new JLabel("    Hours:"));
 		hours = new JSpinner();
 		hours.setModel(new SpinnerNumberModel(0,0,24,0.5));
 		panel.add(hours);
-		JButton addButton = new JButton("Add");
+		Button addButton = new Button("add");
 		addButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				if (type == 1) {
-					Timecard tc = new Timecard(((ogTcList.get(ogTcList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)hours.getValue()));
-					ogTcList.add(tc);
-					database.addTimeCard(tc);
-					if (tcList.size() != 0) {
-						tc = new Timecard(((tcList.get(tcList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)hours.getValue()));
-					} else
-						tc = new Timecard(1,getEmpId(),dateString,(float)((double)hours.getValue()));
-					tcList.add(tc);
-				} else {
-					Timecard tc = new Timecard(((tcList.get(tcList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)hours.getValue()));
-					database.addTimeCard(tc);
-					tcList.add(tc);
+				if (hasValidInput()) {
+					if (type == 1) {
+						Timecard tc = new Timecard(((ogTcList.get(ogTcList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)hours.getValue()));
+						ogTcList.add(tc);
+						database.addTimeCard(tc);
+						if (tcList.size() != 0) {
+							tc = new Timecard(((tcList.get(tcList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)hours.getValue()));
+						} else
+							tc = new Timecard(1,getEmpId(),dateString,(float)((double)hours.getValue()));
+						tcList.add(tc);
+					} else {
+						Timecard tc = new Timecard(((tcList.get(tcList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)hours.getValue()));
+						database.addTimeCard(tc);
+						tcList.add(tc);
+					}
+					close();
 				}
-				close();
-			
+			}
+
+			private boolean hasValidInput() {
+				if (hours.getValue().equals(0.0)) {
+					JOptionPane.showMessageDialog(null, "Enter the nubmer of hours worked.", "Input Error", JOptionPane.OK_OPTION);
+					panel.getComponent(4).setForeground(Color.RED);
+					return false;
+				} else {
+					return true;
+				}
+				
 			}
 		});
-		JButton closeButton = new JButton("Cancel");
+		Button closeButton = new Button("cancel");
 		closeButton.addActionListener(new ActionListener() {
 			
 			@Override

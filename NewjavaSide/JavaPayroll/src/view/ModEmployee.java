@@ -10,7 +10,6 @@ import java.awt.event.ItemListener;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -39,9 +38,9 @@ public class ModEmployee extends JDialog {
 
 	public ModEmployee(final EmpList empList, final Database empDatabase, final EmpList empList2) {
 	this.empList = empList;
-	JPanel modPanel = new JPanel();
+	final JPanel modPanel = new JPanel();
 	modPanel.setLayout(new GridLayout(0,2,2,2));
-	modPanel.add(new JLabel("Employee:"));
+	modPanel.add(new JLabel("    Employee:"));
 	employees = new JTextField();
 	for (Employee employee : empList) {
 		String first = employee.getFirstName();
@@ -51,10 +50,10 @@ public class ModEmployee extends JDialog {
 	}
 	employees.setEnabled(false);
 	modPanel.add(employees);
-	modPanel.add(new JLabel("Address:"));
+	modPanel.add(new JLabel("    Address:"));
 	address = new JTextField();
 	modPanel.add(address);
-	modPanel.add(new JLabel("Pay Type:"));
+	modPanel.add(new JLabel("    Pay Type:"));
 	payType = new JComboBox<String>();
 	for (String type : payTypes) {
 		payType.addItem(type);
@@ -74,53 +73,68 @@ public class ModEmployee extends JDialog {
 		
 	});
 	modPanel.add(payType);
-	modPanel.add(new JLabel("Pay Delivery:"));
+	modPanel.add(new JLabel("    Pay Delivery:"));
 	payDelivery = new JComboBox<String>();
 	for (String delivery : deliveryTypes) {
 		payDelivery.addItem(delivery);
 	}
 	modPanel.add(payDelivery);
-	modPanel.add(new JLabel("Union:"));
+	modPanel.add(new JLabel("    Union:"));
 	union = new JTextField();
 	modPanel.add(union);
-	modPanel.add(new JLabel("Salary:"));
+	modPanel.add(new JLabel("    Salary:"));
 	salary = new JSpinner();
 	salary.setModel(new SpinnerNumberModel(0,0,10000,1));
 	modPanel.add(salary);
-	modPanel.add(new JLabel("Commision Rate:"));
+	modPanel.add(new JLabel("    Commision Rate:"));
 	commisionRate = new JSpinner();
 	commisionRate.setEnabled(false);
 	commisionRate.setModel(new SpinnerNumberModel(0,0,100,1));
 	modPanel.add(commisionRate);
 	JPanel actionPanel = new JPanel();
 	actionPanel.setLayout(new GridLayout(0,2));
-	JButton addButton = new JButton("Update");
+	Button addButton = new Button("add");
 	addButton.addActionListener(new ActionListener() {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
-			employee.setAddress(address.getText());
-			String type = (String) payType.getSelectedItem();
-			for (int i = 0; i < payTypes.size(); i++) {
-				if (payTypes.get(i).equals(type)) {
-					employee.setPayType(i);
+			if (hasValidInputs()) {
+				employee.setAddress(address.getText());
+				String type = (String) payType.getSelectedItem();
+				for (int i = 0; i < payTypes.size(); i++) {
+					if (payTypes.get(i).equals(type)) {
+						employee.setPayType(i);
+					}
 				}
-			}
-			type = (String) payDelivery.getSelectedItem();
-			for (int i = 0; i < deliveryTypes.size(); i++) {
-				if (deliveryTypes.get(i).equals(type)) {
-					employee.setPayDelivery(i);
+				type = (String) payDelivery.getSelectedItem();
+				for (int i = 0; i < deliveryTypes.size(); i++) {
+					if (deliveryTypes.get(i).equals(type)) {
+						employee.setPayDelivery(i);
+					}
 				}
+				employee.setUnion(union.getText());
+				employee.setSalary((int) salary.getValue());
+				employee.setCommissionRate((int) ((float)commisionRate.getValue()));
+				empDatabase.updateEmp(employee);
+				close();
 			}
-			employee.setUnion(union.getText());
-			employee.setSalary((int) salary.getValue());
-			employee.setCommissionRate((int) ((float)commisionRate.getValue()));
-			empDatabase.updateEmp(employee);
-			close();
+		}
+
+		private boolean hasValidInputs() {
+			if (salary.getValue().equals(0)){
+				JOptionPane.showMessageDialog(null, "Enter Valid Inputs in required fields", "Input Error", JOptionPane.OK_OPTION);
+				modPanel.getComponent(10).setForeground(Color.RED);
+				return false;
+			}else if(payType.getSelectedItem().equals("Comission") && commisionRate.getValue().equals(0)){
+				JOptionPane.showMessageDialog(null, "Enter Valid Inputs in required fields", "Input Error", JOptionPane.OK_OPTION);
+				modPanel.getComponent(12).setForeground(Color.RED);
+				return false;
+			}else {
+				return true;
+			}
 		}
 	});
-	JButton deleteButton = new JButton("Delete");
+	Button deleteButton = new Button("delete");
 	deleteButton.setForeground(new Color(255,0,0));
 	deleteButton.addActionListener(new ActionListener() {
 		
@@ -144,7 +158,7 @@ public class ModEmployee extends JDialog {
 			close();
 		}
 	});
-	JButton closeButton = new JButton("Cancel");
+	Button closeButton = new Button("cancel");
 	closeButton.addActionListener(new ActionListener() {
 		
 		@Override

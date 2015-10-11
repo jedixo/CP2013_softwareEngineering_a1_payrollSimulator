@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -8,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -37,9 +37,9 @@ public class AddSalesRecipt extends JDialog{
 	public AddSalesRecipt(final SalesRecipts salesRecipts, final Database database,
 			EmpList empList, final int type,final SalesRecipts ogSrList) {
 		this.empList = empList;
-		JPanel panel = new JPanel();
+		final JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(0,2,2,2));
-		panel.add(new JLabel("Employee:"));
+		panel.add(new JLabel("    Employee:"));
 		employees = new JComboBox<>();
 		for (Employee emp : empList) {
 			String first = emp.getFirstName();
@@ -51,7 +51,7 @@ public class AddSalesRecipt extends JDialog{
 			employees.setEnabled(false);
 		}
 		panel.add(employees);
-		panel.add(new JLabel("Date:"));
+		panel.add(new JLabel("    Date:"));
 		
 		Calendar cal = Calendar.getInstance();
 		Date dte = cal.getTime();
@@ -65,35 +65,45 @@ public class AddSalesRecipt extends JDialog{
 		}
 		
 		panel.add(date);
-		panel.add(new JLabel("Amount:"));
+		panel.add(new JLabel("    Amount:"));
 		amount = new JSpinner();
 		amount.setModel(new SpinnerNumberModel(0,0,Float.MAX_VALUE,1));
 		panel.add(amount);
-		JButton addButton = new JButton("Add");
+		Button addButton = new Button("add");
 addButton.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				if (type == 1) {
-					SalesRecipt sr = new SalesRecipt(((ogSrList.get(ogSrList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)amount.getValue()));
-					ogSrList.add(sr);
-					database.addSalesRecipt(sr);
-					if (salesRecipts.size() != 0) {
-						sr = new SalesRecipt(((salesRecipts.get(salesRecipts.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)amount.getValue()));
-					} else
-						sr = new SalesRecipt(1,getEmpId(),dateString,(float)((double)amount.getValue()));
-					salesRecipts.add(sr);
-				} else {
-					SalesRecipt sr = new SalesRecipt(((salesRecipts.get(salesRecipts.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)amount.getValue()));
-					database.addSalesRecipt(sr);
-					salesRecipts.add(sr);
+				if (hasValidInputs()) {
+					if (type == 1) {
+						SalesRecipt sr = new SalesRecipt(((ogSrList.get(ogSrList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)amount.getValue()));
+						ogSrList.add(sr);
+						database.addSalesRecipt(sr);
+						if (salesRecipts.size() != 0) {
+							sr = new SalesRecipt(((salesRecipts.get(salesRecipts.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)amount.getValue()));
+						} else
+							sr = new SalesRecipt(1,getEmpId(),dateString,(float)((double)amount.getValue()));
+						salesRecipts.add(sr);
+					} else {
+						SalesRecipt sr = new SalesRecipt(((salesRecipts.get(salesRecipts.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)amount.getValue()));
+						database.addSalesRecipt(sr);
+						salesRecipts.add(sr);
+					}
+					close();
 				}
-				close();
+			}
 			
+			private boolean hasValidInputs() {
+				if (amount.getValue().equals(0.0)) {
+					JOptionPane.showMessageDialog(null, "Enter the recipt amount.", "Input Error", JOptionPane.OK_OPTION);
+					panel.getComponent(4).setForeground(Color.RED);
+					return false;
+				} else {
+					return true;
+				}
 			}
 		});
-		JButton closeButton = new JButton("Cancel");
+		Button closeButton = new Button("cancel");
 		closeButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -109,7 +119,7 @@ addButton.addActionListener(new ActionListener() {
 		setLocationRelativeTo(null);
 		setPreferredSize(new Dimension(400, 200));
 		setResizable(false);
-		setTitle("Add Timecard");
+		setTitle("Add Sale Recipt");
 		pack();
 		setModal(true);
 		setVisible(true);

@@ -1,0 +1,54 @@
+package view;
+
+import java.awt.Color;
+
+
+
+import javax.swing.JButton;
+
+@SuppressWarnings("serial")
+public class Button extends JButton {
+	private java.awt.Font boldFont = new java.awt.Font("Tahoma",java.awt.Font.BOLD,25);
+
+	
+	public Button(String type) {
+		if (type.equals("add")) {
+			setFont(boldFont);
+			setText("+");
+			setToolTipText("Add");
+			setForeground(new Color(0,200,0));
+		}else if (type.equals("cancel")) {
+			setFont(boldFont);
+			setText("-");
+			setToolTipText("Cancel");
+			setForeground(new Color(200,0,0));
+		}else if (type.equals("delete")) {
+			setFont(boldFont);
+			setText("×");
+			setToolTipText("Delete");
+			setForeground(new Color(200,0,0));
+		}
+	}
+	
+	
+	public Button(String text, String tool, String type){
+		setText(text);
+		setToolTipText(tool);
+		if (type.equals("add")) {
+			setFont(boldFont);
+			setText("+");
+			setToolTipText("Add");
+			setForeground(new Color(0,200,0));
+		}else if (type.equals("cancel")) {
+			setFont(boldFont);
+			setText("-");
+			setToolTipText("Cancel");
+			setForeground(new Color(200,0,0));
+		}else if (type.equals("delete")) {
+			setFont(boldFont);
+			setText("×");
+			setToolTipText("Delete");
+			setForeground(new Color(200,0,0));
+		}
+	}
+}
