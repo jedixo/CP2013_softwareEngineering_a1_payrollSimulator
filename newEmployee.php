@@ -6,7 +6,7 @@ include("empDbConnect.php");
 <head>
     <meta charset="UTF-8">
     <title>New Employee </title>
-    <link href="mainstyle.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
 </head>
 
 <body>
@@ -30,11 +30,19 @@ include("empDbConnect.php");
                 </p>
                 <p>
                     <label for="pay_type">Pay Type: </label><br>
-                    <input type="text" name="pay_type" id="pay_type" required>
+                    <select>
+                        <option value="0">Hourly</option>
+                        <option value="1">Salary</option>
+                        <option value="2">Comssion</option>
+                    </select>
                 </p>
                 <p>
                     <label for="pay_delivery">Pay Delivery: </label><br>
-                    <input type="text" name="pay_delivery" id="pay_delivery" required>
+                    <select>
+                        <option value="0">Mail</option>
+                        <option value="1">Pick Up</option>
+                        <option value="2">Direct Deposit</option>
+                    </select>
                 </p>
                 <p>
                     <label for="emp_union">Union: </label><br>
