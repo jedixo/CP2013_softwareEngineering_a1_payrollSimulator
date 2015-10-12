@@ -26,6 +26,7 @@ public class Database {
 		}
 	}
 
+
 	public Database() {
 		isConnected = false;
 	}

@@ -37,12 +37,10 @@
 <fullyQualifiedTypeName name="javax.swing.JMenuBar"/>
 <fullyQualifiedTypeName name="view.ViewFrame"/>
 <fullyQualifiedTypeName name="javax.swing.JMenu"/>
-<fullyQualifiedTypeName name="controll.Timecard"/>
 <fullyQualifiedTypeName name="controll.TimeCardList"/>
 <fullyQualifiedTypeName name="controll.Employee"/>
 <fullyQualifiedTypeName name="java.awt.event.ComponentListener"/>
 <fullyQualifiedTypeName name="javax.swing.JTextField"/>
-<fullyQualifiedTypeName name="java.sql.ResultSet"/>
 <fullyQualifiedTypeName name="java.sql.SQLException"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
 <fullyQualifiedTypeName name="javax.swing.JScrollPane"/>
@@ -60,4 +58,6 @@
 <fullyQualifiedTypeName name="java.awt.Font"/>
 <fullyQualifiedTypeName name="view.Button"/>
 <fullyQualifiedTypeName name="java.awt.Color"/>
+<fullyQualifiedTypeName name="controll.Timecard"/>
+<fullyQualifiedTypeName name="java.sql.ResultSet"/>
 </qualifiedTypeNameHistroy>

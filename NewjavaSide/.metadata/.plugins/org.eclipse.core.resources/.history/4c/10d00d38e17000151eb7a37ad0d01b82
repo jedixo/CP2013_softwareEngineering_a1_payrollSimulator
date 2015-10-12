@@ -19,10 +19,26 @@ public class Database {
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			connection = DriverManager.getConnection("jdbc:mysql://" + host, user, password);
+			
+			
+			addable();
+		
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Failed to connect to databse:\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
 			connection = null;
 			isConnected = false;
+		}
+	}
+
+	private void addable() {
+		try {
+			String sql = "CREATE TABLE held_pay " + "(id INTEGER not NULL, " +
+					 "empId INTEGER not NULL, " + "amount FLOAT not NULL, " + "PRIMARY KEY ( id))";
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(sql);
+			ResultSet ss = getTable("held_pay");
+		}catch (Exception e){
+			System.out.println(e);
 		}
 	}
 

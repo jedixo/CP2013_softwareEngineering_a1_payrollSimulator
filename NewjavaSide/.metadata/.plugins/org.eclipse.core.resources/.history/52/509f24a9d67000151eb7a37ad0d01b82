@@ -79,38 +79,18 @@ public class AddTimeCard extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 				if (hasValidInput()) {
 					if (type == 1) {
-						boolean hasPreventry = false;
-						for (Timecard tc : ogTcList) {
-							if (tc.getDate().equals(dateString) && getEmpId() == tc.getEmpId()){
-								hasPreventry = true;
-							}
-						}
-						if (hasPreventry) {
-							JOptionPane.showMessageDialog(null, "You can only have one timecard for a day.", "Input Error", JOptionPane.OK_OPTION);
-						}else {
-							Timecard tc = new Timecard(((ogTcList.get(ogTcList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)hours.getValue()));
-							ogTcList.add(tc);
-							database.addTimeCard(tc);
-							if (tcList.size() != 0) {
-								tc = new Timecard(((tcList.get(tcList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)hours.getValue()));
-							} else
-								tc = new Timecard(1,getEmpId(),dateString,(float)((double)hours.getValue()));
-							tcList.add(tc);
-						}
+						Timecard tc = new Timecard(((ogTcList.get(ogTcList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)hours.getValue()));
+						ogTcList.add(tc);
+						database.addTimeCard(tc);
+						if (tcList.size() != 0) {
+							tc = new Timecard(((tcList.get(tcList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)hours.getValue()));
+						} else
+							tc = new Timecard(1,getEmpId(),dateString,(float)((double)hours.getValue()));
+						tcList.add(tc);
 					} else {
-						boolean hasPrevEntry = false;
-						for (Timecard tc : tcList) {
-							if (tc.getDate().equals(dateString)&& getEmpId() == tc.getEmpId()) {
-								hasPrevEntry = true;
-							}
-						} 
-						if (hasPrevEntry) {
-							JOptionPane.showMessageDialog(null, "You can only have one timecard for a day.", "Input Error", JOptionPane.OK_OPTION);
-						} else {
-							Timecard tc = new Timecard(((tcList.get(tcList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)hours.getValue()));
-							database.addTimeCard(tc);
-							tcList.add(tc);
-						}
+						Timecard tc = new Timecard(((tcList.get(tcList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)hours.getValue()));
+						database.addTimeCard(tc);
+						tcList.add(tc);
 					}
 					close();
 				}

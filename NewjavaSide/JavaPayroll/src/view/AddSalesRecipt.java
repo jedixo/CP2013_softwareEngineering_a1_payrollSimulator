@@ -24,9 +24,9 @@ import controll.Employee;
 import controll.SalesRecipt;
 import controll.SalesRecipts;
 
+@SuppressWarnings("serial")
 public class AddSalesRecipt extends JDialog{
 	
-	private static final long serialVersionUID = -2650351500956930115L;
 	private JTextField date;
 	private JSpinner amount;
 	private JComboBox<String> employees;

@@ -19,6 +19,7 @@ public class Database {
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			connection = DriverManager.getConnection("jdbc:mysql://" + host, user, password);
+		
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Failed to connect to databse:\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
 			connection = null;

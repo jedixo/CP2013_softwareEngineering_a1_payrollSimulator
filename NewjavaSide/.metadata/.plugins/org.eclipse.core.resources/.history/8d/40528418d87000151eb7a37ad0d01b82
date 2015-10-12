@@ -13,9 +13,9 @@ import view.ViewFrame;
 
 public class app {
 	
-	private static final String HOST = "sql6.freemysqlhosting.net/sql689509";
-	private static final String USERNAME = "sql689509";
-	private static final String PASSWORD = "lA7*wL7!";
+	private static String HOST = "sql6.freemysqlhosting.net/sql689509";
+	private static String USERNAME = "sql689509";
+	private static String PASSWORD = "lA7*wL7!";
 	
 	private static Database database;
 	private static EmpList empList;
@@ -39,6 +39,16 @@ public class app {
 			salesRecipts = new SalesRecipts(database.getTable("sales_recipts"));
 			load.dispose();
 			new ViewFrame(empList, database, timeCardList, salesRecipts);
+			
+			String a = "";
+			String b = "";
+			if (a.equals(b)) {
+				System.out.println("a == b");
+			}
+			if (a == b) {
+				System.out.println("a = b");
+			}
+			
 		} else {
 			load.dispose();
 		}

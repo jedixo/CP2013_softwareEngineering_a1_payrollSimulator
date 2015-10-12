@@ -81,7 +81,7 @@ public class AddTimeCard extends JDialog{
 					if (type == 1) {
 						boolean hasPreventry = false;
 						for (Timecard tc : ogTcList) {
-							if (tc.getDate().equals(dateString) && getEmpId() == tc.getEmpId()){
+							if (tc.getDate().equals(dateString)){
 								hasPreventry = true;
 							}
 						}
@@ -100,7 +100,7 @@ public class AddTimeCard extends JDialog{
 					} else {
 						boolean hasPrevEntry = false;
 						for (Timecard tc : tcList) {
-							if (tc.getDate().equals(dateString)&& getEmpId() == tc.getEmpId()) {
+							if (tc.getDate().equals(dateString)) {
 								hasPrevEntry = true;
 							}
 						} 
