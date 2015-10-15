@@ -54,8 +54,8 @@ if ($result->num_rows > 0) {
             <?php
         echo "<input type='submit' name='submit' value='Update Entry' />";
         switch($row["pay_type"]){
-            case 0: echo "<input type='submit' name='submit' value='View Timecards' />"; break;
-            case 2: echo "<input type='submit' name='submit' value='View Sales' />"; break;}    
+            case 0: echo "<input type='submit' name='viewTC' value='View Timecards' />"; break;
+            case 2: echo "<input type='submit' name='viewSR' value='View Sales' />"; break;}    
         ?>
             
 <input type="submit" name="submit" value="X" class="deleteButton"></td></tr></form>
