@@ -147,4 +147,20 @@ public class Database {
 			}
 		}		
 	}
+
+	public void addPayHeld(int id, int amount) {
+		if (isConnected) {
+			try {
+				String sql = "INSERT INTO `held_pay`(`empId`, `amount`) VALUES " + 
+						"(?,?);";
+				java.sql.PreparedStatement statement = connection.prepareStatement(sql);
+				statement.setInt(1, id);
+				statement.setInt(2, amount);
+				statement.executeUpdate();
+			} catch (SQLException e) {
+				JOptionPane.showMessageDialog(null, "Failed to add SalesRecipt to database:" + "\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
+				error = true;
+			}
+		}	
+	}
 }

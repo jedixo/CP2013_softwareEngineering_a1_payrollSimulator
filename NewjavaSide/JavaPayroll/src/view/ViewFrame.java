@@ -261,7 +261,7 @@ public class ViewFrame extends JFrame{
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					new RunPayroll();
+					new RunPayroll(empList,tcList,salesRecipts, database);
 				}
 			});
 			action.add(runPayroll);
