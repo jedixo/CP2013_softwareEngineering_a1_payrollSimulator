@@ -23,6 +23,7 @@ import javax.swing.table.JTableHeader;
 import controll.Database;
 import controll.EmpList;
 import controll.Employee;
+import controll.RunPayroll;
 import controll.SalesRecipts;
 import controll.TimeCardList;
 
@@ -256,6 +257,13 @@ public class ViewFrame extends JFrame{
 			
 			JMenu action = new JMenu(" Actions ");
 			JMenuItem runPayroll = new JMenuItem("Run Payroll");
+			runPayroll.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					new RunPayroll();
+				}
+			});
 			action.add(runPayroll);
 			JMenuItem unionServiceCharge = new JMenuItem("Post Union Service Charge");
 			action.add(unionServiceCharge);
