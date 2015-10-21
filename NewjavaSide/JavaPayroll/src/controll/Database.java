@@ -14,8 +14,10 @@ public class Database {
 	private Connection connection = null;
 	public boolean isConnected = true;
 	public boolean error = false;
+	private String dbpassword;
 	
 	public Database(String host, String user, String password) {
+		this.dbpassword = password;
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			connection = DriverManager.getConnection("jdbc:mysql://" + host, user, password);
@@ -50,8 +52,8 @@ public class Database {
 	public void addEmpData(Employee employee) {
 		if (isConnected) {
 			try {
-				String sql = "INSERT INTO `employees`(`id`, `first_name`, `last_name`, `Address`, `pay_type`, `pay_delivery`, `Emp_Union`, `Salary`, `commision_rate`) VALUES " + 
-						"(?,?,?,?,?,?,?,?,?);";
+				String sql = "INSERT INTO `employees`(`id`, `first_name`, `last_name`, `Address`, `pay_type`, `pay_delivery`, `Emp_Union`, `Salary`, `commision_rate`, `password`) VALUES " + 
+						"(?,?,?,?,?,?,?,?,?,?);";
 				java.sql.PreparedStatement statement = connection.prepareStatement(sql);
 				statement.setInt(1, employee.getId());
 				statement.setString(2, employee.getFirstName());
@@ -62,6 +64,7 @@ public class Database {
 				statement.setString(7, employee.getUnion());
 				statement.setInt(8, employee.getSalary());
 				statement.setFloat(9, employee.getCommisionRateFloat());
+				statement.setString(10, employee.getPasswordMD5(dbpassword));
 				statement.executeUpdate();
 			} catch (SQLException e) {
 				JOptionPane.showMessageDialog(null, "Failed to get add employee to database: " + employee.firstName + " " + employee.lastName + "\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
@@ -158,9 +161,34 @@ public class Database {
 				statement.setInt(2, amount);
 				statement.executeUpdate();
 			} catch (SQLException e) {
-				JOptionPane.showMessageDialog(null, "Failed to add SalesRecipt to database:" + "\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Failed to add pay to database:" + "\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
 				error = true;
 			}
 		}	
+	}
+
+	public void addMailPay(String firstName, String lastName, String address,
+			int amount, int id) {
+		if (isConnected) {
+			try {
+				String sql = "INSERT INTO `mail_pay`(`empId`, `firstName`, `lastName`, `address`, `amount`) VALUES " + 
+						"(?,?,?,?);";
+				java.sql.PreparedStatement statement = connection.prepareStatement(sql);
+				statement.setInt(1, id);
+				statement.setString(2, firstName);
+				statement.setString(3, lastName);
+				statement.setString(4, address);
+				statement.setInt(5, amount);
+				statement.executeUpdate();
+			} catch (SQLException e) {
+				JOptionPane.showMessageDialog(null, "Failed to add pay to database:" + "\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
+				error = true;
+			}
+		}			
+	}
+
+	public void addDepositePay(String firstName, String lastName, int amount) {
+		// TODO Auto-generated method stub
+		
 	}
 }

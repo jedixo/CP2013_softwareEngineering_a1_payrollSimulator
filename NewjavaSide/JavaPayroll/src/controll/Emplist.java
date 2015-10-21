@@ -22,6 +22,7 @@ public class EmpList extends ArrayList<Employee>{
 				employee.setUnion(table.getString("Emp_Union"));
 				employee.setSalary(table.getInt("Salary"));
 				employee.setCommissionRate(table.getFloat("commision_rate"));
+				employee.setPassword(table.getString("password"));
 				add(employee);
 				
 			}

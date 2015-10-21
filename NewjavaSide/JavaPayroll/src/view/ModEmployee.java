@@ -30,6 +30,7 @@ public class ModEmployee extends JDialog {
 	private EmpList empList;
 	private Employee employee;
 	private JSpinner salary, commisionRate;
+	private JLabel salarylabel = new JLabel();
 	private JComboBox<String> payType, payDelivery;
 	
 	private List<String> payTypes = Arrays.asList("Hourly rate", "Monthly salary", "Comission");
@@ -64,13 +65,20 @@ public class ModEmployee extends JDialog {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getItem().toString().equals("Comission")) {
 				commisionRate(true);
+				salary(false);
+				hourly(false);
+			}else if (e.getItem().toString().equals("Hourly rate")){
+				commisionRate(false);
+				salary(false);
+				hourly(true);
 			}else {
 				commisionRate(false);
+				hourly(false);
+				salary(true);
 			}
 			
 		}
 
-		
 	});
 	modPanel.add(payType);
 	modPanel.add(new JLabel("    Pay Delivery:"));
@@ -82,7 +90,7 @@ public class ModEmployee extends JDialog {
 	modPanel.add(new JLabel("    Union:"));
 	union = new JTextField();
 	modPanel.add(union);
-	modPanel.add(new JLabel("    Salary:"));
+	modPanel.add(salarylabel);
 	salary = new JSpinner();
 	salary.setModel(new SpinnerNumberModel(0,0,10000,1));
 	modPanel.add(salary);
@@ -192,6 +200,7 @@ public class ModEmployee extends JDialog {
 				address.setText(employee.getAddress());
 				payType.setSelectedIndex(employee.getPayType());
 				payDelivery.setSelectedIndex(employee.getPayDelivery());
+				salarylabel.setText("    " + payType.getSelectedItem().toString());
 				union.setText(employee.getUnion());
 				salary.setValue((Integer)employee.getSalary());	
 				commisionRate.setValue((Float)employee.getCommisionRateFloat());
@@ -202,6 +211,19 @@ public class ModEmployee extends JDialog {
 	
 	private void commisionRate(boolean isActive) {
 		commisionRate.setEnabled(isActive);
+	}
+	private void salary(boolean b) {
+		salary.setEnabled(b);
+		if(b) {
+			salarylabel.setText("    Salary:");
+		}
+	}
+	
+	private void hourly(boolean b) {
+		salary.setEnabled(b);
+		if(b) {
+			salarylabel.setText("    Rate:");
+		}
 	}
 	
 	private void close() {

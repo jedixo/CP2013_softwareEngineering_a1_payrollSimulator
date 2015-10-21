@@ -25,10 +25,10 @@ import controll.Employee;
 
 @SuppressWarnings("serial")
 public class AddEmployee extends JDialog {
-	private JTextField firstName, lastName, address, union;
+	private JTextField firstName, lastName, address, union, password;
 	private JSpinner salary, commisionRate;
 	private JComboBox<String> payType, payDelivery;
-	
+	private JLabel addLabel = new JLabel("    Rate:");
 	private List<String> payTypes = Arrays.asList("Hourly rate", "Monthly salary", "Comission");
 	private List<String> deliveryTypes = Arrays.asList("mail", "held", "direct deposite");
 
@@ -57,11 +57,23 @@ public class AddEmployee extends JDialog {
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getItem().toString().equals("Comission")) {
 					commisionRate(true);
+					hourly(false);
+					salary(false);
+				}else if (e.getItem().toString().equals("Hourly rate")) {
+					commisionRate(false);
+					salary(false);
+					hourly(true);
 				}else {
 					commisionRate(false);
+					hourly(false);
+					salary(true);
 				}
 				
 			}
+
+			
+
+			
 
 		});
 		
@@ -74,7 +86,7 @@ public class AddEmployee extends JDialog {
 		addPanel.add(new JLabel("    Union:"));
 		union = new JTextField();
 		addPanel.add(union);
-		addPanel.add(new JLabel("    Salary:"));
+		addPanel.add(addLabel);
 		salary = new JSpinner();
 		salary.setModel(new SpinnerNumberModel(0,0,10000,1));
 		addPanel.add(salary);
@@ -83,6 +95,9 @@ public class AddEmployee extends JDialog {
 		commisionRate.setEnabled(false);
 		commisionRate.setModel(new SpinnerNumberModel(0,0,100,1));
 		addPanel.add(commisionRate);
+		addPanel.add(new JLabel("    Password:"));
+		password = new JTextField();
+		addPanel.add(password);
 		Button addButton = new Button("add");
 		addButton.addActionListener(new ActionListener() {
 			
@@ -107,6 +122,7 @@ public class AddEmployee extends JDialog {
 					employee.setSalary((int) salary.getValue());
 					employee.setCommissionRate((int) commisionRate.getValue());
 					employee.setId(empList.get(empList.size() - 1).getId() + 1);
+					employee.setPassword(MD5(password.getText()));
 					empDatabase.addEmpData(employee);
 					if (!empDatabase.error) {
 						empList.add(employee);
@@ -117,11 +133,12 @@ public class AddEmployee extends JDialog {
 			}
 
 			private boolean hasValidInputs() {
-					if (firstName.getText().equals("") || lastName.getText().equals("") || firstName.getText().equals(lastName.getText()) || salary.getValue().equals(0)){
+					if (firstName.getText().equals("") || password.getText().equals("") || lastName.getText().equals("") || firstName.getText().equals(lastName.getText()) || salary.getValue().equals(0)){
 						JOptionPane.showMessageDialog(null, "Invalid Input please fill out the required fields", "Input Errr", JOptionPane.OK_OPTION);
 						addPanel.getComponent(0).setForeground(Color.RED);
 						addPanel.getComponent(2).setForeground(Color.RED);
 						addPanel.getComponent(12).setForeground(Color.RED);
+						addPanel.getComponent(16).setForeground(Color.RED);
 						if (payType.getSelectedItem().equals("Comission") && commisionRate.getValue().equals(0)) {
 							addPanel.getComponent(14).setForeground(Color.RED);
 						}else {
@@ -161,6 +178,34 @@ public class AddEmployee extends JDialog {
 		commisionRate.setEnabled(isActive);
 
 	}
+	
+	private void salary(boolean b) {
+		salary.setEnabled(b);
+		if(b) {
+			addLabel.setText("    Salary:");
+		}
+	}
+	
+	private void hourly(boolean b) {
+		salary.setEnabled(b);
+		if(b) {
+			addLabel.setText("    Rate:");
+		}
+	}
+	
+	public String MD5(String md5) {
+		   try {
+		        java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
+		        byte[] array = md.digest(md5.getBytes());
+		        StringBuffer sb = new StringBuffer();
+		        for (int i = 0; i < array.length; ++i) {
+		          sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));
+		       }
+		        return sb.toString();
+		    } catch (java.security.NoSuchAlgorithmException e) {
+		    }
+		    return null;
+		}
 	
 	private void close() {
 		this.dispose();

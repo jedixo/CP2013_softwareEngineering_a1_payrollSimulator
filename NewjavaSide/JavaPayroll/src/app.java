@@ -8,6 +8,7 @@ import controll.EmpList;
 import controll.SalesRecipts;
 import controll.TimeCardList;
 import view.LoadingBar;
+import view.LoginWindow;
 import view.ViewFrame;
 
 
@@ -33,12 +34,17 @@ public class app {
 		if (database.isConnected) {
 			load.updateBar(50,"Querying Employees");
 			empList = new EmpList(database.getTable("employees"));
-			load.updateBar(75,"Querying Timecards");
-			timeCardList = new TimeCardList(database.getTable("time_card"));
-			load.updateBar(100,"Loading UI");
-			salesRecipts = new SalesRecipts(database.getTable("sales_recipts"));
-			load.dispose();
-			new ViewFrame(empList, database, timeCardList, salesRecipts);
+			LoginWindow login = new LoginWindow(empList);
+			if (login.isLoggedIn()) {
+				load.updateBar(75,"Querying Timecards");
+				timeCardList = new TimeCardList(database.getTable("time_card"));
+				load.updateBar(100,"Loading UI");
+				salesRecipts = new SalesRecipts(database.getTable("sales_recipts"));
+				load.dispose();
+				new ViewFrame(empList, database, timeCardList, salesRecipts);
+			} else {
+				load.dispose();
+			}
 		} else {
 			load.dispose();
 		}

@@ -29,7 +29,7 @@ public class EmpPanel extends JPanel{
 	private List<String> payTypes = Arrays.asList("Hourly rate", "Monthly salary", "Comission");
 	private List<String> deliveryTypes = Arrays.asList("mail", "held", "direct deposite");
 	private String[] columNames = {"Id:","First Name:","Last Name:","Address:",
-			"Pay Type:","Pay Delivery:","Union:","Salary:","Commision Rate:"};
+			"Pay Type:","Pay Delivery:","Union:","Rate:","Salary:","Commision Rate:"};
 	public JTableHeader header;
 	private int rowSelected = -1;
 	private int empSelected;
@@ -93,9 +93,20 @@ public class EmpPanel extends JPanel{
 		});
 		
 		for (Employee emp : empList) {
-			Object[] temp = {emp.getId(),emp.firstName,emp.lastName,emp.getAddress(),getPayTypeString(emp.getPayType()),getPayDelevieryTypeString(emp.getPayDelivery())
-					,emp.getUnion(),emp.getSalary(),emp.getCommissionRateString()};
-			table.addRow(temp);
+			
+			if (emp.getPayType()== 1) {
+				Object[] temp = {emp.getId(),emp.firstName,emp.lastName,emp.getAddress(),getPayTypeString(emp.getPayType()),getPayDelevieryTypeString(emp.getPayDelivery())
+					,emp.getUnion(),null,emp.getSalary(),null};
+				table.addRow(temp);
+			} else if (emp.getPayType() == 0) {
+				Object[] temp = {emp.getId(),emp.firstName,emp.lastName,emp.getAddress(),getPayTypeString(emp.getPayType()),getPayDelevieryTypeString(emp.getPayDelivery())
+						,emp.getUnion(),emp.getSalary(),null,null};
+					table.addRow(temp);
+			} else {
+				Object[] temp = {emp.getId(),emp.firstName,emp.lastName,emp.getAddress(),getPayTypeString(emp.getPayType()),getPayDelevieryTypeString(emp.getPayDelivery())
+						,emp.getUnion(),null,null,emp.getCommissionRateString()};
+					table.addRow(temp);
+			}
 		}
 		setLayout(new BorderLayout());
 		header = table.getTableHeader();

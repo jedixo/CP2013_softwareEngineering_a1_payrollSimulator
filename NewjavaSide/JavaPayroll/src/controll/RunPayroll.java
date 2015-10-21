@@ -58,23 +58,13 @@ public class RunPayroll {
 	private void payEmp(int amount, Employee emp) {
 		// 0 = mail, 1 = held, 2 = direct deposit
 		if (emp.getPayDelivery() == 0) {
-			mailPay(emp.getFirstName(), emp.getLastName(), emp.getAddress(), amount);
+			database.addMailPay(emp.getFirstName(), emp.getLastName(), emp.getAddress(), amount, emp.getId());
 		}else if (emp.getPayDelivery() == 1) {
 			database.addPayHeld(emp.getId(),amount);
 		}else {
-			depositePay(emp.getFirstName(), emp.getLastName(), amount);
+			database.addDepositePay(emp.getFirstName(), emp.getLastName(), amount);
 		}
 		
-	}
-
-	private void depositePay(String firstName, String lastName, int amount) {
-		// interface for payByDeposite to be extended once implemented
-		System.out.println("Deposite to: | " + firstName + " | " + lastName +  " | $" + amount);		
-	}
-
-	private void mailPay(String firstName, String lastName, String address, int amount) {
-		// interface for payByMail to be extended once implemented
-		System.out.println("Mail to: | " + firstName + " | " + lastName + " | " + address + " | $" + amount);
 	}
 
 	private void setDates() {
