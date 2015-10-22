@@ -35,6 +35,10 @@ header {
 	text-align:center;
 	font: arial;
 }
+.logout{
+    background-color: #FF1919;
+    float: right;
+}
 a:link {
     	color: black;
         text-decoration: none;
@@ -44,7 +48,7 @@ a:visited {
         text-decoration: none;
 }
 tr:nth-child(even) {
-    background-color: #66C283;
+    background-color: #70DB70;
 }
 table {
     border-collapse: collapse;

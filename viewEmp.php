@@ -14,7 +14,7 @@ include('empDbConnect.php');
 </a>
 <h1>Employee Database:</h1>
 <input type="button" onclick="location.href='newEmployee.php';" value="add new employee" />
-<table border="1">
+<table>
     <tr>
         <th>id:</th>
         <th>First:</th>
@@ -34,7 +34,6 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-
         echo "<form id='deleteForm' name='deleteForm' method='post' action='empProcess.php'><tr><td>" . $row["id"] . "</td>"; 
         echo "<td>" . $row["first_name"] . "</td>";
         echo "<td>" . $row["last_name"] . "</td>";
@@ -58,7 +57,8 @@ if ($result->num_rows > 0) {
             case 2: echo "<input type='submit' name='viewSR' value='View Sales' />"; break;}    
         ?>
             
-<input type="submit" name="submit" value="X" class="deleteButton"></td></tr></form>
+<input type="submit" name="submit" value="X" class="deleteButton" onclick="return confirm('Are you sure you want to delete this employee?');"></td></tr></form>
+
     <?php
     }
 } else {

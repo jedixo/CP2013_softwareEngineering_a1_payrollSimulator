@@ -8,9 +8,7 @@
 </head>
 
 <body>
-<a href="index.php">
-<header>PleasurePay</header>
-</a>
+<?php include 'header.php'; ?>
 <a href="newEmployee.php">
 <div class="outer">
         <div class="image">
