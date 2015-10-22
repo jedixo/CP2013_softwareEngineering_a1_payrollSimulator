@@ -14,7 +14,7 @@
         <div class="image">
         
         </div>
-        <p> add new employee</p>
+        <p> Add New Employee</p>
 </div>
 </a>
 <a href="viewEmp.php">
@@ -22,20 +22,28 @@
       <div class="image">
 
             </div>
-            <p> view employee</p>
+            <p> View Employees</p>
+    </div>
+</a>
+    <a href="viewTimecard.php">
+    <div class="outer">
+      <div class="image">
+
+            </div>
+            <p> View TimeCards</p>
     </div>
 </a>
 <div class="outer">
         <div class="image">
         
         </div>
-        <p> promote employee</p>
+        <p> Promote Employee</p>
     </div>
     <div class="outerpay">
         <div class="image">
         
         </div>
-        <p> Pay employee</p>
+        <p> Pay Employee</p>
     </div>
 </body>
 </html>

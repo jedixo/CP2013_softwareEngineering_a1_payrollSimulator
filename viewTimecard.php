@@ -12,8 +12,8 @@ include('empDbConnect.php');
 <a href="index.php">
 <header>PleasurePay</header>
 </a>
-<h1>Employee Database:</h1>
-<table border="1">
+<h1>Employee Timecards:</h1>
+<table>
     <tr>
         <th>id:</th>
         <th>Employee</th>
@@ -42,7 +42,7 @@ if ($result->num_rows > 0) {
         echo "<td>" . implode(" ",$emp_name) . "</td>";
         echo "<td>" . $row["date"] . "</td>";
         echo "<td>" . $row["hours"] . "</td>";
-        echo "<td>'$$$'</td>";
+        echo "<td>". $row["hours"] * $row["Salary"] ."</td>";
        
         ?>
         <td><input type="hidden" name="id" value="<?php echo $row["id"]; ?>"/>
