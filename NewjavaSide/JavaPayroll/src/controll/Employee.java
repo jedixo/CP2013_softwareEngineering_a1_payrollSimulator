@@ -31,19 +31,8 @@ public class Employee{
 	}
 	
 	public boolean matchPassword(String password) {
-			String md5 = ""; 
-			try {
-				java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
-				byte[] array = md.digest(password.getBytes());
-				StringBuffer sb = new StringBuffer();
-				for (int i = 0; i < array.length; ++i) {
-					sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1,3));
-				}
-				md5 =  sb.toString();
-			} catch (java.security.NoSuchAlgorithmException e) {
-				
-			}
-			if (md5.equals(password)) {
+			String md5 = MD5.hash(password); 
+			if (md5.equals(this.password)) {
 				return true;
 			} else {
 				return false;

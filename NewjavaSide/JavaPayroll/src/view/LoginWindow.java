@@ -29,7 +29,7 @@ public class LoginWindow extends JDialog {
 		panel.add(new JLabel("    Password:"));
 		password = new JTextField();
 		panel.add(password);
-		JButton ok = new JButton("Ok");
+		final JButton ok = new JButton("Ok");
 		ok.addActionListener(new ActionListener() {
 			
 			@Override
@@ -42,7 +42,7 @@ public class LoginWindow extends JDialog {
 					String[] nameStr = name.getText().split("\\s+");
 					int error = 0;
 					for (Employee emp : empList) {
-						if (emp.getFirstName().equals(nameStr[0]) && emp.getLastName().equals(nameStr[1])) {
+						if (nameStr.length != 0 && emp.getFirstName().equals(nameStr[0]) && emp.getLastName().equals(nameStr[1])) {
 							if (emp.matchPassword(password.getText())) {
 								loggedIn = true;
 								error = 0;
@@ -76,6 +76,9 @@ public class LoginWindow extends JDialog {
 				setVisible(false);
 			}
 		});
+		getRootPane().setDefaultButton(ok);
+		
+		
 		panel.add(close);
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
 		add(panel);

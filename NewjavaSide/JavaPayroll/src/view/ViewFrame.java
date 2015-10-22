@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -28,7 +29,7 @@ import controll.SalesRecipts;
 import controll.TimeCardList;
 
 @SuppressWarnings("serial")
-public class ViewFrame extends JFrame{
+public class ViewFrame extends JDialog{
 	private JMenuBar menubar;
 	private EmpList empList;
 	private TimeCardList tcList, ogTcList;
@@ -42,6 +43,7 @@ public class ViewFrame extends JFrame{
 	private Database database;
 	private JPanel buttonPanel;
 	private JTableHeader header;
+	public int exitStatus = 0;
 	
 	//emp view master constructor
 	public ViewFrame(final EmpList empList, final Database database, TimeCardList tcList, SalesRecipts salesRecipts) {
@@ -120,7 +122,7 @@ public class ViewFrame extends JFrame{
 		remove(ScrollPane);
 		remove(buttonPanel);
 		remove(header);
-		remove(getMenuBar());
+	//	remove(getMenuBar());
 		menubar = setupMenu();
 		setJMenuBar(menubar);
 		
@@ -204,12 +206,23 @@ public class ViewFrame extends JFrame{
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
+		setModal(true);
 		setVisible(true);
 	}
 
 	private JMenuBar setupMenu() {
 		JMenuBar menubar = new JMenuBar();
 		JMenu file = new JMenu(" File ");
+		JMenuItem logOut = new JMenuItem(" Log off ");
+		logOut.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				exitStatus = 1;
+				close();
+			}
+		});
+		file.add(logOut);
 		JMenuItem exit = new JMenuItem("Exit");
 		exit.addActionListener(new ActionListener() {
 			

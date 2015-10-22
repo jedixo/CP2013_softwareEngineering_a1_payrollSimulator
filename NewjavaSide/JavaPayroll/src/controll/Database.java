@@ -52,8 +52,8 @@ public class Database {
 	public void addEmpData(Employee employee) {
 		if (isConnected) {
 			try {
-				String sql = "INSERT INTO `employees`(`id`, `first_name`, `last_name`, `Address`, `pay_type`, `pay_delivery`, `Emp_Union`, `Salary`, `commision_rate`, `password`) VALUES " + 
-						"(?,?,?,?,?,?,?,?,?,?);";
+				String sql = "INSERT INTO `employees`(`id`, `first_name`, `last_name`, `Address`, `pay_type`, `pay_delivery`, `Emp_Union`, `Salary`, `commision_rate`, `password`, `user_level`) VALUES " + 
+						"(?,?,?,?,?,?,?,?,?,?,?);";
 				java.sql.PreparedStatement statement = connection.prepareStatement(sql);
 				statement.setInt(1, employee.getId());
 				statement.setString(2, employee.getFirstName());
@@ -65,6 +65,7 @@ public class Database {
 				statement.setInt(8, employee.getSalary());
 				statement.setFloat(9, employee.getCommisionRateFloat());
 				statement.setString(10, employee.getPasswordMD5(dbpassword));
+				statement.setInt(11,  0); //implement this
 				statement.executeUpdate();
 			} catch (SQLException e) {
 				JOptionPane.showMessageDialog(null, "Failed to get add employee to database: " + employee.firstName + " " + employee.lastName + "\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
@@ -92,7 +93,7 @@ public class Database {
 	public void updateEmp(Employee employee) {
 		if (isConnected) {
 			try {
-				String sql = "UPDATE employees SET first_name = ?, last_name = ?, Address = ?, pay_type = ?, pay_delivery = ?, `Emp_Union` = ?, Salary = ?, commision_rate = ?" 
+				String sql = "UPDATE employees SET first_name = ?, last_name = ?, Address = ?, pay_type = ?, pay_delivery = ?, `Emp_Union` = ?, Salary = ?, commision_rate = ?, user_level = ?" 
 						+ " WHERE id = ?;";
 				java.sql.PreparedStatement statement = connection.prepareStatement(sql);
 				
@@ -104,7 +105,8 @@ public class Database {
 				statement.setString(6, employee.getUnion());
 				statement.setInt(7, employee.getSalary());
 				statement.setFloat(8, employee.getCommisionRateFloat());
-				statement.setInt(9, employee.getId());
+				statement.setInt(9, 0); // implement this
+				statement.setInt(10, employee.getId());
 				statement.executeUpdate();
 			}catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "Failed to update employee in database: " + employee.getFirstName() + " " + employee.getLastName() + "\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
@@ -151,14 +153,15 @@ public class Database {
 		}		
 	}
 
-	public void addPayHeld(int id, int amount) {
+	public void addPayHeld(int id, int amount, String date) {
 		if (isConnected) {
 			try {
-				String sql = "INSERT INTO `held_pay`(`empId`, `amount`) VALUES " + 
+				String sql = "INSERT INTO `held_pay`(`empId`, `amount`, `date`) VALUES " + 
 						"(?,?);";
 				java.sql.PreparedStatement statement = connection.prepareStatement(sql);
 				statement.setInt(1, id);
 				statement.setInt(2, amount);
+				statement.setString(3, date);
 				statement.executeUpdate();
 			} catch (SQLException e) {
 				JOptionPane.showMessageDialog(null, "Failed to add pay to database:" + "\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
@@ -168,10 +171,10 @@ public class Database {
 	}
 
 	public void addMailPay(String firstName, String lastName, String address,
-			int amount, int id) {
+			int amount, int id, String date) {
 		if (isConnected) {
 			try {
-				String sql = "INSERT INTO `mail_pay`(`empId`, `firstName`, `lastName`, `address`, `amount`) VALUES " + 
+				String sql = "INSERT INTO `mail_pay`(`empId`, `firstName`, `lastName`, `address`, `amount`, `date`) VALUES " + 
 						"(?,?,?,?);";
 				java.sql.PreparedStatement statement = connection.prepareStatement(sql);
 				statement.setInt(1, id);
@@ -179,6 +182,7 @@ public class Database {
 				statement.setString(3, lastName);
 				statement.setString(4, address);
 				statement.setInt(5, amount);
+				statement.setString(6, date);
 				statement.executeUpdate();
 			} catch (SQLException e) {
 				JOptionPane.showMessageDialog(null, "Failed to add pay to database:" + "\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
@@ -187,8 +191,23 @@ public class Database {
 		}			
 	}
 
-	public void addDepositePay(String firstName, String lastName, int amount) {
-		// TODO Auto-generated method stub
-		
+	public void addDepositePay(String firstName, String lastName, int amount, int empId, String date) {
+		if (isConnected) {
+			try {
+				String sql = "INSERT INTO `direct_pay`(`empId`, `firstName`, `lastName`, `account`, `amount`, `date`) VALUES " + 
+						"(?,?,?,?);";
+				java.sql.PreparedStatement statement = connection.prepareStatement(sql);
+				statement.setInt(1, empId);
+				statement.setString(2, firstName);
+				statement.setString(3, lastName);
+				statement.setString(4, "00000000");
+				statement.setInt(5, amount);
+				statement.setString(6, date);
+				statement.executeUpdate();
+			} catch (SQLException e) {
+				JOptionPane.showMessageDialog(null, "Failed to add pay to database:" + "\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
+				error = true;
+			}
+		}	
 	}
 }

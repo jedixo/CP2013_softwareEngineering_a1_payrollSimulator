@@ -58,11 +58,11 @@ public class RunPayroll {
 	private void payEmp(int amount, Employee emp) {
 		// 0 = mail, 1 = held, 2 = direct deposit
 		if (emp.getPayDelivery() == 0) {
-			database.addMailPay(emp.getFirstName(), emp.getLastName(), emp.getAddress(), amount, emp.getId());
+			database.addMailPay(emp.getFirstName(), emp.getLastName(), emp.getAddress(), amount, emp.getId(), currentDay);
 		}else if (emp.getPayDelivery() == 1) {
-			database.addPayHeld(emp.getId(),amount);
+			database.addPayHeld(emp.getId(),amount, currentDay);
 		}else {
-			database.addDepositePay(emp.getFirstName(), emp.getLastName(), amount);
+			database.addDepositePay(emp.getFirstName(), emp.getLastName(), amount, emp.getId(), currentDay);
 		}
 		
 	}

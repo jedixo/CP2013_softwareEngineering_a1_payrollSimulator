@@ -12,7 +12,7 @@ import view.LoginWindow;
 import view.ViewFrame;
 
 
-public class app {
+public class App {
 	
 	private static final String HOST = "sql6.freemysqlhosting.net/sql689509";
 	private static final String USERNAME = "sql689509";
@@ -22,32 +22,60 @@ public class app {
 	private static EmpList empList;
 	private static TimeCardList timeCardList;
 	private static SalesRecipts salesRecipts;
+	private LoadingBar load;
 	
-	public static void main(String[] args) {
+	public App(){
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		}catch (Exception e){}
 		
-		LoadingBar load = new LoadingBar("Connecting");
+		load = new LoadingBar("Connecting");
 		load.updateBar(25,"Connecting");
 		database = new Database(HOST, USERNAME, PASSWORD);
 		if (database.isConnected) {
 			load.updateBar(50,"Querying Employees");
 			empList = new EmpList(database.getTable("employees"));
-			LoginWindow login = new LoginWindow(empList);
-			if (login.isLoggedIn()) {
-				load.updateBar(75,"Querying Timecards");
-				timeCardList = new TimeCardList(database.getTable("time_card"));
-				load.updateBar(100,"Loading UI");
-				salesRecipts = new SalesRecipts(database.getTable("sales_recipts"));
-				load.dispose();
-				new ViewFrame(empList, database, timeCardList, salesRecipts);
-			} else {
-				load.dispose();
-			}
+			initaliseUi();
 		} else {
 			load.dispose();
+			System.exit(0);
 		}
+
 	}
+
+	private void initaliseUi() {
+		
+		if (load.isVisible() == false) {
+			load = new LoadingBar("Logging in");
+			load.updateBar(60, "Logging in");
+		} else {
+			load.updateBar(60, "Logging in");
+		}
+			
+		LoginWindow login = new LoginWindow(empList);
+		if (login.isLoggedIn()) {
+			
+			load.updateBar(75,"Querying Timecards");
+			timeCardList = new TimeCardList(database.getTable("time_card"));
+			load.updateBar(100,"Loading UI");
+			salesRecipts = new SalesRecipts(database.getTable("sales_recipts"));
+			load.dispose();
+			ViewFrame viewframe = new ViewFrame(empList, database, timeCardList, salesRecipts);
+			if (viewframe.exitStatus == 0)
+				System.exit(0);
+			else {
+				initaliseUi();
+			}
+
+		} else {
+			load.dispose();
+			System.exit(0);
+		}
+			}
+
+	public static void main(String[] args) {
+		new App();
+	}
+
 
 }
