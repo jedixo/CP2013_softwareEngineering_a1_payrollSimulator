@@ -1,0 +1,61 @@
+@charset "utf-8";
+body{
+	font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif
+}
+.outer {
+	float: left;
+	background-color: #66C285;
+	width: 400px;
+	margin: 20px;
+	padding: 30px;
+	height: 400px;
+}
+.outerpay {
+	float: left;
+	background-color: darkred;
+	width: 400px;
+	margin: 20px;
+	padding: 30px;
+	height: 400px;
+}
+.image {
+	float:right;
+	background-color: #FFFFFF;
+	width: 380px;
+	margin: auto;
+	padding: 10px;
+	height: 350px;
+}
+.outerpay {
+	background-color: #FF1919;
+}
+header {
+	font-size:36px;
+	background-color: #66C285;
+	text-align:center;
+	font: arial;
+}
+a:link {
+    	color: black;
+        text-decoration: none;
+}
+a:visited {
+    	color: black;
+        text-decoration: none;
+}
+tr:nth-child(even) {
+    background-color: #66C283;
+}
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+th {
+    background-color: #66C285;
+}
+h1 h2{
+   	font: arial;
+}

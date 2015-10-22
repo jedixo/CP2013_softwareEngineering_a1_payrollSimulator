@@ -1,6 +1,7 @@
 <?php
-print_r($_REQUEST);
 include('empDbConnect.php');
+print_r($_REQUEST['pay_type']);
+print_r($_REQUEST);
 echo "<link href='main.css' rel='stylesheet' type='text/css'>";
 if ($_REQUEST['submit'] == "X") {
     $sql = "DELETE FROM employees WHERE id = $_REQUEST[id]";
@@ -11,7 +12,8 @@ if ($_REQUEST['submit'] == "X") {
 }
 
 elseif  ($_REQUEST['submit'] == "Insert Entry")
-{    $sql = "INSERT INTO employees (first_name, last_name, address, pay_type, pay_delivery, emp_union, salary) VALUES ('$_REQUEST[f_name]', '$_REQUEST[l_name]', '$_REQUEST[address]', $_REQUEST[pay_type], $_REQUEST[pay_delivery], '$_REQUEST[emp_union]', $_REQUEST[salary] )";
+{   echo "Pay type = ", $_REQUEST[pay_type];
+    $sql = "INSERT INTO employees (first_name, last_name, address, pay_type, pay_delivery, emp_union, salary) VALUES ('$_REQUEST[f_name]', '$_REQUEST[l_name]', '$_REQUEST[address]', $_POST[pay_type], $_POST[pay_delivery], '$_REQUEST[emp_union]', $_REQUEST[salary] )";
     echo "<p>Query: " . $sql . "</p>\n<p><strong>";
     if ($conn->query($sql))
         echo "Inserted $_REQUEST[f_name]";
