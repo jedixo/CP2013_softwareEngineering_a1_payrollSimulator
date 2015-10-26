@@ -23,6 +23,7 @@ public class EmpList extends ArrayList<Employee>{
 				employee.setSalary(table.getInt("Salary"));
 				employee.setCommissionRate(table.getFloat("commision_rate"));
 				employee.setPassword(table.getString("password"));
+				employee.setUserLevel(table.getInt("user_level"));
 				add(employee);
 				
 			}

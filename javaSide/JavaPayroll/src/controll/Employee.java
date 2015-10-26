@@ -6,7 +6,7 @@ public class Employee{
 	public int id = 0;
 	public String firstName, lastName;
 	private String address = null, union = null, password = null;
-	private int payType = 0, payDelivery = 0, salary = 0;
+	private int payType = 0, payDelivery = 0, salary = 0, userLevel = 0;
 	private float commissionRate = 0;
 
 
@@ -114,6 +114,14 @@ public class Employee{
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getUserLevel() {
+		return userLevel;
+	}
+
+	public void setUserLevel(int userLevel) {
+		this.userLevel = userLevel;
 	}
 
 }

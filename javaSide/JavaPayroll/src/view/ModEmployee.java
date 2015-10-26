@@ -31,8 +31,8 @@ public class ModEmployee extends JDialog {
 	private Employee employee;
 	private JSpinner salary, commisionRate;
 	private JLabel salarylabel = new JLabel();
-	private JComboBox<String> payType, payDelivery;
-	
+	private JComboBox<String> payType, payDelivery, level;
+	private List<String> userLevels = Arrays.asList("Normal", "Administrator");
 	private List<String> payTypes = Arrays.asList("Hourly rate", "Monthly salary", "Comission");
 	private List<String> deliveryTypes = Arrays.asList("mail", "held", "direct deposite");
 
@@ -99,6 +99,12 @@ public class ModEmployee extends JDialog {
 	commisionRate.setEnabled(false);
 	commisionRate.setModel(new SpinnerNumberModel(0,0,100,1));
 	modPanel.add(commisionRate);
+	modPanel.add(new JLabel("    User Level:"));
+	level = new JComboBox<String>();
+	for (String userLevel : userLevels) {
+		level.addItem(userLevel);
+	}
+	modPanel.add(level);
 	JPanel actionPanel = new JPanel();
 	actionPanel.setLayout(new GridLayout(0,2));
 	Button addButton = new Button("add");
@@ -123,6 +129,7 @@ public class ModEmployee extends JDialog {
 				employee.setUnion(union.getText());
 				employee.setSalary((int) salary.getValue());
 				employee.setCommissionRate((int) ((float)commisionRate.getValue()));
+				employee.setUserLevel(level.getSelectedIndex());
 				empDatabase.updateEmp(employee);
 				close();
 			}
@@ -204,6 +211,7 @@ public class ModEmployee extends JDialog {
 				union.setText(employee.getUnion());
 				salary.setValue((Integer)employee.getSalary());	
 				commisionRate.setValue((Float)employee.getCommisionRateFloat());
+				level.setSelectedIndex(employee.getUserLevel());
 			}
 		}
 		
