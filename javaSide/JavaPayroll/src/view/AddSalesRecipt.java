@@ -85,7 +85,7 @@ addButton.addActionListener(new ActionListener() {
 							sr = new SalesRecipt(1,getEmpId(),dateString,(float)((double)amount.getValue()));
 						salesRecipts.add(sr);
 					} else {
-						SalesRecipt sr = new SalesRecipt(((salesRecipts.get(salesRecipts.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)amount.getValue()));
+						SalesRecipt sr = new SalesRecipt(getEmpId(),dateString,(float)((double)amount.getValue()));
 						database.addSalesRecipt(sr);
 						salesRecipts.add(sr);
 					}

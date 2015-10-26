@@ -18,7 +18,8 @@ import controll.Employee;
 
 @SuppressWarnings("serial")
 public class LoginWindow extends JDialog {
-	private boolean loggedIn = false, administrator;
+	private boolean loggedIn = false;
+	private Employee empLoggedIn;
 	private JTextField name;
 	private JPasswordField password;
 
@@ -38,7 +39,6 @@ public class LoginWindow extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				if (name.getText().equals("admin")) {
 					loggedIn = true;
-					administrator = true;
 					setVisible(false);
 					
 				} else {
@@ -47,13 +47,9 @@ public class LoginWindow extends JDialog {
 					for (Employee emp : empList) {
 						if (nameStr.length != 0 && emp.getFirstName().equals(nameStr[0]) && emp.getLastName().equals(nameStr[1])) {
 							if (emp.matchPassword(String.valueOf(password.getPassword()))) {
-								if (emp.getUserLevel() == 1) {
-									administrator = true;
-								} else {
-									administrator = false;
-								}
 								loggedIn = true;
 								error = 0;
+								empLoggedIn = emp;
 								setVisible(false);
 								
 								break;
@@ -115,8 +111,7 @@ public class LoginWindow extends JDialog {
 		return loggedIn;
 	}
 	
-	public boolean isAdmin() {
-		return administrator;
+	public Employee empLoggedIn() {
+		return empLoggedIn;
 	}
-
 }

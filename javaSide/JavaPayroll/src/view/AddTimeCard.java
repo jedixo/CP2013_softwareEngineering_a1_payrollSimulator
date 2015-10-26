@@ -107,7 +107,7 @@ public class AddTimeCard extends JDialog{
 						if (hasPrevEntry) {
 							JOptionPane.showMessageDialog(null, "You can only have one timecard for a day.", "Input Error", JOptionPane.OK_OPTION);
 						} else {
-							Timecard tc = new Timecard(((tcList.get(tcList.size()-1).getId() + 1)),getEmpId(),dateString,(float)((double)hours.getValue()));
+							Timecard tc = new Timecard(getEmpId(),dateString,(float)((double)hours.getValue()));
 							database.addTimeCard(tc);
 							tcList.add(tc);
 						}

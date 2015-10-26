@@ -18,6 +18,7 @@ public class App {
 	private static final String USERNAME = "sql689509";
 	private static final String PASSWORD = "lA7*wL7!";
 	private ViewFrame viewframe;
+	private UserFrame userFrame;
 	private static Database database;
 	private static EmpList empList;
 	private static TimeCardList timeCardList;
@@ -60,13 +61,21 @@ public class App {
 			load.updateBar(100,"Loading UI");
 			salesRecipts = new SalesRecipts(database.getTable("sales_recipts"));
 			load.dispose();
+			if (login.empLoggedIn() == null || login.empLoggedIn().getUserLevel() == 1) {
 				viewframe = new ViewFrame(empList, database, timeCardList, salesRecipts);
-			if (viewframe.exitStatus == 0)
-				System.exit(0);
-			else {
-				initaliseUi();
+				if (viewframe.exitStatus == 0)
+					System.exit(0);
+				else {
+					initaliseUi();
+				}
+			} else {
+				userFrame = new UserFrame(login.empLoggedIn(), timeCardList, salesRecipts, database);
+				if (userFrame.exitStatus == 0)
+					System.exit(0);
+				else {
+					initaliseUi();
+				}
 			}
-
 		} else {
 			load.dispose();
 			System.exit(0);

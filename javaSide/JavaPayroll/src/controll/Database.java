@@ -119,13 +119,12 @@ public class Database {
 	public void addTimeCard(Timecard tc) {
 		if (isConnected) {
 			try {
-				String sql = "INSERT INTO `time_card`(`id`, `employee`, `date`, `hours`) VALUES " + 
-						"(?,?,?,?);";
+				String sql = "INSERT INTO `time_card`(`employee`, `date`, `hours`) VALUES " + 
+						"(?,?,?);";
 				java.sql.PreparedStatement statement = connection.prepareStatement(sql);
-				statement.setInt(1, tc.getId());
-				statement.setInt(2, tc.getEmpId());
-				statement.setString(3, tc.getDate());
-				statement.setFloat(4, tc.getHours());
+				statement.setInt(1, tc.getEmpId());
+				statement.setString(2, tc.getDate());
+				statement.setFloat(3, tc.getHours());
 				statement.executeUpdate();
 			} catch (SQLException e) {
 				JOptionPane.showMessageDialog(null, "Failed to add Timecard to database:" + "\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
@@ -138,13 +137,12 @@ public class Database {
 	public void addSalesRecipt(SalesRecipt sr) {
 		if (isConnected) {
 			try {
-				String sql = "INSERT INTO `sales_recipts`(`id`, `employee`, `date`, `amount`) VALUES " + 
-						"(?,?,?,?);";
+				String sql = "INSERT INTO `sales_recipts`(`employee`, `date`, `amount`) VALUES " + 
+						"(?,?,?);";
 				java.sql.PreparedStatement statement = connection.prepareStatement(sql);
-				statement.setInt(1, sr.getId());
-				statement.setInt(2, sr.getEmpId());
-				statement.setString(3, sr.getDate());
-				statement.setFloat(4, sr.getAmount());
+				statement.setInt(1, sr.getEmpId());
+				statement.setString(2, sr.getDate());
+				statement.setFloat(3, sr.getAmount());
 				statement.executeUpdate();
 			} catch (SQLException e) {
 				JOptionPane.showMessageDialog(null, "Failed to add SalesRecipt to database:" + "\n" + e, "Error", JOptionPane.ERROR_MESSAGE);

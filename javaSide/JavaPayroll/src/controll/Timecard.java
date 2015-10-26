@@ -15,6 +15,13 @@ public class Timecard{
 		
 	}
 
+	public Timecard(int empId2, String dateString, float f) {
+		id = (int) Math.random();
+		this.empId = empId2;
+		this.date = dateString;
+		this.hours = f;
+	}
+
 	public int getId() {
 		return id;
 	}
