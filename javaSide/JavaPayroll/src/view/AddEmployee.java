@@ -15,6 +15,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
@@ -26,10 +27,12 @@ import controll.MD5;
 
 @SuppressWarnings("serial")
 public class AddEmployee extends JDialog {
-	private JTextField firstName, lastName, address, union, password;
+	private JTextField firstName, lastName, address, union;
+	private JPasswordField password;
 	private JSpinner salary, commisionRate;
-	private JComboBox<String> payType, payDelivery;
+	private JComboBox<String> payType, payDelivery, level;
 	private JLabel addLabel = new JLabel("    Rate:");
+	private List<String> userLevels = Arrays.asList("Normal", "Administrator");
 	private List<String> payTypes = Arrays.asList("Hourly rate", "Monthly salary", "Comission");
 	private List<String> deliveryTypes = Arrays.asList("mail", "held", "direct deposite");
 
@@ -69,13 +72,7 @@ public class AddEmployee extends JDialog {
 					hourly(false);
 					salary(true);
 				}
-				
 			}
-
-			
-
-			
-
 		});
 		
 		addPanel.add(new JLabel("    Pay Delivery:"));
@@ -97,8 +94,14 @@ public class AddEmployee extends JDialog {
 		commisionRate.setModel(new SpinnerNumberModel(0,0,100,1));
 		addPanel.add(commisionRate);
 		addPanel.add(new JLabel("    Password:"));
-		password = new JTextField();
+		password = new JPasswordField();
 		addPanel.add(password);
+		addPanel.add(new JLabel("    User Level:"));
+		level = new JComboBox<String>();
+		for (String userLevel : userLevels) {
+			level.addItem(userLevel);
+		}
+		addPanel.add(level);
 		Button addButton = new Button("add");
 		addButton.addActionListener(new ActionListener() {
 			
@@ -123,7 +126,8 @@ public class AddEmployee extends JDialog {
 					employee.setSalary((int) salary.getValue());
 					employee.setCommissionRate((int) commisionRate.getValue());
 					employee.setId(empList.get(empList.size() - 1).getId() + 1);
-					employee.setPassword(MD5.hash(password.getText()));
+					employee.setPassword(MD5.hash(String.valueOf(password.getPassword())));
+					employee.setUserLevel(level.getSelectedIndex());
 					empDatabase.addEmpData(employee);
 					if (!empDatabase.error) {
 						empList.add(employee);
@@ -134,7 +138,7 @@ public class AddEmployee extends JDialog {
 			}
 
 			private boolean hasValidInputs() {
-					if (firstName.getText().equals("") || password.getText().equals("") || lastName.getText().equals("") || firstName.getText().equals(lastName.getText()) || salary.getValue().equals(0)){
+					if (firstName.getText().equals("") || String.valueOf(password.getPassword()).equals("") || lastName.getText().equals("") || firstName.getText().equals(lastName.getText()) || salary.getValue().equals(0)){
 						JOptionPane.showMessageDialog(null, "Invalid Input please fill out the required fields", "Input Errr", JOptionPane.OK_OPTION);
 						addPanel.getComponent(0).setForeground(Color.RED);
 						addPanel.getComponent(2).setForeground(Color.RED);

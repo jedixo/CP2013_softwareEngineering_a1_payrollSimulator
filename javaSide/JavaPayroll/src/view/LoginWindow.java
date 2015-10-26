@@ -10,6 +10,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import controll.EmpList;
@@ -17,8 +18,9 @@ import controll.Employee;
 
 @SuppressWarnings("serial")
 public class LoginWindow extends JDialog {
-	private boolean loggedIn = false;
-	private JTextField name, password;
+	private boolean loggedIn = false, administrator;
+	private JTextField name;
+	private JPasswordField password;
 
 	public LoginWindow(final EmpList empList) {
 		final JPanel panel = new JPanel();
@@ -27,7 +29,7 @@ public class LoginWindow extends JDialog {
 		name = new JTextField();
 		panel.add(name);
 		panel.add(new JLabel("    Password:"));
-		password = new JTextField();
+		password = new JPasswordField();
 		panel.add(password);
 		final JButton ok = new JButton("Ok");
 		ok.addActionListener(new ActionListener() {
@@ -36,6 +38,7 @@ public class LoginWindow extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				if (name.getText().equals("admin")) {
 					loggedIn = true;
+					administrator = true;
 					setVisible(false);
 					
 				} else {
@@ -43,7 +46,12 @@ public class LoginWindow extends JDialog {
 					int error = 0;
 					for (Employee emp : empList) {
 						if (nameStr.length != 0 && emp.getFirstName().equals(nameStr[0]) && emp.getLastName().equals(nameStr[1])) {
-							if (emp.matchPassword(password.getText())) {
+							if (emp.matchPassword(String.valueOf(password.getPassword()))) {
+								if (emp.getUserLevel() == 1) {
+									administrator = true;
+								} else {
+									administrator = false;
+								}
 								loggedIn = true;
 								error = 0;
 								setVisible(false);
@@ -105,6 +113,10 @@ public class LoginWindow extends JDialog {
 	
 	public boolean isLoggedIn() {
 		return loggedIn;
+	}
+	
+	public boolean isAdmin() {
+		return administrator;
 	}
 
 }

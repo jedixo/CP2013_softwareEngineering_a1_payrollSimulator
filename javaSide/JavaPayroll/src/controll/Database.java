@@ -65,7 +65,7 @@ public class Database {
 				statement.setInt(8, employee.getSalary());
 				statement.setFloat(9, employee.getCommisionRateFloat());
 				statement.setString(10, employee.getPasswordMD5(dbpassword));
-				statement.setInt(11,  0); //implement this
+				statement.setInt(11,  employee.getUserLevel());
 				statement.executeUpdate();
 			} catch (SQLException e) {
 				JOptionPane.showMessageDialog(null, "Failed to get add employee to database: " + employee.firstName + " " + employee.lastName + "\n" + e, "Error", JOptionPane.ERROR_MESSAGE);
@@ -105,7 +105,7 @@ public class Database {
 				statement.setString(6, employee.getUnion());
 				statement.setInt(7, employee.getSalary());
 				statement.setFloat(8, employee.getCommisionRateFloat());
-				statement.setInt(9, 0); // implement this
+				statement.setInt(9, employee.getUserLevel());
 				statement.setInt(10, employee.getId());
 				statement.executeUpdate();
 			}catch (Exception e) {
