@@ -153,14 +153,14 @@ public class Database {
 		}		
 	}
 
-	public void addPayHeld(int id, int amount, String date) {
+	public void addPayHeld(int id, float amount, String date) {
 		if (isConnected) {
 			try {
 				String sql = "INSERT INTO `held_pay`(`empId`, `amount`, `date`) VALUES " + 
 						"(?,?);";
 				java.sql.PreparedStatement statement = connection.prepareStatement(sql);
 				statement.setInt(1, id);
-				statement.setInt(2, amount);
+				statement.setFloat(2, amount);
 				statement.setString(3, date);
 				statement.executeUpdate();
 			} catch (SQLException e) {
@@ -171,7 +171,7 @@ public class Database {
 	}
 
 	public void addMailPay(String firstName, String lastName, String address,
-			int amount, int id, String date) {
+			float amount, int id, String date) {
 		if (isConnected) {
 			try {
 				String sql = "INSERT INTO `mail_pay`(`empId`, `firstName`, `lastName`, `address`, `amount`, `date`) VALUES " + 
@@ -181,7 +181,7 @@ public class Database {
 				statement.setString(2, firstName);
 				statement.setString(3, lastName);
 				statement.setString(4, address);
-				statement.setInt(5, amount);
+				statement.setFloat(5, amount);
 				statement.setString(6, date);
 				statement.executeUpdate();
 			} catch (SQLException e) {
@@ -191,7 +191,7 @@ public class Database {
 		}			
 	}
 
-	public void addDepositePay(String firstName, String lastName, int amount, int empId, String date) {
+	public void addDepositePay(String firstName, String lastName, float amount, int empId, String date) {
 		if (isConnected) {
 			try {
 				String sql = "INSERT INTO `direct_pay`(`empId`, `firstName`, `lastName`, `account`, `amount`, `date`) VALUES " + 
@@ -201,7 +201,7 @@ public class Database {
 				statement.setString(2, firstName);
 				statement.setString(3, lastName);
 				statement.setString(4, "00000000");
-				statement.setInt(5, amount);
+				statement.setFloat(5, amount);
 				statement.setString(6, date);
 				statement.executeUpdate();
 			} catch (SQLException e) {

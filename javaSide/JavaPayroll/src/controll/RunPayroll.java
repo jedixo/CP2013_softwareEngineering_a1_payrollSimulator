@@ -13,7 +13,7 @@ public class RunPayroll {
 	public RunPayroll(EmpList empList, TimeCardList tcList, SalesRecipts salesRecipts, Database database) {
 		this.database = database;
 		setDates();
-		
+		// unsure how to calculate if biweekly or not
 		EmpList hourlyEmp = new EmpList();
 		EmpList monthlyEmp = new EmpList();
 		EmpList commisionEmp = new EmpList();
@@ -28,8 +28,24 @@ public class RunPayroll {
 		}
 		calculatePayForHourlyEmp(hourlyEmp, tcList);
 		calculatePayForMonthlyEmp(monthlyEmp);
-		//implement commisioned emp
+		calculatePayForCommision(commisionEmp, salesRecipts);
 		
+	}
+
+	private void calculatePayForCommision(EmpList commisionEmp,
+			SalesRecipts salesRecipts) {
+		if (currentDay.equals(endOfWeek)) {	// this is wrong, should be fortnightly
+			for (Employee emp : commisionEmp) {
+				float srTally = 0;
+				for (SalesRecipt sr : salesRecipts) {
+					if (emp.getId() == sr.getEmpId()) {
+						srTally += sr.getAmount();
+					}
+				}
+				float amount = emp.getSalary() + ((emp.getCommisionRateFloat()/100) * srTally);
+				payEmp(amount, emp);
+			}
+		}
 	}
 
 	private void calculatePayForMonthlyEmp(EmpList monthlyEmp) {
@@ -55,7 +71,7 @@ public class RunPayroll {
 		}
 	}
 
-	private void payEmp(int amount, Employee emp) {
+	private void payEmp(float amount, Employee emp) {
 		// 0 = mail, 1 = held, 2 = direct deposit
 		if (emp.getPayDelivery() == 0) {
 			database.addMailPay(emp.getFirstName(), emp.getLastName(), emp.getAddress(), amount, emp.getId(), currentDay);
