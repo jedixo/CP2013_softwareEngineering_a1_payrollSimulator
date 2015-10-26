@@ -126,7 +126,6 @@ public class ViewFrame extends JDialog{
 		menubar = setupMenu();
 		setJMenuBar(menubar);
 		
-		if (isAdmin) {
 			JPanel buttonPanel = new JPanel();
 
 			addButton = new Button("add");
@@ -179,7 +178,7 @@ public class ViewFrame extends JDialog{
 				buttonPanel.add(modButton);
 			}
 			add(buttonPanel, BorderLayout.SOUTH);
-		}
+		
 		
 		if (type == 0) {
 			empPanel = new EmpPanel(empList,tcList,database,salesRecipts);
