@@ -44,11 +44,10 @@ public class ViewFrame extends JDialog{
 	private JPanel buttonPanel;
 	private JTableHeader header;
 	public int exitStatus = 0;
-	private boolean isAdmin;
+	
 	
 	//emp view master constructor
-	public ViewFrame(final EmpList empList, final Database database, TimeCardList tcList, SalesRecipts salesRecipts, boolean isAdmin) {
-		this.isAdmin = isAdmin;
+	public ViewFrame(final EmpList empList, final Database database, TimeCardList tcList, SalesRecipts salesRecipts) {
 		type = 0;
 		this.tcList = tcList;
 		this.database = database;
@@ -58,10 +57,8 @@ public class ViewFrame extends JDialog{
 		header = empPanel.header;
 		add(header, BorderLayout.PAGE_START);
 		ScrollPane = new JScrollPane(empPanel);
-		if (isAdmin) {
 			buttonPanel = new JPanel();
 			add(buttonPanel, BorderLayout.SOUTH);
-		}
 		add(ScrollPane, BorderLayout.CENTER);
 		setTitle("View Employees");
 		initaliseCommonComponents();
@@ -123,14 +120,11 @@ public class ViewFrame extends JDialog{
 	}
 	private void initaliseCommonComponents() {
 		remove(ScrollPane);
-		if (isAdmin) {
 			remove(buttonPanel);
-		}
 		remove(header);
 		menubar = setupMenu();
 		setJMenuBar(menubar);
 		
-		if (isAdmin) {
 			JPanel buttonPanel = new JPanel();
 
 			addButton = new Button("add");
@@ -212,7 +206,7 @@ public class ViewFrame extends JDialog{
 		setLocationRelativeTo(null);
 		setModal(true);
 		setVisible(true);
-	}
+		}
 
 	private JMenuBar setupMenu() {
 		JMenuBar menubar = new JMenuBar();

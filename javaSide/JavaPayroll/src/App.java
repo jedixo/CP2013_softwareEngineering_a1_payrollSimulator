@@ -60,7 +60,7 @@ public class App {
 			load.updateBar(100,"Loading UI");
 			salesRecipts = new SalesRecipts(database.getTable("sales_recipts"));
 			load.dispose();
-				viewframe = new ViewFrame(empList, database, timeCardList, salesRecipts, login.isAdmin());
+				viewframe = new ViewFrame(empList, database, timeCardList, salesRecipts);
 			if (viewframe.exitStatus == 0)
 				System.exit(0);
 			else {
