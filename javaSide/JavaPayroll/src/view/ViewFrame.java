@@ -130,60 +130,60 @@ public class ViewFrame extends JDialog{
 		menubar = setupMenu();
 		setJMenuBar(menubar);
 		
-		
-		JPanel buttonPanel = new JPanel();
+		if (isAdmin) {
+			JPanel buttonPanel = new JPanel();
 
-		addButton = new Button("add");
-		addButton.addActionListener(new ActionListener() {
+			addButton = new Button("add");
+			addButton.addActionListener(new ActionListener() {
 				
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (type == 0) {
-					new AddEmployee(empList, database);
-				} else if (type == 3){
-					new AddTimeCard(tcList, database, empList, 1,ogTcList);
-				} else if (type == 4){
-					new AddSalesRecipt(salesRecipts, database, empList, 0, null);
-				} else if (type == 5){
-					new AddSalesRecipt(salesRecipts, database, empList, 1, ogSrList);
-				} else {
-					new AddTimeCard(tcList, database, empList, 0, null);
-				}
-				initaliseCommonComponents();	
-			}
-		});
-		buttonPanel.add(addButton);
-		if (type == 0) {
-			
-			modButton = new Button("Modify");
-			addButton.setText("Add");
-			addButton.setFont(modButton.getFont());
-			addButton.setForeground(Color.BLACK);
-			modButton.addActionListener(new ActionListener() {
-			
 				@Override
 				public void actionPerformed(ActionEvent e) {
-
-					if (empPanel.getRowSelected() == -1){
-						JOptionPane.showMessageDialog(null, "No Employee selected, Please select an Employee to edit", "No Selection", JOptionPane.OK_OPTION);
-					}else {
-						EmpList selectedEmp = new EmpList();
-						for (Employee emp : empList) {
-							if (emp.getId() == empPanel.getEmpSelected()) {
-								selectedEmp.add(emp);
-							}
-						}
-						if (selectedEmp.size() != 0) {	
-							new ModEmployee(selectedEmp, database, empList);
-						}
+					if (type == 0) {
+						new AddEmployee(empList, database);
+					} else if (type == 3){
+						new AddTimeCard(tcList, database, empList, 1,ogTcList);
+					} else if (type == 4){
+						new AddSalesRecipt(salesRecipts, database, empList, 0, null);
+					} else if (type == 5){
+						new AddSalesRecipt(salesRecipts, database, empList, 1, ogSrList);
+					} else {
+						new AddTimeCard(tcList, database, empList, 0, null);
 					}
 					initaliseCommonComponents();	
 				}
 			});
-			buttonPanel.add(modButton);
+			buttonPanel.add(addButton);
+			if (type == 0) {
+			
+				modButton = new Button("Modify");
+				addButton.setText("Add");
+				addButton.setFont(modButton.getFont());
+				addButton.setForeground(Color.BLACK);
+				modButton.addActionListener(new ActionListener() {
+			
+					@Override
+					public void actionPerformed(ActionEvent e) {
+
+						if (empPanel.getRowSelected() == -1){
+							JOptionPane.showMessageDialog(null, "No Employee selected, Please select an Employee to edit", "No Selection", JOptionPane.OK_OPTION);
+						}else {
+							EmpList selectedEmp = new EmpList();
+							for (Employee emp : empList) {
+								if (emp.getId() == empPanel.getEmpSelected()) {
+									selectedEmp.add(emp);
+								}
+							}
+							if (selectedEmp.size() != 0) {	
+								new ModEmployee(selectedEmp, database, empList);
+							}
+						}
+						initaliseCommonComponents();	
+					}
+				});
+				buttonPanel.add(modButton);
+			}
+			add(buttonPanel, BorderLayout.SOUTH);
 		}
-		add(buttonPanel, BorderLayout.SOUTH);
-		
 		
 		if (type == 0) {
 			empPanel = new EmpPanel(empList,tcList,database,salesRecipts);

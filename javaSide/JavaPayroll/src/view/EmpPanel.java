@@ -49,7 +49,6 @@ public class EmpPanel extends JPanel{
 					int empId = (int)table.getModel().getValueAt(row, 0);
 					empSelected = empId;
 					if (e.getClickCount() == 2) {
-					
 						TimeCardList focusedEmp = new TimeCardList();
 						EmpList focusedEmpList = new EmpList();
 						SalesRecipts focusedSrList = new SalesRecipts();
