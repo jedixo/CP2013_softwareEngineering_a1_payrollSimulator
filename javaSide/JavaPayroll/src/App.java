@@ -17,7 +17,7 @@ public class App {
 	private static final String HOST = "sql6.freemysqlhosting.net/sql689509";
 	private static final String USERNAME = "sql689509";
 	private static final String PASSWORD = "lA7*wL7!";
-	private ViewFrame viewframe;
+	
 	private static Database database;
 	private static EmpList empList;
 	private static TimeCardList timeCardList;
@@ -60,7 +60,7 @@ public class App {
 			load.updateBar(100,"Loading UI");
 			salesRecipts = new SalesRecipts(database.getTable("sales_recipts"));
 			load.dispose();
-				viewframe = new ViewFrame(empList, database, timeCardList, salesRecipts, login.isAdmin());
+			ViewFrame viewframe = new ViewFrame(empList, database, timeCardList, salesRecipts);
 			if (viewframe.exitStatus == 0)
 				System.exit(0);
 			else {
