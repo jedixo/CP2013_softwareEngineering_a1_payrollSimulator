@@ -126,6 +126,7 @@ public class ViewFrame extends JDialog{
 		menubar = setupMenu();
 		setJMenuBar(menubar);
 		
+		if (isAdmin) {
 			JPanel buttonPanel = new JPanel();
 
 			addButton = new Button("add");
