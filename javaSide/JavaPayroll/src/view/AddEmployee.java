@@ -62,7 +62,7 @@ public class AddEmployee extends JDialog {
 				if (e.getItem().toString().equals("Comission")) {
 					commisionRate(true);
 					hourly(false);
-					salary(false);
+					salary(true);
 				}else if (e.getItem().toString().equals("Hourly rate")) {
 					commisionRate(false);
 					salary(false);

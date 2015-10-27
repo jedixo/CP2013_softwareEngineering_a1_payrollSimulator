@@ -1,13 +1,5 @@
-import javax.swing.JDialog;
-
+package controll;
 import view.ViewFrame;
-import controll.Database;
-import controll.EmpList;
-import controll.Employee;
-import controll.SalesRecipt;
-import controll.SalesRecipts;
-import controll.TimeCardList;
-import controll.Timecard;
 
 
 public class UserFrame {
@@ -39,6 +31,8 @@ public class UserFrame {
 			}
 			new ViewFrame(srfocused, database, focus, salesRecipts);
 			
+		} else {
+			// monthly emp doesnt do anything
 		}
 	}
 
