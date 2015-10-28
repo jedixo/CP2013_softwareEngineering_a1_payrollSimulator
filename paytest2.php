@@ -27,18 +27,23 @@
     $numOfDays = cal_days_in_month(CAL_GREGORIAN, $info['mon'], $year);
     $numOfWeeksInMonth = floor($numOfDays/7);
     $weekNumber = $date / 7;
-    $commisionPayDay = date_create('2015-0-30');
+    $commisionPayDay = date_create('2015-30-0');
     $nextCommisionPayDay = date_add($commisionPayDay, date_interval_create_from_date_string('14 days'));
+    echo date_format($nextCommisionPayDay, 'Y-m-d H:i:s');
     echo "<br>";    
-    $lastWeekdayOfMonth = date('l jS \of F Y h:i:s A', strtotime('last weekday' . $numOfDays . ' ' . ' ' . $month . ' ' . $year));
+    $lastWeekdayOfMonth = date('l jS \of F Y A', strtotime('last weekday' . $numOfDays . ' ' . ' ' . $month . ' ' . $year));
     echo "<br>";
+    echo "<pre>";
+    print_r($nextCommisionPayDay);
+    print_r($commisionPayDay);
+    echo "</pre>";
 //    if ($date % 2 == 0) {
 //      echo "PaydDay!";
 //    }
 //    else{
 //        echo "non me gusta";
 //    }
-    echo date_format($commisionPayDay, 'Y-m-d');
+//    echo date_format($commisionPayDay, 'Y-m-d');
     if ($weekday == "Firday"){
         echo "Hourly Employees are to be payed today.";
         echo "<br>";
@@ -68,9 +73,9 @@
         }
     else{
         echo "Pay Hourly Wages on Friday. ";
-        echo "Comission is to be payed on";
-        echo $nextCommisionPayDay;
-        echo ".";
+        echo "Comission is to be payed on ";
+        echo date_format($nextCommisionPayDay, 'd/m/Y');
+        echo ". ";
         echo "Pay Salaries on ";
         echo $lastWeekdayOfMonth;
         echo ".";
