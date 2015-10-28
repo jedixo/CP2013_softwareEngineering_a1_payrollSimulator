@@ -34,7 +34,8 @@ public class RunPayroll {
 
 	private void calculatePayForCommision(EmpList commisionEmp,
 			SalesRecipts salesRecipts) {
-		if (currentDay.equals(endOfWeek)) {	// this is wrong, should be fortnightly
+		//if (currentDay.equals(endOfWeek)) {	// this is wrong, should be fortnightly
+		if(true) { // for demonstration purposes
 			for (Employee emp : commisionEmp) {
 				float srTally = 0;
 				for (SalesRecipt sr : salesRecipts) {
@@ -49,7 +50,8 @@ public class RunPayroll {
 	}
 
 	private void calculatePayForMonthlyEmp(EmpList monthlyEmp) {
-		if (currentDay.equals(endOfMonth)) {
+		//if (currentDay.equals(endOfMonth)) {
+		if (true) {
 			for (Employee emp : monthlyEmp) {
 				payEmp(emp.getSalary(), emp);
 			}
@@ -57,7 +59,9 @@ public class RunPayroll {
 	}
 
 	private void calculatePayForHourlyEmp(EmpList hourlyEmp, TimeCardList tcList) {
-		if (currentDay.equals(endOfWeek)) {
+		
+		//if (currentDay.equals(endOfWeek)) {
+		if (true) {
 			for (Employee emp : hourlyEmp){
 				int hoursWorked = 0;
 				for (Timecard tc : tcList) {

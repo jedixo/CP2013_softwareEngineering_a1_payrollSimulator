@@ -155,7 +155,7 @@ public class Database {
 		if (isConnected) {
 			try {
 				String sql = "INSERT INTO `held_pay`(`empId`, `amount`, `date`) VALUES " + 
-						"(?,?);";
+						"(?,?,?);";
 				java.sql.PreparedStatement statement = connection.prepareStatement(sql);
 				statement.setInt(1, id);
 				statement.setFloat(2, amount);
@@ -173,7 +173,7 @@ public class Database {
 		if (isConnected) {
 			try {
 				String sql = "INSERT INTO `mail_pay`(`empId`, `firstName`, `lastName`, `address`, `amount`, `date`) VALUES " + 
-						"(?,?,?,?);";
+						"(?,?,?,?,?,?);";
 				java.sql.PreparedStatement statement = connection.prepareStatement(sql);
 				statement.setInt(1, id);
 				statement.setString(2, firstName);
@@ -193,12 +193,12 @@ public class Database {
 		if (isConnected) {
 			try {
 				String sql = "INSERT INTO `direct_pay`(`empId`, `firstName`, `lastName`, `account`, `amount`, `date`) VALUES " + 
-						"(?,?,?,?);";
+						"(?,?,?,?,?,?);";
 				java.sql.PreparedStatement statement = connection.prepareStatement(sql);
 				statement.setInt(1, empId);
 				statement.setString(2, firstName);
 				statement.setString(3, lastName);
-				statement.setString(4, "00000000");
+				statement.setString(4, "00000000"); // set to 0 because not actually specified in spec
 				statement.setFloat(5, amount);
 				statement.setString(6, date);
 				statement.executeUpdate();
