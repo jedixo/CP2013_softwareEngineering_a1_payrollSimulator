@@ -65,7 +65,7 @@ public class ModEmployee extends JDialog {
 		public void itemStateChanged(ItemEvent e) {
 			if (e.getItem().toString().equals("Comission")) {
 				commisionRate(true);
-				salary(false);
+				salary(true);
 				hourly(false);
 			}else if (e.getItem().toString().equals("Hourly rate")){
 				commisionRate(false);
