@@ -23,8 +23,8 @@ if ($_SESSION["loggedin"]) {
             <label>Password: </label>
             <br>
                     <input type=\"password\" name=\"emp_pass\" id=\"emp_pass\"  required>
-            <br>
-            <input type=\"submit\" name=\"submit\" id=\"submit\" value=\"Insert Entry\">
+            <br><br>
+            <input type=\"submit\" name=\"submit\" id=\"submit\" value=\"Log In\">
         </form>"
         ?>
     </body>

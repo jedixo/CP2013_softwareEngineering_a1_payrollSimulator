@@ -1,10 +1,7 @@
 <?php
 include_once("logincheck.php");
-if ($_SESSION['user_level'] == "administrator"){
-    $view = 2;
-} else {
-    $view = 1;
-}
+$view = $_SESSION['user_level'];
+
 ?>
 <!doctype html>
 <html>
@@ -20,7 +17,7 @@ if ($_SESSION['user_level'] == "administrator"){
     include_once("header.php");
     ?>
 <?php
-if ($view == 2){
+if ($view == 1){
     echo "<a href=\"newEmployee.php\">
 <div class=\"outer\">
         <div class=\"image\">
@@ -37,6 +34,22 @@ if ($view == 2){
             <p> view employee</p>
     </div>
 </a>
+<a href=\"viewTimecard.php\">
+    <div class=\"outer\">
+      <div class=\"image\">
+
+            </div>
+            <p>View Timecards</p>
+    </div>
+</a>
+<a href=\"viewSalesreceipt.php\">
+    <div class=\"outer\">
+      <div class=\"image\">
+
+            </div>
+            <p>View Sales</p>
+    </div>
+</a>
 <div class=\"outer\">
         <div class=\"image\">
         
@@ -49,8 +62,29 @@ if ($view == 2){
         </div>
         <p> Pay employee</p>
     </div>";
-} elseif ($view == 1){
-echo "NOTHING HERE YET!!!";
+
+} elseif ($view != 0) {
+    session_unset();
+    header("Location: index.php");
+}
+if ($_SESSION['pay_type'] == 0){
+    echo "<a href=\"addTimecard.php\">
+        <div class=\"outer\">
+            <div class=\"image\">
+
+            </div>
+            <p>New Timecard</p>
+        </div>
+    </a>";
+    } elseif ($_SESSION['pay_type'] == 2){
+    echo "<a href=\"newSale.php\">
+        <div class=\"outer\">
+            <div class=\"image\">
+
+            </div>
+            <p>New Sale</p>
+        </div>
+    </a>";
 }
     ?>
 </body>
