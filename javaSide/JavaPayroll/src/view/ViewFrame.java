@@ -104,7 +104,6 @@ public class ViewFrame extends JDialog{
 		this(focusedEmp,database2,focusedEmpList);
 		this.ogTcList = tcList;
 		type = 3;
-		initaliseCommonComponents();
 	}
 
 	// for focused sr view
@@ -114,7 +113,6 @@ public class ViewFrame extends JDialog{
 		this(focusedSrList,database2,focusedEmpList);
 		this.ogSrList = salesRecipts2;
 		type = 5;
-		initaliseCommonComponents();
 		
 		
 	}
