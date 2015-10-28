@@ -1,10 +1,5 @@
 package view;
 
-//TODO:
-// move menubar outside of viewFrame
-// add adding sales recipts
-// fix sorting mucking up double clicks
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -36,7 +32,8 @@ public class ViewFrame extends JDialog{
 	private SalesRecipts salesRecipts, ogSrList;
 	private TcPanel tcPanel;
 	private SrPanel srPanel;
-	private int type;
+	private int type; 
+	private float anualPay = 0;
 	private EmpPanel empPanel;
 	private Button addButton, modButton;
 	private JScrollPane ScrollPane;
@@ -56,6 +53,7 @@ public class ViewFrame extends JDialog{
 		empPanel = new EmpPanel();
 		header = empPanel.header;
 		add(header, BorderLayout.PAGE_START);
+		
 		ScrollPane = new JScrollPane(empPanel);
 			buttonPanel = new JPanel();
 			add(buttonPanel, BorderLayout.SOUTH);
@@ -120,11 +118,14 @@ public class ViewFrame extends JDialog{
 		remove(ScrollPane);
 			remove(buttonPanel);
 		remove(header);
+		
+		anualPay = database.getTotalPay();
 		menubar = setupMenu();
 		setJMenuBar(menubar);
-		
+			JPanel buttonContainer = new JPanel();
 			JPanel buttonPanel = new JPanel();
-
+			buttonContainer.setLayout(new BorderLayout());
+			
 			addButton = new Button("add");
 			addButton.addActionListener(new ActionListener() {
 				
@@ -174,8 +175,14 @@ public class ViewFrame extends JDialog{
 				});
 				buttonPanel.add(modButton);
 			}
-			add(buttonPanel, BorderLayout.SOUTH);
-		
+			
+			buttonContainer.add(buttonPanel, BorderLayout.CENTER);
+			
+			StatusBar statusbar = new StatusBar();
+			statusbar.addsec1(new JLabel("Total Anual Pay:"));
+			statusbar.addsec1(new JLabel("$" + anualPay));
+			buttonContainer.add(statusbar, BorderLayout.SOUTH);
+			add(buttonContainer, BorderLayout.SOUTH);
 		
 		if (type == 0) {
 			empPanel = new EmpPanel(empList,tcList,database,salesRecipts);
@@ -262,6 +269,19 @@ public class ViewFrame extends JDialog{
 				}
 			});
 			view.add(viewSr);
+			
+			JMenuItem viewPay = new JMenuItem("View Pay Roll");
+			viewPay.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					new ViewPay(database);
+				}
+			});
+			view.add(viewPay);
+			
+			
+			
 			menubar.add(view);
 			
 			JMenu action = new JMenu(" Actions ");

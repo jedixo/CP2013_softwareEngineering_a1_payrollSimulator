@@ -208,4 +208,33 @@ public class Database {
 			}
 		}	
 	}
+
+	public float getTotalPay() {
+		float total = 0;
+		ResultSet table = getTable("direct_pay");
+		try {
+			while (table.next()) {
+				total += table.getFloat("amount");
+			}
+		} catch (SQLException e){
+			
+		}
+		table = getTable("mail_pay");
+		try {
+			while (table.next()) {
+				total += table.getFloat("amount");
+			}
+		} catch (SQLException e){
+			
+		}
+		table = getTable("held_pay");
+		try {
+			while (table.next()) {
+				total += table.getFloat("amount");
+			}
+		} catch (SQLException e){
+			
+		}
+		return total;
+	}
 }
