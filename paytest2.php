@@ -5,6 +5,7 @@
 <title>Untitled Document</title>
 <link href="main.css" rel="stylesheet" type="text/css">
 <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
+<?php include('empDbConnect.php'); ?>
 </head>
 
 <body>
@@ -16,7 +17,7 @@
     $info = getdate();
     echo "<pre>";
     print_r($info);
-    echo "</pre>";
+    echo "</pre>";  
     $date = $info['mday'];
     $month = $info['month'];
     $year = $info['year'];
@@ -81,7 +82,20 @@
         echo ".";
     }
 
- echo date_format($commisionPayDay, 'Y-m-d');
+echo "<br>";
+$sql = "SELECT * FROM employees, time_card WHERE employees.id = time_card.employee";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) { 
+        echo "<a>" . $row["first_name"];
+        echo " , ";
+        echo $row["last_name"] . "</a>";
+        echo " is due $";
+        echo $row["hours"] * $row["Salary"] ."<br>";
+
+    }
+}
 
     
 //    echo "Today is ". $date ." of " . $month . ", ". $year.". The time is ". $hour . ":". $min .":". $sec;

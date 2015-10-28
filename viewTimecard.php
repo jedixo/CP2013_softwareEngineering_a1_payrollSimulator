@@ -28,6 +28,7 @@ $result = $conn->query($sql);
 $emp_sql = "SELECT first_name, last_name FROM employees, time_card WHERE employees.id = time_card.employee";
 $emp_result = $conn->query($emp_sql);
 
+
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
