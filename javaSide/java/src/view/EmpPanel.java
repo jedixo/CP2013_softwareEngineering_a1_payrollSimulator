@@ -21,7 +21,6 @@ import controll.SalesRecipt;
 import controll.SalesRecipts;
 import controll.TimeCardList;
 import controll.Timecard;
-import controll.viewTable;
 
 @SuppressWarnings("serial")
 public class EmpPanel extends JPanel{

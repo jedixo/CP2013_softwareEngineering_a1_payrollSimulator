@@ -1,5 +1,11 @@
-package controll;
-import view.ViewFrame;
+package view;
+import controll.Database;
+import controll.EmpList;
+import controll.Employee;
+import controll.SalesRecipt;
+import controll.SalesRecipts;
+import controll.TimeCardList;
+import controll.Timecard;
 
 
 public class UserFrame {

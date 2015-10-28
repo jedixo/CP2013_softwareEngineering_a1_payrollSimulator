@@ -9,7 +9,6 @@ import controll.EmpList;
 import controll.Employee;
 import controll.SalesRecipt;
 import controll.SalesRecipts;
-import controll.viewTable;
 
 @SuppressWarnings("serial")
 public class SrPanel extends JPanel{

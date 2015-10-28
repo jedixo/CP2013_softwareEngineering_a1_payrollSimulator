@@ -17,7 +17,6 @@ import javax.swing.JScrollPane;
 import javax.swing.table.JTableHeader;
 
 import controll.Database;
-import controll.viewTable;
 
 @SuppressWarnings("serial")
 public class ViewPay extends JDialog {

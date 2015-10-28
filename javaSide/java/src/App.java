@@ -7,9 +7,9 @@ import controll.Database;
 import controll.EmpList;
 import controll.SalesRecipts;
 import controll.TimeCardList;
-import controll.UserFrame;
 import view.LoadingBar;
 import view.LoginWindow;
+import view.UserFrame;
 import view.ViewFrame;
 
 

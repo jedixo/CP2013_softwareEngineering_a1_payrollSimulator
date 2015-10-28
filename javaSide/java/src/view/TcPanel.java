@@ -9,7 +9,6 @@ import controll.EmpList;
 import controll.Employee;
 import controll.TimeCardList;
 import controll.Timecard;
-import controll.viewTable;
 
 @SuppressWarnings("serial")
 public class TcPanel extends JPanel{
