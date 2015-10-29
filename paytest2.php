@@ -87,12 +87,29 @@ $sql = "SELECT * FROM employees, time_card WHERE employees.id = time_card.employ
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
-    while($row = $result->fetch_assoc()) { 
+    while($row = $result->fetch_assoc()) {
+        echo "<pre>";
+        print_r($row);
+        echo "</pre>";
         echo "<a>" . $row["first_name"];
         echo " , ";
         echo $row["last_name"] . "</a>";
         echo " is due $";
         echo $row["hours"] * $row["Salary"] ."<br>";
+//        if ($row["pay_delivery"] == 0){
+//            
+//        echo "heaar";
+//        }
+        while($row["pay_delivery"] == 0){
+            $account_sql = "SELECT account FROM mail_pay WHERE empID = " . $row[employee] ;
+            echo "heaar";
+            $oldAccount = $conn->query($account_sql);
+            echo $oldAccount;
+            $newAccount = $oldAccount + ($row["hours"] * $row["Salary"]);
+            echo $newAccount;
+            $conn->query("UPDATE mail_pay SET account = $newAccount WHERE empID = $row[employee]");
+        }
+
 
     }
 }
