@@ -294,10 +294,24 @@ public class ViewFrame extends JDialog{
 				}
 			});
 			action.add(runPayroll);
+			
+			
 			JMenuItem unionServiceCharge = new JMenuItem("Post Union Service Charge");
 			action.add(unionServiceCharge);
 			menubar.add(action);
+			
 		}
+		JMenu About = new JMenu(" About ");
+		JMenuItem about = new JMenuItem("About");
+		about.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "CP2013 PayRoll (Pleasure Pay) Java \nAuthors:\n- Jake Dixon\n- Blake Hobbs\n- Zach Minneicon", "About", JOptionPane.QUESTION_MESSAGE);
+			}
+		});
+		About.add(about);
+		menubar.add(About);
 		
 		return menubar;
 	}
