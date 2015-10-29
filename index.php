@@ -12,7 +12,7 @@
 <a href="newEmployee.php">
 <div class="outer">
         <div class="image">
-        
+        <img src="bussines_woman_cropped.jpg">
         </div>
         <p> Add New Employee</p>
 </div>
@@ -41,7 +41,7 @@
     </div>
     <div class="outerpay">
         <div class="image">
-        
+        <img src="money_cropped.jpg">
         </div>
         <p> Pay Employee</p>
     </div>

@@ -13,11 +13,11 @@
 // Hourly employees paued every friday
 // Salary last working day of the month
 // Comission payed evey even friday
-    echo "hello \r\n";
-    $info = getdate();
-    echo "<pre>";
-    print_r($info);
-    echo "</pre>";  
+//    echo "hello \r\n";
+//    $info = getdate();
+//    echo "<pre>";
+//    print_r($info);
+//    echo "</pre>";  
     $date = $info['mday'];
     $month = $info['month'];
     $year = $info['year'];
@@ -85,35 +85,49 @@
 echo "<br>";
 $sql = "SELECT * FROM employees, time_card WHERE employees.id = time_card.employee";
 $result = $conn->query($sql);
+echo "<h2>Time Cards</h2>";
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo "<pre>";
-        print_r($row);
-        echo "</pre>";
+//        echo "<pre>";
+//        print_r($row);
+//        echo "</pre>";
         echo "<a>" . $row["first_name"];
-        echo " , ";
-        echo $row["last_name"] . "</a>";
+        echo " " . $row["last_name"] . "</a>";
         echo " is due $";
         echo $row["hours"] * $row["Salary"] ."<br>";
 //        if ($row["pay_delivery"] == 0){
 //            
 //        echo "heaar";
 //        }
-        while($row["pay_delivery"] == 0){
-            $account_sql = "SELECT account FROM mail_pay WHERE empID = " . $row[employee] ;
-            echo "heaar";
-            $oldAccount = $conn->query($account_sql);
-            echo $oldAccount;
-            $newAccount = $oldAccount + ($row["hours"] * $row["Salary"]);
-            echo $newAccount;
-            $conn->query("UPDATE mail_pay SET account = $newAccount WHERE empID = $row[employee]");
-        }
+//        while($row["pay_delivery"] == 0){
+//            $account_sql = "SELECT account FROM mail_pay WHERE empID = " . $row[employee] ;
+//            echo "heaar";
+//            $oldAccount = $conn->query($account_sql);
+//            echo $oldAccount;
+//            $newAccount = $oldAccount + ($row["hours"] * $row["Salary"]);
+//            echo $newAccount;
+//            $conn->query("UPDATE mail_pay SET account = $newAccount WHERE empID = $row[employee]");
+//        }
 
 
     }
 }
-
+echo "<h2>Sales Reciepts</h2>";
+$sales_sql = "SELECT * FROM employees, sales_recipts WHERE employees.id = sales_recipts.employee";
+$sales_result = $conn->query($sales_sql);
+if ($sales_result->num_rows > 0) {
+    // output data of each row
+    while($row = $sales_result->fetch_assoc()) {
+//        echo "<pre>";
+//        print_r($row);
+//        echo "</pre>";
+        echo "<a>" . $row["first_name"];
+        echo " " . $row["last_name"] . "</a>";
+        echo " is due $";
+        echo $row["amount"] ."<br>";
+    }
+}
     
 //    echo "Today is ". $date ." of " . $month . ", ". $year.". The time is ". $hour . ":". $min .":". $sec;
     
