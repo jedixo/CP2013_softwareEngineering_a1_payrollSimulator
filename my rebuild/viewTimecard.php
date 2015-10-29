@@ -1,18 +1,19 @@
 <?php
 include('dbc.php');
-include('logincheck.php');
+include_once("logincheck.php");
+if ($_SESSION['user_level'] != 1) {
+    header("Location: index.php");
+}
+include_once("header.php");
 ?>
 <!doctype html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>All Timecards</title>
+<title>View Timecards</title>
 <link href="main.css" rel="stylesheet" type="text/css">
 </head>
     <body>
-<?php
-include("header.php");
-?>
 <h1>Employee Timecards:</h1>
 <table>
     <tr>
@@ -26,8 +27,9 @@ include("header.php");
 <?php
 $sql = "SELECT * FROM time_card";
 $result = $conn->query($sql);
-$emp_sql = "SELECT id, first_name, last_name FROM employees, time_card WHERE employees.id = time_card.employee";
+$emp_sql = "SELECT first_name, last_name FROM employees, time_card WHERE employees.id = time_card.employee";
 $emp_result = $conn->query($emp_sql);
+
 
 if ($result->num_rows > 0) {
     // output data of each row

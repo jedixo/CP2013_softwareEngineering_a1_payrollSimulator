@@ -39,7 +39,7 @@ if ($view == 1){
       <div class=\"image\">
 
             </div>
-            <p>View Timecards</p>
+            <p>View All Timecards</p>
     </div>
 </a>
 <a href=\"viewSalesreceipt.php\">
@@ -50,12 +50,14 @@ if ($view == 1){
             <p>View Sales</p>
     </div>
 </a>
+<a href=\"promoteEmp.php\">
 <div class=\"outer\">
         <div class=\"image\">
-        
+
         </div>
-        <p> promote employee</p>
+        <p> Promote Employee</p>
     </div>
+</a>
     <div class=\"outerpay\">
         <div class=\"image\">
         
@@ -76,6 +78,14 @@ if ($_SESSION['pay_type'] == 0){
             <p>New Timecard</p>
         </div>
     </a>";
+    echo "<a href=\"viewTimecardForEmp.php\">
+        <div class=\"outer\">
+            <div class=\"image\">
+
+            </div>
+            <p>Veiw Timecards</p>
+        </div>
+    </a>";
     } elseif ($_SESSION['pay_type'] == 2){
     echo "<a href=\"newSale.php\">
         <div class=\"outer\">
@@ -88,9 +98,4 @@ if ($_SESSION['pay_type'] == 0){
 }
     ?>
 </body>
-    <footer>
-        <form action="logout.php">
-        <input type="submit" value="logout">
-        </form>
-            </footer>
 </html>

@@ -36,7 +36,7 @@ if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
 
-        echo "<form id='deleteForm' name='deleteForm' method='post' action='empProcess.php'><tr><td>" . $row["id"] . "</td>"; 
+        echo "<form id='deleteForm' name='deleteForm' method='post' action='test.php'><tr><td>" . $row["id"] . "</td>"; 
         echo "<td>" . $row["first_name"] . "</td>";
         echo "<td>" . $row["last_name"] . "</td>";
         echo "<td>" . $row["Address"] . "</td>";

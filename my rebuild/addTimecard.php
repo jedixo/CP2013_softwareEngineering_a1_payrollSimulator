@@ -8,6 +8,7 @@ if ($_SESSION['pay_type'] == 0) {
     $hour = date(h);
     if (date(a) == "pm"){
         $hour += 12;
+        if ($hour == 24){$hour -= 12;}
     }
     $sql = "INSERT INTO time_card (employee, date, hours) VALUES ('$_SESSION[emp_id]', '$date', $hour)";
     echo $sql;

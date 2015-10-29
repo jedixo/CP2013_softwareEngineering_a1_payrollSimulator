@@ -1,7 +1,11 @@
 <?php
+    session_start();    
     include_once("dbc.php");
     include_once("logincheck.php");
-    print_r($_POST);
+    include_once("header.php");
+?>
+<link href="main.css" rel="stylesheet" type="text/css">
+<?php
     
     if ($_POST['submit'] == "X") {
         $sql = "DELETE FROM employees WHERE id = $_POST[id]";
@@ -24,17 +28,40 @@
 
     }
     elseif ($_POST['viewTC'] && isset($_POST['id'])) {   
+        
     
-    $sql = "select employees.first_name, employees.last_name, time_card.date, time_card.hours from employees inner join time_card on employees.id = time_card.employee where employee.id = ". $_POST[id];
-        echo $sql;
-        $result=$conn->query($sql);
-        foreach($result as $row){
-            echo $row['first_name'];
-            echo $row['last_name'];
-            echo $row['date'];
-            echo $row['hours'];
-        }
-   
+$sql = "SELECT * FROM time_card WHERE employee = ". $_POST['id'];
+$result = $conn->query($sql);
+$emp_sql = "SELECT first_name, last_name FROM employees, time_card WHERE employees.id = time_card.employee and employees.id =". $_POST['id'];
+$emp_result = $conn->query($emp_sql);
+        ?>
+
+<h1><?php 
+        $emp_name = mysqli_fetch_assoc($emp_result);
+        echo implode(" ",$emp_name); ?> Timecards</h1>
+<table border="1">
+    <tr>
+        <th>id:</th>
+        <th>Employee</th>
+        <th>Date:</th>
+        <th>Hours:</th>
+        <th>Amount Due:</th>
+    </tr>
+    <?php
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+
+        echo "<form id='deleteForm' name='deleteForm' method='post' action='timeCardProcess.php'><tr><td>" . $row["id"] . "</td>";
+        echo "<td>" . implode(" ",$emp_name) . "</td>";
+        echo "<td>" . $row["date"] . "</td>";
+        echo "<td>" . $row["hours"] . "</td>";
+        echo "<td>'$$$'</td>";
+       
+        
+    }
+}
     }
 
 ?>

@@ -1,5 +1,5 @@
 <?php
-include('empDbConnect.php');
+include('dbc.php');
 print_r($_REQUEST['pay_type']);
 print_r($_REQUEST);
 echo "<link href='main.css' rel='stylesheet' type='text/css'>";
