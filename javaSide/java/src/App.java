@@ -1,25 +1,19 @@
-
-
-
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
-
 import controll.Database;
 import controll.EmpList;
+import controll.Employee;
+import controll.SalesRecipt;
 import controll.SalesRecipts;
 import controll.TimeCardList;
+import controll.Timecard;
 import view.LoadingBar;
 import view.LoginWindow;
-import view.UserFrame;
 import view.ViewFrame;
 
 
 public class App {
-	
-	private static final String HOST = "sql6.freemysqlhosting.net/sql689509";
-	private static final String USERNAME = "sql689509";
-	private static final String PASSWORD = "lA7*wL7!";
 	private ViewFrame viewframe;
-	private UserFrame userFrame;
 	private static Database database;
 	private static EmpList empList;
 	private static TimeCardList timeCardList;
@@ -31,61 +25,56 @@ public class App {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		}catch (Exception e){}
 		
+		JOptionPane.showMessageDialog(null, "NOTE: Database has been shutdown. In order to maintain"
+				+ " the database for this \nproject I had to respond to an email from "
+				+ "the database providers every week \nI am ceasing to do this as of: "
+				+ "12/11/2015 \nI have attempted to it convert to work offline, select cancel at the login window"
+				+ "\nand the database wont save anything, or may produce an error, "
+				+ "online code can be\nfound as appOnline.java, if you want to use it but this will by the final version.\nThank You - Jake Dixon", "Database Shutdown", JOptionPane.QUESTION_MESSAGE);
+
+		
 		load = new LoadingBar("Connecting");
 		load.updateBar(25,"Connecting");
-		database = new Database(HOST, USERNAME, PASSWORD);
-		if (database.isConnected) {
-			load.updateBar(50,"Querying Employees");
-			empList = new EmpList(database.getTable("employees"));
-			initaliseUi();
-		} else {
-			load.dispose();
-			System.exit(0);
-		}
-
+		database = new Database();
+		load.updateBar(50,"Querying Employees");
+		empList = new EmpList();
+		Employee emp = new Employee("first", "last");
+		empList.add(emp);
+		emp = new Employee("seccond", "last");
+		emp.setPayType(2);
+		emp.setId(1);
+		empList.add(emp);
+		initaliseUi();
 	}
 
 	private void initaliseUi() {
-		
 		if (load.isVisible() == false) {
 			load = new LoadingBar("Logging in");
 			load.updateBar(60, "Logging in");
 		} else {
 			load.updateBar(60, "Logging in");
 		}
-			
-		LoginWindow login = new LoginWindow(empList);
-		if (login.isLoggedIn()) {
-			
+		new LoginWindow(empList); //too demonstrate functionality
+		if (true) {	
 			load.updateBar(75,"Querying Timecards");
-			timeCardList = new TimeCardList(database.getTable("time_card"));
+			timeCardList = new TimeCardList();
+			Timecard tc = new Timecard(0, "2015-11-12", 20);
+			timeCardList.add(tc);
 			load.updateBar(100,"Loading UI");
-			salesRecipts = new SalesRecipts(database.getTable("sales_recipts"));
+			salesRecipts = new SalesRecipts();
+			SalesRecipt sr = new SalesRecipt(1, "2015-11-12", 200);
+			salesRecipts.add(sr);
 			load.dispose();
-			if (login.empLoggedIn() == null || login.empLoggedIn().getUserLevel() == 1) {
-				viewframe = new ViewFrame(empList, database, timeCardList, salesRecipts);
-				if (viewframe.exitStatus == 0)
-					System.exit(0);
-				else {
-					initaliseUi();
-				}
-			} else {
-				userFrame = new UserFrame(login.empLoggedIn(), timeCardList, salesRecipts, database);
-				if (userFrame.exitStatus == 0)
-					System.exit(0);
-				else {
-					initaliseUi();
-				}
+			viewframe = new ViewFrame(empList, database, timeCardList, salesRecipts);
+			if (viewframe.exitStatus == 0)
+				System.exit(0);
+			else {
+				initaliseUi();
 			}
-		} else {
-			load.dispose();
-			System.exit(0);
 		}
-			}
+	}
 
 	public static void main(String[] args) {
 		new App();
 	}
-
-
 }

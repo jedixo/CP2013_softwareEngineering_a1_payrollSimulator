@@ -216,7 +216,7 @@ public class Database {
 			while (table.next()) {
 				total += table.getFloat("amount");
 			}
-		} catch (SQLException e){
+		} catch (Exception e){
 			
 		}
 		table = getTable("mail_pay");
@@ -224,7 +224,7 @@ public class Database {
 			while (table.next()) {
 				total += table.getFloat("amount");
 			}
-		} catch (SQLException e){
+		} catch (Exception e){
 			
 		}
 		table = getTable("held_pay");
@@ -232,7 +232,7 @@ public class Database {
 			while (table.next()) {
 				total += table.getFloat("amount");
 			}
-		} catch (SQLException e){
+		} catch (Exception e){
 			
 		}
 		return total;
